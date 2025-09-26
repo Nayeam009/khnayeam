@@ -28,12 +28,35 @@ const Home = () => {
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative z-10 max-w-6xl mx-auto px-6 py-20 text-center">
           <FloatingElement delay="0.5s">
-            <div className="mb-8 mx-auto w-64 h-64 rounded-full overflow-hidden border-4 border-white/10 shadow-2xl backdrop-blur-sm bg-white/5 hover:shadow-3xl transition-all duration-700 hover:scale-105">
-              <img 
-                src={profileImage} 
-                alt="KH. Nayeam Ibna Nasir"
-                className="w-full h-full object-cover object-center mix-blend-normal"
-              />
+            <div className="relative mb-8 mx-auto w-80 h-80">
+              {/* Artistic background elements */}
+              <div className="absolute inset-0 -m-8">
+                {/* Main organic background shape */}
+                <div className="absolute top-4 left-8 w-72 h-64 bg-gradient-to-br from-growth/80 via-primary/70 to-accent/60 rounded-[40%_60%_70%_30%] rotate-12 blur-sm"></div>
+                <div className="absolute top-8 right-4 w-48 h-48 bg-gradient-to-tl from-soil/60 via-growth/50 to-primary/40 rounded-[60%_40%_30%_70%] -rotate-45 blur-xs"></div>
+                <div className="absolute bottom-0 left-12 w-32 h-32 bg-gradient-to-r from-accent/40 to-growth/30 rounded-[50%_50%_70%_30%] rotate-90 blur-sm"></div>
+                
+                {/* Additional organic elements */}
+                <div className="absolute top-12 right-16 w-24 h-24 bg-primary/30 rounded-full blur-md animate-pulse"></div>
+                <div className="absolute bottom-8 right-8 w-16 h-16 bg-growth/40 rounded-full blur-sm"></div>
+                <div className="absolute top-20 left-4 w-20 h-20 bg-soil/20 rounded-[60%_40%_30%_70%] blur-lg"></div>
+              </div>
+              
+              {/* Profile image container */}
+              <div className="relative z-10 w-64 h-64 mx-auto rounded-full overflow-hidden border-4 border-white/20 shadow-2xl backdrop-blur-sm bg-white/10 hover:shadow-3xl transition-all duration-700 hover:scale-105 hover:border-white/30">
+                <img 
+                  src={profileImage} 
+                  alt="KH. Nayeam Ibna Nasir"
+                  className="w-full h-full object-cover object-center"
+                />
+                {/* Subtle overlay for better blend */}
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/10 mix-blend-soft-light"></div>
+              </div>
+              
+              {/* Floating accent elements */}
+              <div className="absolute top-16 right-2 w-3 h-3 bg-white/60 rounded-full animate-pulse"></div>
+              <div className="absolute bottom-20 left-2 w-2 h-2 bg-growth/80 rounded-full animate-bounce"></div>
+              <div className="absolute top-32 left-0 w-4 h-4 bg-accent/50 rounded-full animate-ping"></div>
             </div>
           </FloatingElement>
           
