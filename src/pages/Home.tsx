@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import { OrganicBackground, FloatingElement, GrowingElement } from "@/components/OrganicElements";
 import heroBackground from "@/assets/agricultural-hero-bg.jpg";
-import profileImage from "@/assets/nayeam-profile.jpg";
+import profileImage from "@/assets/nayeam-profile-new.jpg";
 import soilElement from "@/assets/soil-element.jpg";
 import plantGrowth from "@/assets/plant-growth.jpg";
 
@@ -28,11 +28,11 @@ const Home = () => {
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative z-10 max-w-6xl mx-auto px-6 py-20 text-center">
           <FloatingElement delay="0.5s">
-            <div className="mb-8 mx-auto w-64 h-64 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
+            <div className="mb-8 mx-auto w-64 h-64 rounded-full overflow-hidden border-4 border-white/10 shadow-2xl backdrop-blur-sm bg-white/5 hover:shadow-3xl transition-all duration-700 hover:scale-105">
               <img 
                 src={profileImage} 
                 alt="KH. Nayeam Ibna Nasir"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center mix-blend-normal"
               />
             </div>
           </FloatingElement>

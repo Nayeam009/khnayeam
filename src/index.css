@@ -140,30 +140,105 @@ All colors MUST be HSL.
   
   /* Natural animations */
   .animate-float {
-    animation: float 6s ease-in-out infinite;
+    animation: float 8s ease-in-out infinite;
   }
   
   .animate-grow {
-    animation: grow 3s ease-out forwards;
+    animation: grow 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
   
   .animate-organic-pulse {
-    animation: organic-pulse 4s ease-in-out infinite;
+    animation: organic-pulse 6s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite;
+  }
+
+  .animate-breath {
+    animation: breath 4s ease-in-out infinite;
+  }
+
+  .animate-drift {
+    animation: drift 12s ease-in-out infinite;
+  }
+
+  .shadow-3xl {
+    box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25), 0 0 80px -10px hsl(var(--primary) / 0.3);
   }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(2deg); }
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg) scale(1); 
+    filter: blur(0px);
+  }
+  33% { 
+    transform: translateY(-15px) rotate(0.5deg) scale(1.02); 
+    filter: blur(0.5px);
+  }
+  66% { 
+    transform: translateY(-25px) rotate(-0.5deg) scale(0.98); 
+    filter: blur(0px);
+  }
 }
 
 @keyframes grow {
-  0% { transform: scale(0) rotate(-5deg); opacity: 0; }
-  50% { transform: scale(1.1) rotate(2deg); opacity: 0.8; }
-  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  0% { 
+    transform: scale(0.7) translateY(30px) rotateX(15deg); 
+    opacity: 0; 
+    filter: blur(2px);
+  }
+  50% { 
+    transform: scale(0.95) translateY(10px) rotateX(5deg); 
+    opacity: 0.8; 
+    filter: blur(0.5px);
+  }
+  100% { 
+    transform: scale(1) translateY(0px) rotateX(0deg); 
+    opacity: 1; 
+    filter: blur(0px);
+  }
 }
 
 @keyframes organic-pulse {
-  0%, 100% { transform: scale(1); filter: brightness(1); }
-  50% { transform: scale(1.02); filter: brightness(1.1); }
+  0%, 100% { 
+    transform: scale(1) rotate(0deg); 
+    opacity: 0.3; 
+    filter: hue-rotate(0deg);
+  }
+  25% { 
+    transform: scale(1.1) rotate(2deg); 
+    opacity: 0.6; 
+    filter: hue-rotate(15deg);
+  }
+  50% { 
+    transform: scale(1.25) rotate(-1deg); 
+    opacity: 0.9; 
+    filter: hue-rotate(30deg);
+  }
+  75% { 
+    transform: scale(1.15) rotate(1deg); 
+    opacity: 0.7; 
+    filter: hue-rotate(15deg);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes breath {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.4; }
+  50% { transform: scale(1.05) rotate(0.5deg); opacity: 0.7; }
+}
+
+@keyframes drift {
+  0%, 100% { transform: translateX(0px) translateY(0px) rotate(0deg); }
+  25% { transform: translateX(10px) translateY(-5px) rotate(1deg); }
+  50% { transform: translateX(-5px) translateY(-10px) rotate(-0.5deg); }
+  75% { transform: translateX(-10px) translateY(5px) rotate(0.5deg); }
 }
