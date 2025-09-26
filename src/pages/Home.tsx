@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import { OrganicBackground, FloatingElement, GrowingElement } from "@/components/OrganicElements";
 import heroBackground from "@/assets/agricultural-hero-bg.jpg";
-import profileImage from "@/assets/nayeam-profile-new.jpg";
+import profileImage from "@/assets/nayeam-profile-latest.jpg";
 import soilElement from "@/assets/soil-element.jpg";
 import plantGrowth from "@/assets/plant-growth.jpg";
 
