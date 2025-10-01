@@ -17,87 +17,118 @@ const Home = () => {
       
       {/* Hero Section */}
       <section 
-        className="relative min-h-screen flex items-center justify-center overflow-hidden"
-        style={{
-          backgroundImage: `url(${heroBackground})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
-        }}
+        className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-background via-background to-primary/5"
       >
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="relative z-10 max-w-6xl mx-auto px-6 py-20 text-center">
-          <FloatingElement delay="0.5s">
-            <div className="relative mb-8 mx-auto w-80 h-80">
-              {/* Artistic background elements */}
-              <div className="absolute inset-0 -m-8">
-                {/* Main organic background shape */}
-                <div className="absolute top-4 left-8 w-72 h-64 bg-gradient-to-br from-growth/80 via-primary/70 to-accent/60 rounded-[40%_60%_70%_30%] rotate-12 blur-sm"></div>
-                <div className="absolute top-8 right-4 w-48 h-48 bg-gradient-to-tl from-soil/60 via-growth/50 to-primary/40 rounded-[60%_40%_30%_70%] -rotate-45 blur-xs"></div>
-                <div className="absolute bottom-0 left-12 w-32 h-32 bg-gradient-to-r from-accent/40 to-growth/30 rounded-[50%_50%_70%_30%] rotate-90 blur-sm"></div>
+        <div className="absolute inset-0 opacity-10">
+          <img src={heroBackground} alt="" className="w-full h-full object-cover" />
+        </div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 w-full">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <GrowingElement delay="0.3s">
+              <div className="space-y-6">
+                <div className="inline-block">
+                  <span className="text-primary/80 text-lg font-medium tracking-wider uppercase">
+                    Welcome to My Portfolio
+                  </span>
+                </div>
                 
-                {/* Additional organic elements */}
-                <div className="absolute top-12 right-16 w-24 h-24 bg-primary/30 rounded-full blur-md animate-pulse"></div>
-                <div className="absolute bottom-8 right-8 w-16 h-16 bg-growth/40 rounded-full blur-sm"></div>
-                <div className="absolute top-20 left-4 w-20 h-20 bg-soil/20 rounded-[60%_40%_30%_70%] blur-lg"></div>
+                <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight">
+                  <span className="text-foreground">Hey There</span>
+                  <br />
+                  <span className="bg-gradient-to-r from-primary via-growth to-accent bg-clip-text text-transparent">
+                    I'm Nayeam
+                  </span>
+                </h1>
+                
+                <div className="space-y-3">
+                  <p className="text-2xl md:text-3xl font-semibold text-primary">
+                    Agricultural Scientist
+                  </p>
+                  <p className="text-xl md:text-2xl text-muted-foreground">
+                    Entrepreneur & Innovator
+                  </p>
+                </div>
+                
+                <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
+                  Bridging traditional agriculture with modern technology through innovative research and sustainable entrepreneurial ventures.
+                </p>
+                
+                <div className="flex flex-wrap gap-4 pt-4">
+                  <Link to="/about">
+                    <Button size="lg" className="shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                      Explore My Work <ArrowRight className="ml-2" size={20} />
+                    </Button>
+                  </Link>
+                  <Link to="/contact">
+                    <Button size="lg" variant="outline" className="shadow-lg hover:shadow-xl transition-all duration-300">
+                      Get In Touch
+                    </Button>
+                  </Link>
+                </div>
               </div>
-              
-              {/* Profile image container */}
-              <div className="relative z-10 w-64 h-64 mx-auto rounded-full overflow-hidden border-4 border-white/20 shadow-2xl backdrop-blur-sm bg-white/10 hover:shadow-3xl transition-all duration-700 hover:scale-105 hover:border-white/30">
-                <img 
-                  src={profileImage} 
-                  alt="KH. Nayeam Ibna Nasir"
-                  className="w-full h-full object-cover object-center"
-                />
-                {/* Subtle overlay for better blend */}
-                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/10 mix-blend-soft-light"></div>
+            </GrowingElement>
+            
+            {/* Right Content - Profile with Artistic Elements */}
+            <FloatingElement delay="0.5s">
+              <div className="relative flex justify-center lg:justify-end">
+                {/* Artistic brush stroke elements */}
+                <div className="absolute inset-0 -m-8">
+                  {/* Main brush stroke - agricultural green */}
+                  <div className="absolute top-1/4 right-8 w-72 h-80 bg-gradient-to-br from-growth/40 via-primary/30 to-accent/20 transform rotate-12 rounded-[40%_60%_70%_30%] blur-sm animate-pulse"></div>
+                  
+                  {/* Secondary brush stroke */}
+                  <div className="absolute top-1/3 right-16 w-64 h-72 bg-gradient-to-tl from-primary/30 via-growth/25 to-soil/15 transform -rotate-6 rounded-[60%_40%_50%_60%] blur-md"></div>
+                  
+                  {/* Accent stroke */}
+                  <div className="absolute top-1/2 right-4 w-48 h-56 bg-gradient-to-r from-accent/25 to-growth/20 transform rotate-3 rounded-[50%_50%_60%_40%] blur-lg"></div>
+                  
+                  {/* Small accent elements */}
+                  <div className="absolute top-20 right-32 w-16 h-16 bg-primary/20 rounded-full blur-md"></div>
+                  <div className="absolute bottom-32 right-48 w-12 h-12 bg-growth/30 rounded-full blur-sm animate-bounce"></div>
+                </div>
+                
+                {/* Profile Image Container */}
+                <div className="relative z-10">
+                  <div className="relative w-80 h-96 md:w-96 md:h-[28rem]">
+                    {/* Decorative border elements */}
+                    <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 via-growth/20 to-accent/20 rounded-3xl blur-xl"></div>
+                    
+                    {/* Main image container */}
+                    <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border-4 border-background/50 backdrop-blur-sm transform transition-all duration-700 hover:scale-105 hover:shadow-3xl hover:border-primary/30">
+                      <img 
+                        src={profileImage} 
+                        alt="KH. Nayeam Ibna Nasir - Agricultural Scientist"
+                        className="w-full h-full object-cover object-center"
+                      />
+                      
+                      {/* Gradient overlay for better integration */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary/10 via-transparent to-transparent mix-blend-soft-light"></div>
+                    </div>
+                    
+                    {/* Floating decorative elements */}
+                    <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-gradient-to-br from-primary to-growth rounded-full blur-md opacity-60 animate-pulse"></div>
+                    <div className="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-accent to-soil rounded-full blur-md opacity-50"></div>
+                  </div>
+                </div>
               </div>
-              
-              {/* Floating accent elements */}
-              <div className="absolute top-16 right-2 w-3 h-3 bg-white/60 rounded-full animate-pulse"></div>
-              <div className="absolute bottom-20 left-2 w-2 h-2 bg-growth/80 rounded-full animate-bounce"></div>
-              <div className="absolute top-32 left-0 w-4 h-4 bg-accent/50 rounded-full animate-ping"></div>
-            </div>
-          </FloatingElement>
-          
-          <GrowingElement delay="1s">
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-              KH. Nayeam Ibna Nasir
-            </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto">
-              Agricultural Scientist & Entrepreneur
-            </p>
-            <p className="text-lg text-white/80 mb-12 max-w-4xl mx-auto">
-              Bridging the gap between traditional agriculture and modern technology through innovative research, sustainable practices, and entrepreneurial ventures in the agricultural sector.
-            </p>
-          </GrowingElement>
-          
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link to="/about">
-              <Button size="lg" className="bg-white text-primary hover:bg-white/90 shadow-xl">
-                Explore My Work <ArrowRight className="ml-2" size={20} />
-              </Button>
-            </Link>
-            <Link to="/contact">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                Get In Touch
-              </Button>
-            </Link>
+            </FloatingElement>
           </div>
         </div>
         
         {/* Floating natural elements */}
-        <FloatingElement delay="2s" className="absolute top-20 left-10 opacity-60">
-          <Leaf className="text-white" size={40} />
+        <FloatingElement delay="2s" className="absolute top-20 left-10 opacity-30 hidden xl:block">
+          <Leaf className="text-growth" size={40} />
         </FloatingElement>
-        <FloatingElement delay="2.5s" className="absolute top-40 right-20 opacity-60">
-          <Droplet className="text-white" size={35} />
+        <FloatingElement delay="2.5s" className="absolute top-40 right-20 opacity-30 hidden xl:block">
+          <Droplet className="text-primary" size={35} />
         </FloatingElement>
-        <FloatingElement delay="3s" className="absolute bottom-40 left-20 opacity-60">
-          <Mountain className="text-white" size={45} />
+        <FloatingElement delay="3s" className="absolute bottom-40 left-20 opacity-30 hidden xl:block">
+          <Mountain className="text-soil" size={45} />
         </FloatingElement>
-        <FloatingElement delay="3.5s" className="absolute bottom-20 right-10 opacity-60">
-          <Wind className="text-white" size={38} />
+        <FloatingElement delay="3.5s" className="absolute bottom-20 right-10 opacity-30 hidden xl:block">
+          <Wind className="text-accent" size={38} />
         </FloatingElement>
       </section>
 
