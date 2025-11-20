@@ -49,7 +49,7 @@ const About = () => {
                   </div>
                   <div className="flex items-center gap-3 text-muted-foreground">
                     <Calendar size={18} className="text-primary" />
-                    <span>Graduated 2020</span>
+                    <span>Session: 2019-20 | Completed: July 2025</span>
                   </div>
                 </div>
               </CardContent>
@@ -66,8 +66,7 @@ const About = () => {
                 <CardContent>
                   <p className="text-lg text-muted-foreground leading-relaxed">
                     I would like to be part of an organization that will assist my professional growth and provide 
-                    a challenging and rewarding career while allowing me to utilize my knowledge and skills in 
-                    agricultural science, sustainable farming practices, and innovative food production systems.
+                    a challenging and rewarding career while allowing me to utilize my knowledge and skills.
                   </p>
                 </CardContent>
               </Card>
@@ -89,7 +88,8 @@ const About = () => {
                       </p>
                       <div className="flex flex-wrap gap-2 mb-2">
                         <Badge variant="secondary">Session: 2019-20</Badge>
-                        <Badge variant="outline">CGPA: 3.65/4.00</Badge>
+                        <Badge variant="outline">CGPA: 3.59/4.00</Badge>
+                        <Badge variant="outline">Completed: July 2025</Badge>
                       </div>
                       <p className="text-sm text-muted-foreground">
                         Specialized in crop science, soil management, and sustainable agriculture practices

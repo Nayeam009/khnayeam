@@ -93,7 +93,7 @@ const Achievements = () => {
             <Card className="text-center border-primary/20 hover:border-primary/40 transition-all duration-300">
               <CardContent className="p-6">
                 <Trophy className="text-primary mx-auto mb-4" size={40} />
-                <h3 className="text-2xl font-bold text-primary">8+</h3>
+                <h3 className="text-2xl font-bold text-primary">7+</h3>
                 <p className="text-muted-foreground">Awards Won</p>
               </CardContent>
             </Card>
@@ -114,7 +114,7 @@ const Achievements = () => {
             <Card className="text-center border-soil/20 hover:border-soil/40 transition-all duration-300">
               <CardContent className="p-6">
                 <Award className="text-soil mx-auto mb-4" size={40} />
-                <h3 className="text-2xl font-bold text-soil">3.65</h3>
+                <h3 className="text-2xl font-bold text-soil">3.59</h3>
                 <p className="text-muted-foreground">CGPA Achievement</p>
               </CardContent>
             </Card>
