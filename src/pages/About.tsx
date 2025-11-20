@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { GraduationCap, MapPin, Calendar } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { GraduationCap, MapPin, Calendar, Download } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import { OrganicBackground, GrowingElement } from "@/components/OrganicElements";
 import profileImage from "@/assets/nayeam-profile.jpg";
@@ -50,6 +51,22 @@ const About = () => {
                   <div className="flex items-center gap-3 text-muted-foreground">
                     <Calendar size={18} className="text-primary" />
                     <span>Session: 2019-20 | Completed: July 2025</span>
+                  </div>
+                  
+                  <div className="pt-4 border-t border-border">
+                    <a 
+                      href="/cv-kh-nayeam-ibna-nasir.pdf" 
+                      download="KH-Nayeam-Ibna-Nasir-CV.pdf"
+                      className="w-full"
+                    >
+                      <Button 
+                        className="w-full shadow-lg hover:shadow-xl transition-all duration-300"
+                        size="lg"
+                      >
+                        <Download className="mr-2" size={18} />
+                        Download CV
+                      </Button>
+                    </a>
                   </div>
                 </div>
               </CardContent>
