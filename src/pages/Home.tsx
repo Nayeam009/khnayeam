@@ -8,17 +8,13 @@ import heroBackground from "@/assets/agricultural-hero-bg.jpg";
 import profileImage from "@/assets/nayeam-profile-latest.jpg";
 import soilElement from "@/assets/soil-element.jpg";
 import plantGrowth from "@/assets/plant-growth.jpg";
-
 const Home = () => {
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       <Navigation />
       <OrganicBackground />
       
       {/* Hero Section */}
-      <section 
-        className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-background via-background to-primary/5"
-      >
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-background via-background to-primary/5">
         <div className="absolute inset-0 opacity-10">
           <img src={heroBackground} alt="" className="w-full h-full object-cover" />
         </div>
@@ -29,9 +25,7 @@ const Home = () => {
             <GrowingElement delay="0.3s">
               <div className="space-y-6">
                 <div className="inline-block">
-                  <span className="text-primary/80 text-lg font-medium tracking-wider uppercase">
-                    Welcome to My Portfolio
-                  </span>
+                  
                 </div>
                 
                 <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight">
@@ -97,11 +91,7 @@ const Home = () => {
                     
                     {/* Main image container */}
                     <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border-4 border-background/50 backdrop-blur-sm transform transition-all duration-700 hover:scale-105 hover:shadow-3xl hover:border-primary/30">
-                      <img 
-                        src={profileImage} 
-                        alt="KH. Nayeam Ibna Nasir - Agricultural Scientist"
-                        className="w-full h-full object-cover object-center"
-                      />
+                      <img src={profileImage} alt="KH. Nayeam Ibna Nasir - Agricultural Scientist" className="w-full h-full object-cover object-center" />
                       
                       {/* Gradient overlay for better integration */}
                       <div className="absolute inset-0 bg-gradient-to-t from-primary/10 via-transparent to-transparent mix-blend-soft-light"></div>
@@ -220,8 +210,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default Home;
