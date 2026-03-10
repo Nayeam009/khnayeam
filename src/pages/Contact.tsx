@@ -1,270 +1,126 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Facebook, Linkedin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Facebook, Linkedin, Send, ArrowUpRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import { OrganicBackground, GrowingElement } from "@/components/OrganicElements";
 
 const Contact = () => {
-  const contactInfo = [
-    {
-      icon: Phone,
-      label: "Phone",
-      value: "+880 1710 651618",
-      href: "tel:+8801710651618",
-      color: "primary"
-    },
-    {
-      icon: Mail,
-      label: "Email",
-      value: "khnayeam009@gmail.com", 
-      href: "mailto:khnayeam009@gmail.com",
-      color: "growth"
-    },
-    {
-      icon: MapPin,
-      label: "Address",
-      value: "132/A, Jahanara Garden, Green Road, Farmgate, Dhaka, Bangladesh",
-      href: "#",
-      color: "accent"
-    }
-  ];
-
-  const socialLinks = [
-    {
-      icon: Facebook,
-      label: "Facebook",
-      href: "https://www.facebook.com/share/14JLH3QtAbW/",
-      color: "primary"
-    },
-    {
-      icon: Linkedin,
-      label: "LinkedIn", 
-      href: "https://www.linkedin.com/in/kh-nayeam-b46228336",
-      color: "growth"
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       <OrganicBackground />
-      
-      <div className="max-w-6xl mx-auto px-6 py-16">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <GrowingElement>
-            <h1 className="text-5xl font-bold text-primary mb-6">Get In Touch</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Let's discuss opportunities in agricultural research, sustainable farming, or innovative entrepreneurship
-            </p>
-          </GrowingElement>
-        </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
-          <div className="space-y-8">
-            <GrowingElement delay="0.3s">
-              <h2 className="text-3xl font-bold text-primary mb-6">Contact Information</h2>
-            </GrowingElement>
-
-            {/* Contact Details */}
-            <div className="space-y-4">
-              {contactInfo.map((item, index) => (
-                <GrowingElement key={index} delay={`${0.5 + index * 0.1}s`}>
-                  <Card className="hover:shadow-lg transition-all duration-300 border-border/50">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                          item.color === 'primary' ? 'bg-primary/10 text-primary' :
-                          item.color === 'growth' ? 'bg-growth/10 text-growth' :
-                          'bg-accent/10 text-accent'
-                        }`}>
-                          <item.icon size={24} />
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-semibold text-primary mb-1">{item.label}</h4>
-                          <a 
-                            href={item.href}
-                            className="text-muted-foreground hover:text-primary transition-colors"
-                          >
-                            {item.value}
-                          </a>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </GrowingElement>
-              ))}
-            </div>
-
-            {/* Social Links */}
-            <GrowingElement delay="0.8s">
-              <Card className="border-primary/20 bg-primary/5">
-                <CardHeader>
-                  <CardTitle className="text-primary">Connect on Social Media</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex gap-4">
-                    {socialLinks.map((social, index) => (
-                      <a
-                        key={index}
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
-                          social.color === 'primary' 
-                            ? 'bg-primary text-primary-foreground hover:bg-primary/90' 
-                            : 'bg-growth text-growth-foreground hover:bg-growth/90'
-                        } shadow-lg hover:shadow-xl hover:scale-105`}
-                      >
-                        <social.icon size={20} />
-                      </a>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </GrowingElement>
-
-            {/* Availability */}
-            <GrowingElement delay="1.0s">
-              <Card className="border-growth/20 bg-growth/5">
-                <CardHeader>
-                  <CardTitle className="text-growth">Collaboration Interests</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-growth rounded-full"></div>
-                      Agricultural research partnerships
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-growth rounded-full"></div>
-                      Sustainable farming consultancy
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-growth rounded-full"></div>
-                      Startup mentorship and advisory
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-growth rounded-full"></div>
-                      Speaking engagements
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-growth rounded-full"></div>
-                      Academic collaborations
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
-            </GrowingElement>
-          </div>
-
-          {/* Contact Form */}
-          <GrowingElement delay="0.5s">
-            <Card className="sticky top-24">
-              <CardHeader>
-                <CardTitle className="text-2xl text-primary">Send a Message</CardTitle>
-                <p className="text-muted-foreground">
-                  I'd love to hear from you. Send me a message and I'll respond as soon as possible.
-                </p>
-              </CardHeader>
-              <CardContent>
-                <form className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="text-sm font-medium text-primary mb-2 block">
-                        First Name
-                      </label>
-                      <Input 
-                        placeholder="Your first name"
-                        className="border-border focus:border-primary"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium text-primary mb-2 block">
-                        Last Name
-                      </label>
-                      <Input 
-                        placeholder="Your last name"
-                        className="border-border focus:border-primary"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="text-sm font-medium text-primary mb-2 block">
-                      Email Address
-                    </label>
-                    <Input 
-                      type="email"
-                      placeholder="your.email@example.com"
-                      className="border-border focus:border-primary"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="text-sm font-medium text-primary mb-2 block">
-                      Subject
-                    </label>
-                    <Input 
-                      placeholder="What is this about?"
-                      className="border-border focus:border-primary"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="text-sm font-medium text-primary mb-2 block">
-                      Message
-                    </label>
-                    <Textarea 
-                      placeholder="Tell me more about your project, research, or collaboration idea..."
-                      rows={6}
-                      className="border-border focus:border-primary resize-none"
-                    />
-                  </div>
-
-                  <Button size="lg" className="w-full shadow-lg">
-                    <Send size={20} className="mr-2" />
-                    Send Message
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-          </GrowingElement>
-        </div>
-
-        {/* Call to Action */}
-        <GrowingElement delay="1.2s">
-          <div className="mt-16 text-center">
-            <Card className="bg-gradient-to-r from-primary/10 via-growth/10 to-accent/10 border-primary/20">
-              <CardContent className="p-12">
-                <h3 className="text-2xl font-bold text-primary mb-4">
-                  Ready to Innovate Together?
-                </h3>
-                <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  Whether you're interested in agricultural research, sustainable farming solutions, 
-                  or entrepreneurial ventures, I'm excited to explore potential collaborations.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button size="lg" asChild>
-                    <a href="mailto:khnayeam009@gmail.com">
-                      <Mail size={20} className="mr-2" />
-                      Email Me Directly
-                    </a>
-                  </Button>
-                  <Button size="lg" variant="outline" asChild>
-                    <a href="tel:+8801710651618">
-                      <Phone size={20} className="mr-2" />
-                      Call Now
-                    </a>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+      <div className="max-w-5xl mx-auto px-6 md:px-12 py-16 md:py-24">
+        <GrowingElement delay="0.1s">
+          <p className="text-sm font-medium text-primary mb-3 uppercase tracking-wider">Contact</p>
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 max-w-2xl">
+            Let's <span className="gradient-text">connect</span>
+          </h1>
+          <p className="text-lg text-muted-foreground max-w-xl mb-16">
+            Whether it's a project idea, collaboration, or just a conversation — I'd love to hear from you.
+          </p>
         </GrowingElement>
+
+        <div className="grid lg:grid-cols-5 gap-12">
+          {/* Info */}
+          <div className="lg:col-span-2 space-y-6">
+            <GrowingElement delay="0.2s">
+              <div className="space-y-4">
+                {[
+                  { icon: Mail, label: "Email", value: "khnayeam009@gmail.com", href: "mailto:khnayeam009@gmail.com" },
+                  { icon: Phone, label: "Phone", value: "+880 1710 651618", href: "tel:+8801710651618" },
+                  { icon: MapPin, label: "Location", value: "132/A, Jahanara Garden, Green Road, Farmgate, Dhaka", href: "#" },
+                ].map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="flex items-start gap-4 p-4 rounded-xl hover:bg-muted/50 transition-colors group"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <item.icon size={18} className="text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-muted-foreground">{item.label}</p>
+                      <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">{item.value}</p>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </GrowingElement>
+
+            <GrowingElement delay="0.3s">
+              <div className="pt-4">
+                <p className="text-xs text-muted-foreground mb-3 uppercase tracking-wider">Social</p>
+                <div className="flex gap-3">
+                  {[
+                    { icon: Facebook, href: "https://www.facebook.com/share/14JLH3QtAbW/", label: "Facebook" },
+                    { icon: Linkedin, href: "https://www.linkedin.com/in/kh-nayeam-b46228336", label: "LinkedIn" },
+                  ].map((social) => (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 rounded-xl bg-card border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
+                    >
+                      <social.icon size={18} />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </GrowingElement>
+
+            <GrowingElement delay="0.35s">
+              <div className="pt-4">
+                <p className="text-xs text-muted-foreground mb-3 uppercase tracking-wider">Portfolio</p>
+                <a
+                  href="https://khnayeam.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm text-primary font-medium hover:underline"
+                >
+                  khnayeam.vercel.app <ArrowUpRight size={14} />
+                </a>
+              </div>
+            </GrowingElement>
+          </div>
+
+          {/* Form */}
+          <GrowingElement delay="0.25s">
+            <div className="lg:col-span-3 rounded-2xl border border-border/50 bg-card p-8">
+              <h3 className="text-lg font-semibold text-foreground mb-6">Send a message</h3>
+              <form className="space-y-5">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-xs font-medium text-muted-foreground mb-1.5 block">First Name</label>
+                    <Input placeholder="John" className="rounded-xl bg-muted/30 border-border/50" />
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Last Name</label>
+                    <Input placeholder="Doe" className="rounded-xl bg-muted/30 border-border/50" />
+                  </div>
+                </div>
+                <div>
+                  <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Email</label>
+                  <Input type="email" placeholder="john@example.com" className="rounded-xl bg-muted/30 border-border/50" />
+                </div>
+                <div>
+                  <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Subject</label>
+                  <Input placeholder="What's this about?" className="rounded-xl bg-muted/30 border-border/50" />
+                </div>
+                <div>
+                  <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Message</label>
+                  <Textarea placeholder="Tell me about your project or idea..." rows={5} className="rounded-xl bg-muted/30 border-border/50 resize-none" />
+                </div>
+                <Button size="lg" className="w-full rounded-xl">
+                  <Send size={16} className="mr-2" />
+                  Send Message
+                </Button>
+              </form>
+            </div>
+          </GrowingElement>
+        </div>
       </div>
     </div>
   );
