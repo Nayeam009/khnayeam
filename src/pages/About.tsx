@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { GraduationCap, MapPin, Calendar, Download, Mail, Phone, Code, Globe, Pen } from "lucide-react";
+import { GraduationCap, MapPin, Download, Mail, Phone, Code, Globe, Pen, Briefcase } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import { OrganicBackground, GrowingElement } from "@/components/OrganicElements";
 import profileImage from "@/assets/nayeam-profile.jpg";
@@ -68,7 +68,6 @@ const About = () => {
 
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-10">
-            {/* Career Objective */}
             <GrowingElement delay="0.3s">
               <div className="rounded-2xl border border-border/50 bg-card p-8">
                 <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
@@ -81,7 +80,6 @@ const About = () => {
               </div>
             </GrowingElement>
 
-            {/* Education */}
             <GrowingElement delay="0.4s">
               <div className="rounded-2xl border border-border/50 bg-card p-8">
                 <h3 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
@@ -121,7 +119,6 @@ const About = () => {
               </div>
             </GrowingElement>
 
-            {/* Skills */}
             <GrowingElement delay="0.5s">
               <div className="rounded-2xl border border-border/50 bg-card p-8">
                 <h3 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
@@ -143,7 +140,6 @@ const About = () => {
               </div>
             </GrowingElement>
 
-            {/* Experience */}
             <GrowingElement delay="0.6s">
               <div className="rounded-2xl border border-border/50 bg-card p-8">
                 <h3 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
@@ -175,8 +171,5 @@ const About = () => {
     </div>
   );
 };
-
-// Need Briefcase icon
-import { Briefcase } from "lucide-react";
 
 export default About;
