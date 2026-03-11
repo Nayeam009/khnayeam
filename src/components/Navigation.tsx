@@ -1,97 +1,112 @@
-import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Menu, X, Download } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const location = useLocation();
+  const [activeSection, setActiveSection] = useState("hero");
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+      const sections = document.querySelectorAll("section[id]");
+      let current = "hero";
+      sections.forEach((section) => {
+        const el = section as HTMLElement;
+        if (window.scrollY >= el.offsetTop - 120) {
+          current = el.id;
+        }
+      });
+      setActiveSection(current);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navItems = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Research", path: "/research" },
-    { name: "Startups", path: "/startups" },
-    { name: "Achievements", path: "/achievements" },
-    { name: "Contact", path: "/contact" },
+    { name: "Home", href: "#hero" },
+    { name: "About", href: "#about" },
+    { name: "Research", href: "#research" },
+    { name: "Experience", href: "#experience" },
+    { name: "Achievements", href: "#achievements" },
+    { name: "Contact", href: "#contact" },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  const scrollTo = (href: string) => {
+    setIsOpen(false);
+    const el = document.querySelector(href);
+    el?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
-    <>
-      <nav className={`hidden md:flex items-center justify-between px-8 py-4 sticky top-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-card/80 backdrop-blur-xl shadow-sm border-b border-border/50' : 'bg-transparent'
-      }`}>
-        <Link to="/" className="text-xl font-bold tracking-tight">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-background/80 backdrop-blur-xl shadow-sm border-b border-border/40"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto flex items-center justify-between section-padding py-3 md:py-4">
+        <button onClick={() => scrollTo("#hero")} className="text-lg md:text-xl font-bold tracking-tight font-serif">
           <span className="gradient-text">KN</span>
-          <span className="text-foreground ml-1 font-medium">Nayeam</span>
-        </Link>
-        <div className="flex items-center gap-1">
+          <span className="text-foreground ml-1 font-medium font-sans text-sm md:text-base">Nayeam</span>
+        </button>
+
+        {/* Desktop */}
+        <div className="hidden lg:flex items-center gap-1">
           {navItems.map((item) => (
-            <Link
+            <button
               key={item.name}
-              to={item.path}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                isActive(item.path)
+              onClick={() => scrollTo(item.href)}
+              className={`px-3 xl:px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                activeSection === item.href.slice(1)
                   ? "bg-primary text-primary-foreground"
                   : "text-muted-foreground hover:text-foreground hover:bg-muted"
               }`}
             >
               {item.name}
-            </Link>
+            </button>
           ))}
-        </div>
-      </nav>
-
-      {/* Mobile Navigation */}
-      <nav className={`md:hidden sticky top-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-card/80 backdrop-blur-xl shadow-sm border-b border-border/50' : 'bg-transparent'
-      }`}>
-        <div className="flex items-center justify-between px-5 py-4">
-          <Link to="/" className="text-lg font-bold tracking-tight">
-            <span className="gradient-text">KN</span>
-            <span className="text-foreground ml-1 font-medium">Nayeam</span>
-          </Link>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setIsOpen(!isOpen)}
-            className="rounded-full"
-          >
-            {isOpen ? <X size={20} /> : <Menu size={20} />}
-          </Button>
+          <a href="/cv-kh-nayeam-ibna-nasir.pdf" download className="ml-2">
+            <Button size="sm" className="rounded-full text-xs gap-1.5">
+              <Download size={14} /> CV
+            </Button>
+          </a>
         </div>
 
-        {isOpen && (
-          <div className="absolute top-full left-0 right-0 bg-card/95 backdrop-blur-xl border-b border-border/50 shadow-lg">
-            <div className="flex flex-col p-4 gap-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.path}
-                  onClick={() => setIsOpen(false)}
-                  className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
-                    isActive(item.path)
-                      ? "bg-primary text-primary-foreground"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
+        {/* Mobile toggle */}
+        <Button variant="ghost" size="icon" className="lg:hidden rounded-full" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <X size={20} /> : <Menu size={20} />}
+        </Button>
+      </div>
+
+      {/* Mobile menu */}
+      {isOpen && (
+        <div className="lg:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-border/40 shadow-lg">
+          <div className="flex flex-col p-4 gap-1">
+            {navItems.map((item) => (
+              <button
+                key={item.name}
+                onClick={() => scrollTo(item.href)}
+                className={`px-4 py-3 rounded-xl text-sm font-medium text-left transition-all ${
+                  activeSection === item.href.slice(1)
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                }`}
+              >
+                {item.name}
+              </button>
+            ))}
+            <a href="/cv-kh-nayeam-ibna-nasir.pdf" download className="mt-2">
+              <Button className="w-full rounded-xl gap-2">
+                <Download size={16} /> Download CV
+              </Button>
+            </a>
           </div>
-        )}
-      </nav>
-    </>
+        </div>
+      )}
+    </nav>
   );
 };
 
