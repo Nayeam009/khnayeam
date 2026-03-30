@@ -197,6 +197,95 @@
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
 }
 
+/* Bento box card */
+.bento-card {
+  @apply rounded-3xl border border-border/50 bg-card/50 p-6 sm:p-8 relative overflow-hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+}
+.bento-card:hover {
+  @apply border-primary/20 shadow-lg;
+  transform: translateY(-4px);
+}
+
+/* Pill tag */
+.pill-tag {
+  @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium transition-all duration-300;
+}
+.pill-tag-primary {
+  @apply bg-primary/10 text-primary;
+}
+.pill-tag-accent {
+  @apply bg-accent/10 text-accent;
+}
+.pill-tag-muted {
+  @apply bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary;
+}
+.pill-tag-success {
+  background: hsl(var(--growth) / 0.1);
+  color: hsl(var(--growth));
+}
+
+/* Circle icon */
+.circle-icon {
+  @apply flex items-center justify-center rounded-full flex-shrink-0 transition-all duration-300;
+}
+.circle-icon-sm {
+  @apply w-10 h-10;
+}
+.circle-icon-md {
+  @apply w-12 h-12;
+}
+.circle-icon-lg {
+  @apply w-16 h-16;
+}
+
+/* Badge pulse */
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.7; }
+}
+.badge-pulse {
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+/* Bento grid */
+.bento-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+.bento-grid-2 {
+  grid-template-columns: 1fr;
+}
+.bento-grid-3 {
+  grid-template-columns: 1fr;
+}
+.bento-grid-4 {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px) {
+  .bento-grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .bento-grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .bento-grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .bento-grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .bento-grid-4 { grid-template-columns: repeat(4, 1fr); }
+}
+.bento-span-2 { grid-column: span 1; }
+@media (min-width: 640px) { .bento-span-2 { grid-column: span 2; } }
+.bento-row-2 { grid-row: span 1; }
+@media (min-width: 640px) { .bento-row-2 { grid-row: span 2; } }
+
+/* FAB */
+.fab {
+  @apply fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-primary text-primary-foreground shadow-2xl flex items-center justify-center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+.fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 40px -8px hsl(var(--primary) / 0.4);
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
