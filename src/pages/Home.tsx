@@ -72,10 +72,10 @@ const AnimatedCounter = ({ end, decimals = 0, suffix = "", label }: { end: numbe
 
   return (
     <div ref={ref} className="text-center">
-      <p className="text-3xl md:text-4xl font-bold gradient-text font-serif">
+      <p className="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text font-serif">
         {count.toFixed(decimals)}{suffix}
       </p>
-      <p className="text-xs text-muted-foreground mt-1 uppercase tracking-wider">{label}</p>
+      <p className="text-[10px] sm:text-xs text-muted-foreground mt-1 uppercase tracking-wider">{label}</p>
     </div>
   );
 };
@@ -150,8 +150,8 @@ const Home = () => {
             style={{ y: heroY, opacity: heroOpacity }}
             className="max-w-7xl mx-auto w-full section-padding py-12 md:py-20"
           >
-            <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
-              <div className="lg:col-span-3 space-y-6 md:space-y-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+              <div className="order-2 lg:order-1 space-y-5 md:space-y-8">
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.7 }}>
                   <div className="inline-flex items-center gap-2 pill-tag pill-tag-primary border border-primary/20 mb-4">
                     <span className="w-2 h-2 rounded-full bg-primary badge-pulse" />
@@ -168,7 +168,7 @@ const Home = () => {
                 </motion.div>
 
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.7 }}>
-                  <p className="text-lg sm:text-xl text-foreground font-medium h-8">
+                  <p className="text-base sm:text-lg md:text-xl text-foreground font-medium h-7 sm:h-8">
                     {typedText}<span className="animate-pulse text-primary">|</span>
                   </p>
                   <p className="text-sm sm:text-base text-muted-foreground max-w-xl leading-relaxed mt-3">
@@ -181,16 +181,16 @@ const Home = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5, duration: 0.7 }}
-                  className="flex flex-wrap gap-3 pt-2"
+                  className="flex flex-col sm:flex-row flex-wrap gap-3 pt-2"
                 >
                   <a href="#contact">
-                    <Button size="lg" className="rounded-full shadow-lg hover:shadow-xl transition-all group">
+                    <Button size="lg" className="rounded-full shadow-lg hover:shadow-xl transition-all group w-full sm:w-auto min-h-[48px]">
                       Get In Touch
                       <ArrowUpRight className="ml-1 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" size={16} />
                     </Button>
                   </a>
                   <a href="/cv-kh-nayeam-ibna-nasir.pdf" download>
-                    <Button size="lg" variant="outline" className="rounded-full gap-2">
+                    <Button size="lg" variant="outline" className="rounded-full gap-2 w-full sm:w-auto min-h-[48px]">
                       <Download size={16} /> Download CV
                     </Button>
                   </a>
@@ -221,9 +221,9 @@ const Home = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="lg:col-span-2 flex justify-center lg:justify-end"
+                className="order-1 lg:order-2 flex justify-center lg:justify-end"
               >
-                <div className="relative w-64 h-72 sm:w-72 sm:h-80 md:w-80 md:h-[22rem]">
+                <div className="relative w-48 h-56 sm:w-64 sm:h-72 md:w-72 md:h-80 lg:w-80 lg:h-[22rem]">
                   <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 via-accent/10 to-transparent blob blur-2xl" />
                   <div className="absolute -inset-[3px] rounded-[2rem] bg-gradient-to-br from-primary/40 to-accent/30" />
                   <div className="relative w-full h-full rounded-[2rem] overflow-hidden shadow-2xl">
@@ -238,7 +238,7 @@ const Home = () => {
                   <motion.div
                     animate={{ y: [0, -8, 0] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute -bottom-3 -left-3 glass-card rounded-xl px-3 py-2 shadow-lg"
+                    className="absolute -bottom-3 -left-3 glass-card rounded-xl px-3 py-2 shadow-lg hidden sm:block"
                   >
                     <p className="text-[10px] text-muted-foreground">CGPA</p>
                     <p className="text-lg font-bold gradient-text font-serif">3.59</p>
@@ -246,7 +246,7 @@ const Home = () => {
                   <motion.div
                     animate={{ y: [0, -6, 0] }}
                     transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-                    className="absolute -top-3 -right-3 glass-card rounded-xl px-3 py-2 shadow-lg"
+                    className="absolute -top-3 -right-3 glass-card rounded-xl px-3 py-2 shadow-lg hidden sm:block"
                   >
                     <Sprout className="text-primary" size={20} />
                   </motion.div>
