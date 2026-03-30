@@ -1,11 +1,17 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Download } from "lucide-react";
+import { Menu, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetTitle,
+} from "@/components/ui/sheet";
 
 const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,7 +40,7 @@ const Navigation = () => {
   ];
 
   const scrollTo = (href: string) => {
-    setIsOpen(false);
+    setOpen(false);
     const el = document.querySelector(href);
     el?.scrollIntoView({ behavior: "smooth" });
   };
@@ -75,37 +81,38 @@ const Navigation = () => {
           </a>
         </div>
 
-        {/* Mobile toggle */}
-        <Button variant="ghost" size="icon" className="lg:hidden rounded-full" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={20} /> : <Menu size={20} />}
-        </Button>
+        {/* Mobile Sheet Drawer */}
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetTrigger asChild>
+            <Button variant="ghost" size="icon" className="lg:hidden rounded-full min-h-[44px] min-w-[44px]">
+              <Menu size={20} />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right" className="w-[280px] sm:w-[320px] pt-12">
+            <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+            <div className="flex flex-col gap-1 mt-4">
+              {navItems.map((item) => (
+                <button
+                  key={item.name}
+                  onClick={() => scrollTo(item.href)}
+                  className={`px-4 py-4 min-h-[48px] rounded-xl text-sm font-medium text-left transition-all ${
+                    activeSection === item.href.slice(1)
+                      ? "bg-primary text-primary-foreground"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                  }`}
+                >
+                  {item.name}
+                </button>
+              ))}
+              <a href="/cv-kh-nayeam-ibna-nasir.pdf" download className="mt-4">
+                <Button className="w-full rounded-xl gap-2 min-h-[48px]">
+                  <Download size={16} /> Download CV
+                </Button>
+              </a>
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
-
-      {/* Mobile menu */}
-      {isOpen && (
-        <div className="lg:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-border/40 shadow-lg">
-          <div className="flex flex-col p-4 gap-1">
-            {navItems.map((item) => (
-              <button
-                key={item.name}
-                onClick={() => scrollTo(item.href)}
-                className={`px-4 py-3 rounded-xl text-sm font-medium text-left transition-all ${
-                  activeSection === item.href.slice(1)
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                }`}
-              >
-                {item.name}
-              </button>
-            ))}
-            <a href="/cv-kh-nayeam-ibna-nasir.pdf" download className="mt-2">
-              <Button className="w-full rounded-xl gap-2">
-                <Download size={16} /> Download CV
-              </Button>
-            </a>
-          </div>
-        </div>
-      )}
     </nav>
   );
 };
