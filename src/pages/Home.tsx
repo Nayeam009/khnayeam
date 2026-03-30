@@ -266,15 +266,15 @@ const Home = () => {
 
         {/* ═══════════════════════ STATS BENTO ═══════════════════════ */}
         <section className="py-12 md:py-16 section-padding border-y border-border/50 bg-card/30">
-          <div className="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+          <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
             {[
-              { end: 3.59, decimals: 2, suffix: "", label: "CGPA (out of 4.00)", icon: GraduationCap, span: true },
+              { end: 3.59, decimals: 2, suffix: "", label: "CGPA (out of 4.00)", icon: GraduationCap },
               { end: 5, suffix: "+", label: "Digital Projects", icon: Code },
               { end: 7, suffix: "+", label: "Awards & Honors", icon: Trophy },
               { end: 20, suffix: "+", label: "Months Leading Stock-X", icon: Briefcase },
             ].map((stat, i) => (
-              <MotionCard key={stat.label} index={i} className={stat.span ? "col-span-2 lg:col-span-1" : ""}>
-                <div className="bento-card flex flex-col items-center gap-3 text-center">
+              <MotionCard key={stat.label} index={i}>
+                <div className="bento-card flex flex-col items-center gap-2 sm:gap-3 text-center p-4 sm:p-6">
                   <div className="circle-icon circle-icon-md bg-primary/10">
                     <stat.icon className="text-primary" size={20} />
                   </div>
@@ -334,7 +334,7 @@ const Home = () => {
                 { icon: Trophy, title: "Award-Winning", desc: "VP of GSTU Central Debating Society", color: "primary" },
               ].map((skill, i) => (
                 <MotionCard key={skill.title} index={i + 1} className="group">
-                  <div className="bento-card h-full flex flex-col items-start gap-4 group-hover:bg-card">
+                  <div className="bento-card h-full flex flex-col items-start gap-4 group-hover:bg-card min-h-[140px]">
                     <motion.div
                       whileHover={{ rotate: 10, scale: 1.1 }}
                       className="circle-icon circle-icon-lg bg-primary/10 group-hover:bg-primary transition-all duration-300"
@@ -360,7 +360,7 @@ const Home = () => {
                   Educational Background
                 </h3>
               </MotionCard>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
                 {[
                   {
                     year: "2019–2025",
@@ -454,7 +454,7 @@ const Home = () => {
                   tall: false,
                 },
               ].map((r, i) => (
-                <MotionCard key={r.title} index={i} className={`group ${r.tall ? "sm:row-span-2 lg:row-span-1" : ""}`}>
+                <MotionCard key={r.title} index={i} className="group">
                   <div className={`bento-card h-full ${r.accent}`}>
                     <div className="flex items-center justify-between mb-5">
                       <motion.div
@@ -519,8 +519,8 @@ const Home = () => {
                       ))}
                     </div>
                   </div>
-                  <a href="https://stockxbd.com" target="_blank" rel="noopener noreferrer" className="flex-shrink-0 self-start">
-                    <Button variant="outline" className="rounded-full gap-2 text-sm group/btn hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all">
+                  <a href="https://stockxbd.com" target="_blank" rel="noopener noreferrer" className="flex-shrink-0 self-start w-full sm:w-auto">
+                    <Button variant="outline" className="rounded-full gap-2 text-sm group/btn hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all w-full sm:w-auto min-h-[48px]">
                       Visit Site <ExternalLink size={14} className="group-hover/btn:translate-x-0.5 transition-transform" />
                     </Button>
                   </a>
@@ -657,7 +657,7 @@ const Home = () => {
                     }`}
                   >
                     <tab.icon size={14} />
-                    <span className="hidden sm:inline">{tab.label}</span>
+                    <span>{tab.label}</span>
                     {/* Notification badge */}
                     <span className={`ml-1 w-5 h-5 rounded-full text-[10px] font-bold flex items-center justify-center ${
                       activeTab === tab.key ? "bg-primary-foreground text-primary" : "bg-primary/10 text-primary"
@@ -676,7 +676,7 @@ const Home = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="grid sm:grid-cols-2 gap-4 max-w-4xl mx-auto"
+                className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-4xl mx-auto"
               >
                 {(activeTab === "debating"
                   ? [
@@ -703,7 +703,7 @@ const Home = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.08 }}
-                    className="bento-card flex gap-4 items-start group"
+                    className="bento-card flex gap-4 items-start group p-4 sm:p-6"
                   >
                     <div className="circle-icon circle-icon-sm bg-accent/10 group-hover:bg-accent transition-all duration-300 flex-shrink-0">
                       <item.icon className="text-accent group-hover:text-accent-foreground transition-colors" size={16} />
@@ -730,7 +730,7 @@ const Home = () => {
                 </h2>
               </div>
             </MotionCard>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {[
                 { icon: User, label: "Full Name", value: "KH. Nayeam Ibna Nasir", tip: "Full legal name" },
                 { icon: User, label: "Father", value: "Kh Nasir Uddin", tip: "Father's name" },
@@ -834,7 +834,7 @@ const Home = () => {
             </MotionCard>
 
             {/* Contact bento cards */}
-            <div className="grid sm:grid-cols-3 gap-4 mt-10 mb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10 mb-10">
               {[
                 { icon: Phone, label: "+880 1710-651618", href: "tel:+8801710651618" },
                 { icon: Mail, label: "khnayeam009@gmail.com", href: "mailto:khnayeam009@gmail.com" },
@@ -870,7 +870,7 @@ const Home = () => {
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.15, y: -2 }}
                         whileTap={{ scale: 0.95 }}
-                        className="circle-icon circle-icon-md bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary transition-all"
+                        className="circle-icon w-12 h-12 bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary transition-all"
                         aria-label={s.label}
                       >
                         <s.icon size={20} />
@@ -886,7 +886,7 @@ const Home = () => {
 
         {/* ═══════════════════════ FOOTER ═══════════════════════ */}
         <footer className="py-8 section-padding border-t border-border/50">
-          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
             <p className="text-xs text-muted-foreground">
               © {new Date().getFullYear()} KH. Nayeam Ibna Nasir. All rights reserved.
             </p>
