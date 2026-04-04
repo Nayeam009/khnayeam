@@ -163,7 +163,7 @@ const HeroSection = () => {
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: mounted ? 1 : 0, y: mounted ? 0 : 16 }}
                     transition={{ duration: 0.7, delay: 0.2 }}
-                    className="mt-3 text-sm font-medium text-white/85 sm:mt-4 sm:text-base md:text-lg"
+                    className="mt-3 text-sm font-medium text-white/90 sm:mt-4 sm:text-base md:text-lg"
                   >
                     {typedText}
                     <span className="animate-pulse text-primary">|</span>
