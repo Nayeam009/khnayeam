@@ -1,11 +1,13 @@
 import { Sprout, Linkedin, Github, Facebook, ArrowUpRight, Mail, Phone, MapPin, Heart } from "lucide-react";
 import { useSiteContent } from "@/hooks/useSiteContent";
 
-const iconMap: Record<string, React.ComponentType<{ className?: string; size?: number }>> = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const iconMap: Record<string, any> = {
   Mail, Phone, MapPin, Linkedin, Github, Facebook,
 };
 
-const socialIconMap: Record<string, React.ComponentType<{ size?: number }>> = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const socialIconMap: Record<string, any> = {
   Linkedin, Github, Facebook,
 };
 

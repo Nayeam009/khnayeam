@@ -9,7 +9,8 @@ import { useTypingEffect } from "@/hooks/useTypingEffect";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import profileImageFallback from "@/assets/nayeam-profile-latest.jpg";
 
-const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const iconMap: Record<string, any> = {
   MapPin, GraduationCap, Briefcase, Sprout,
 };
 

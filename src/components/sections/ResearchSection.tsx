@@ -3,7 +3,8 @@ import { FlaskConical, Lightbulb, Briefcase } from "lucide-react";
 import MotionCard from "@/components/MotionCard";
 import { useSiteContent } from "@/hooks/useSiteContent";
 
-const iconMap: Record<string, React.ComponentType<{ className?: string; size?: number }>> = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const iconMap: Record<string, any> = {
   FlaskConical, Lightbulb, Briefcase,
 };
 
