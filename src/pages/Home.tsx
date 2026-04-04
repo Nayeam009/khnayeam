@@ -265,7 +265,7 @@ const Home = () => {
         </section>
 
         {/* ═══════════════════════ STATS BENTO ═══════════════════════ */}
-        <section className="py-12 md:py-16 section-padding border-y border-border/50 bg-card/30">
+        <section className="py-12 md:py-16 section-padding border-y border-border/30 bg-card/20">
           <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
             {[
               { end: 3.59, decimals: 2, suffix: "", label: "CGPA (out of 4.00)", icon: GraduationCap },
@@ -274,7 +274,7 @@ const Home = () => {
               { end: 20, suffix: "+", label: "Months Leading Stock-X", icon: Briefcase },
             ].map((stat, i) => (
               <MotionCard key={stat.label} index={i}>
-                <div className="bento-card flex flex-col items-center gap-2 sm:gap-3 text-center p-4 sm:p-6">
+                <div className="bento-card flex flex-col items-center gap-2 sm:gap-3 text-center p-3 sm:p-6">
                   <div className="circle-icon circle-icon-md bg-primary/10">
                     <stat.icon className="text-primary" size={20} />
                   </div>
