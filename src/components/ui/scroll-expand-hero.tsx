@@ -153,7 +153,7 @@ const ScrollExpandHero = ({
             </div>
 
             {/* Main centered layout */}
-            <div className="relative flex h-screen w-full flex-col items-center justify-center px-4">
+            <div className="relative flex h-screen w-full flex-col items-center justify-end px-4 pb-[12vh] sm:pb-[10vh]">
 
               {/* Profile image container */}
               <div className="relative flex items-center justify-center">
