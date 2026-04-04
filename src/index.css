@@ -146,9 +146,18 @@
   }
 
   .glass-card {
+    background: hsl(var(--card) / 0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--border) / 0.3);
+    box-shadow: 0 8px 32px -8px hsl(var(--foreground) / 0.06);
+  }
+
+  .glass-hover {
+    transition: all 0.2s ease;
+  }
+  .glass-hover:hover {
     background: hsl(var(--card) / 0.6);
-    backdrop-filter: blur(24px);
-    border: 1px solid hsl(var(--border) / 0.4);
+    box-shadow: 0 12px 40px -8px hsl(var(--foreground) / 0.1);
   }
 
   .hover-lift {
