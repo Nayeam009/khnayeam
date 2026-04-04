@@ -20,9 +20,6 @@ interface AboutContent {
   quick_stats: { icon: string; label: string; value: string; sub: string }[];
 }
 
-interface EducationContent {
-  items: { step: string; year: string; title: string; subtitle: string; badge: string }[];
-}
 
 const AboutSection = () => {
   const { data: aboutData } = useSiteContent<AboutContent>("about");
