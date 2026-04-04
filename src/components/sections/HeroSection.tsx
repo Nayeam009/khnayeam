@@ -1,5 +1,5 @@
-import { useEffect, useState, useMemo } from "react";
-import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import {
   Sprout,
   ArrowUpRight,
@@ -38,7 +38,12 @@ interface HeroContent {
 const DEFAULTS: HeroContent = {
   name_line1: "KH. Nayeam",
   name_line2: "Ibna Nasir",
-  typing_roles: ["Agriculture Graduate", "Full-Stack Developer", "Startup Founder", "Research Enthusiast"],
+  typing_roles: [
+    "Agriculture Graduate",
+    "Full-Stack Developer",
+    "Startup Founder",
+    "Research Enthusiast",
+  ],
   subtitle:
     "B.Sc. Agriculture graduate bridging agricultural science with full-stack development. Building scalable digital solutions that connect technical innovation with business strategy.",
   status_badge: "Open to Opportunities",
@@ -52,10 +57,25 @@ const DEFAULTS: HeroContent = {
   bg_image: "",
 };
 
+const stagger = {
+  container: {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
+  },
+  item: {
+    hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+    },
+  },
+};
+
 const HeroSection = () => {
   const { data } = useSiteContent<HeroContent>("hero");
   const content = data ?? DEFAULTS;
-  const prefersReducedMotion = useReducedMotion();
 
   const [mounted, setMounted] = useState(false);
 
@@ -65,7 +85,7 @@ const HeroSection = () => {
   const fullName = `${content.name_line1} ${content.name_line2}`;
 
   useEffect(() => {
-    const timer = setTimeout(() => setMounted(true), 80);
+    const timer = setTimeout(() => setMounted(true), 100);
     return () => clearTimeout(timer);
   }, []);
 
@@ -76,16 +96,20 @@ const HeroSection = () => {
         bgImageSrc={bgImage}
         title={fullName}
         subtitle={content.status_badge}
-        scrollToExpand="Scroll to Expand"
+        scrollToExpand="Scroll to Explore"
+        textBlend
       >
-        {/* Content revealed after expansion */}
-        <div className="mx-auto max-w-4xl space-y-8">
+        {/* Content revealed after full expansion */}
+        <motion.div
+          variants={stagger.container}
+          initial="hidden"
+          animate={mounted ? "visible" : "hidden"}
+          className="space-y-7"
+        >
           {/* Typing role */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={mounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="text-center font-serif text-lg font-medium text-white/90 sm:text-xl md:text-2xl"
+            variants={stagger.item}
+            className="text-center font-serif text-base font-medium text-white/90 sm:text-lg md:text-xl"
           >
             {typedText}
             <span className="animate-pulse text-primary">|</span>
@@ -93,19 +117,15 @@ const HeroSection = () => {
 
           {/* Subtitle */}
           <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={mounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mx-auto max-w-2xl text-center text-sm leading-relaxed text-white/70 sm:text-base"
+            variants={stagger.item}
+            className="mx-auto max-w-2xl text-center text-sm leading-relaxed text-white/65 sm:text-[15px]"
           >
             {content.subtitle}
           </motion.p>
 
           {/* Tags */}
           <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={mounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            variants={stagger.item}
             className="flex flex-wrap justify-center gap-2"
           >
             {content.tags.map((tag) => {
@@ -113,9 +133,9 @@ const HeroSection = () => {
               return (
                 <span
                   key={tag.text}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-medium text-white/80 backdrop-blur-xl transition-colors hover:bg-white/15 hover:text-white/95"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.08] px-3 py-1.5 text-[11px] font-medium text-white/75 backdrop-blur-xl transition-all duration-200 hover:bg-white/[0.14] hover:text-white/90 sm:text-xs"
                 >
-                  <Icon size={13} />
+                  <Icon size={12} />
                   {tag.text}
                 </span>
               );
@@ -124,31 +144,32 @@ const HeroSection = () => {
 
           {/* CTA buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={mounted ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col items-center justify-center gap-3 sm:flex-row"
+            variants={stagger.item}
+            className="flex flex-col items-center justify-center gap-3 pt-1 sm:flex-row"
           >
             <a href="#contact">
               <Button
                 size="lg"
-                className="group min-h-[46px] rounded-full px-7 shadow-xl transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl active:scale-[0.98]"
+                className="group min-h-[44px] rounded-full px-7 shadow-xl transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl active:scale-[0.97]"
               >
                 Get In Touch
-                <ArrowUpRight className="ml-1 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" size={16} />
+                <ArrowUpRight
+                  className="ml-1 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  size={16}
+                />
               </Button>
             </a>
             <a href="/cv-kh-nayeam-ibna-nasir.pdf" download>
               <Button
                 size="lg"
                 variant="outline"
-                className="min-h-[46px] gap-2 rounded-full border-white/30 bg-white/10 px-7 text-white backdrop-blur-xl transition-all duration-300 hover:scale-[1.03] hover:bg-white/15 hover:text-white active:scale-[0.98]"
+                className="min-h-[44px] gap-2 rounded-full border-white/25 bg-white/[0.08] px-7 text-white backdrop-blur-xl transition-all duration-300 hover:scale-[1.03] hover:bg-white/[0.14] hover:text-white active:scale-[0.97]"
               >
                 <Download size={16} /> Download CV
               </Button>
             </a>
           </motion.div>
-        </div>
+        </motion.div>
       </ScrollExpandHero>
     </div>
   );
