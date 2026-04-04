@@ -93,22 +93,32 @@ const Navigation = () => {
 
         {/* Desktop */}
         <div className="hidden lg:flex items-center gap-1">
-          {navItems.map((item) => (
-            <button
-              key={item.name}
-              onClick={() => scrollTo(item.href)}
-              className={`px-3 xl:px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                activeSection === item.href.slice(1)
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
-              }`}
-            >
-              {item.name}
-            </button>
-          ))}
+          {navItems.map((item) => {
+            const isActive = activeSection === item.href.slice(1);
+            const heroStyle = overHero && !scrolled;
+            return (
+              <button
+                key={item.name}
+                onClick={() => scrollTo(item.href)}
+                className={`px-3 xl:px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  isActive
+                    ? "bg-primary text-primary-foreground"
+                    : heroStyle
+                      ? "text-white/70 hover:text-white hover:bg-white/10"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                }`}
+              >
+                {item.name}
+              </button>
+            );
+          })}
           <button
             onClick={toggleTheme}
-            className="ml-1 p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-200"
+            className={`ml-1 p-2 rounded-full transition-all duration-300 ${
+              overHero && !scrolled
+                ? "text-white/70 hover:text-white hover:bg-white/10"
+                : "text-muted-foreground hover:text-foreground hover:bg-muted"
+            }`}
             aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
           >
             {isDark ? <Sun size={16} /> : <Moon size={16} />}
