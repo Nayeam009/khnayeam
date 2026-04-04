@@ -40,6 +40,7 @@ const Home = () => {
           <StatsSection />
           <Suspense fallback={<SectionFallback />}>
             <AboutSection />
+            <EducationSection />
             <ResearchSection />
             <ExperienceSection />
             <AchievementsSection />

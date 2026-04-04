@@ -133,35 +133,6 @@ const AboutSection = () => {
           </MotionCard>
         </div>
 
-        {/* Education */}
-        <div className="mt-14">
-          <MotionCard>
-            <h3 className="font-bold text-foreground font-serif text-2xl mb-8 flex items-center gap-3">
-              <div className="circle-icon circle-icon-md bg-primary/10"><BookOpen className="text-primary" size={20} /></div>
-              Educational Background
-            </h3>
-          </MotionCard>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-            {education.map((edu, i) => (
-              <MotionCard key={edu.year} index={i} className="group">
-                <div className="bento-card h-full relative hover:shadow-xl hover:border-primary/20 transition-all duration-300">
-                  <span className="absolute top-3 left-4 text-[10px] font-bold text-primary/30 font-serif">{edu.step}</span>
-                  <div className="flex items-center justify-between mb-4 pt-2">
-                    <div className="circle-icon circle-icon-sm bg-primary/10 group-hover:bg-primary transition-all duration-300">
-                      <GraduationCap className="text-primary group-hover:text-primary-foreground transition-colors" size={16} />
-                    </div>
-                    <span className="pill-tag pill-tag-primary text-[10px]">{edu.year}</span>
-                  </div>
-                  <h4 className="font-bold text-foreground text-sm font-serif">{edu.title}</h4>
-                  <p className="text-xs text-muted-foreground mt-1">{edu.subtitle}</p>
-                  <div className="mt-4 pt-4 border-t border-border/50">
-                    <span className="pill-tag pill-tag-success text-[10px] font-bold">{edu.badge}</span>
-                  </div>
-                </div>
-              </MotionCard>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );
