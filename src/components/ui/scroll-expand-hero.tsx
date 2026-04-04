@@ -73,7 +73,7 @@ const ScrollExpandHero = ({
         e.preventDefault();
       } else if (!expandedRef.current) {
         e.preventDefault();
-        updateProgress(e.deltaY * 0.001);
+        updateProgress(e.deltaY * 0.0015);
       }
     };
 
