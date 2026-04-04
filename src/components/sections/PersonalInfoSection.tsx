@@ -4,7 +4,8 @@ import { InfoColumn } from "@/components/ui/info-columns";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import React from "react";
 
-const iconMap: Record<string, React.ComponentType<{ className?: string; size?: number }>> = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const iconMap: Record<string, any> = {
   User, Calendar, Heart, Flag, Star,
 };
 
