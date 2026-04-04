@@ -246,7 +246,7 @@ const Home = () => {
                   <motion.div
                     animate={{ y: [0, -6, 0] }}
                     transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-                    className="absolute -top-3 -right-3 glass-card rounded-xl px-3 py-2 shadow-lg hidden sm:block"
+                    className="absolute -top-3 -right-3 glass-card glass-hover rounded-xl px-3 py-2 shadow-xl hidden sm:block"
                   >
                     <Sprout className="text-primary" size={20} />
                   </motion.div>
