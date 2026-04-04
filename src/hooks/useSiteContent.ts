@@ -29,7 +29,7 @@ export function useUpdateSiteContent() {
     }) => {
       const { error } = await supabase
         .from("site_content")
-        .update({ content, updated_at: new Date().toISOString() })
+        .update({ content: content as unknown as Record<string, never>, updated_at: new Date().toISOString() })
         .eq("section_key", sectionKey);
       if (error) throw error;
     },
