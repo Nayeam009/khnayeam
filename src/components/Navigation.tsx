@@ -47,9 +47,9 @@ const Navigation = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-background/80 backdrop-blur-xl shadow-sm border-b border-border/40"
+          ? "bg-card/60 backdrop-blur-2xl shadow-lg border-b border-border/30"
           : "bg-transparent"
       }`}
     >
@@ -65,7 +65,7 @@ const Navigation = () => {
             <button
               key={item.name}
               onClick={() => scrollTo(item.href)}
-              className={`px-3 xl:px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+              className={`px-3 xl:px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                 activeSection === item.href.slice(1)
                   ? "bg-primary text-primary-foreground"
                   : "text-muted-foreground hover:text-foreground hover:bg-muted"
@@ -88,14 +88,14 @@ const Navigation = () => {
               <Menu size={20} />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-[280px] sm:w-[320px] pt-12">
+          <SheetContent side="right" className="w-[300px] sm:w-[340px] pt-12 bg-card/80 backdrop-blur-2xl border-l border-border/30">
             <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
             <div className="flex flex-col gap-1 mt-4">
               {navItems.map((item) => (
                 <button
                   key={item.name}
                   onClick={() => scrollTo(item.href)}
-                  className={`px-4 py-4 min-h-[48px] rounded-xl text-sm font-medium text-left transition-all ${
+                  className={`px-4 py-4 min-h-[48px] rounded-xl text-sm font-medium text-left transition-all duration-200 ${
                     activeSection === item.href.slice(1)
                       ? "bg-primary text-primary-foreground"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted"

@@ -184,13 +184,13 @@ const Home = () => {
                   className="flex flex-col sm:flex-row flex-wrap gap-3 pt-2"
                 >
                   <a href="#contact">
-                    <Button size="lg" className="rounded-full shadow-lg hover:shadow-xl transition-all group w-full sm:w-auto min-h-[48px]">
+                    <Button size="lg" className="rounded-full shadow-lg hover:shadow-xl transition-all duration-200 group w-full sm:w-auto min-h-[48px]">
                       Get In Touch
                       <ArrowUpRight className="ml-1 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" size={16} />
                     </Button>
                   </a>
                   <a href="/cv-kh-nayeam-ibna-nasir.pdf" download>
-                    <Button size="lg" variant="outline" className="rounded-full gap-2 w-full sm:w-auto min-h-[48px]">
+                    <Button size="lg" variant="outline" className="rounded-full gap-2 w-full sm:w-auto min-h-[48px] transition-all duration-200">
                       <Download size={16} /> Download CV
                     </Button>
                   </a>
@@ -235,10 +235,10 @@ const Home = () => {
                     <span className="w-3 h-3 rounded-full bg-primary-foreground badge-pulse" />
                   </div>
                   {/* Floating cards */}
-                  <motion.div
+                   <motion.div
                     animate={{ y: [0, -8, 0] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute -bottom-3 -left-3 glass-card rounded-xl px-3 py-2 shadow-lg hidden sm:block"
+                    className="absolute -bottom-3 -left-3 glass-card glass-hover rounded-xl px-3 py-2 shadow-xl hidden sm:block"
                   >
                     <p className="text-[10px] text-muted-foreground">CGPA</p>
                     <p className="text-lg font-bold gradient-text font-serif">3.59</p>
@@ -246,7 +246,7 @@ const Home = () => {
                   <motion.div
                     animate={{ y: [0, -6, 0] }}
                     transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-                    className="absolute -top-3 -right-3 glass-card rounded-xl px-3 py-2 shadow-lg hidden sm:block"
+                    className="absolute -top-3 -right-3 glass-card glass-hover rounded-xl px-3 py-2 shadow-xl hidden sm:block"
                   >
                     <Sprout className="text-primary" size={20} />
                   </motion.div>
@@ -265,7 +265,7 @@ const Home = () => {
         </section>
 
         {/* ═══════════════════════ STATS BENTO ═══════════════════════ */}
-        <section className="py-12 md:py-16 section-padding border-y border-border/50 bg-card/30">
+        <section className="py-12 md:py-16 section-padding border-y border-border/30 bg-card/20">
           <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
             {[
               { end: 3.59, decimals: 2, suffix: "", label: "CGPA (out of 4.00)", icon: GraduationCap },
@@ -274,7 +274,7 @@ const Home = () => {
               { end: 20, suffix: "+", label: "Months Leading Stock-X", icon: Briefcase },
             ].map((stat, i) => (
               <MotionCard key={stat.label} index={i}>
-                <div className="bento-card flex flex-col items-center gap-2 sm:gap-3 text-center p-4 sm:p-6">
+                <div className="bento-card flex flex-col items-center gap-2 sm:gap-3 text-center p-3 sm:p-6">
                   <div className="circle-icon circle-icon-md bg-primary/10">
                     <stat.icon className="text-primary" size={20} />
                   </div>
@@ -335,9 +335,9 @@ const Home = () => {
               ].map((skill, i) => (
                 <MotionCard key={skill.title} index={i + 1} className="group">
                   <div className="bento-card h-full flex flex-col items-start gap-4 group-hover:bg-card min-h-[140px]">
-                    <motion.div
+                   <motion.div
                       whileHover={{ rotate: 10, scale: 1.1 }}
-                      className="circle-icon circle-icon-lg bg-primary/10 group-hover:bg-primary transition-all duration-300"
+                      className="circle-icon circle-icon-lg bg-primary/10 group-hover:bg-primary transition-all duration-200"
                     >
                       <skill.icon className="text-primary group-hover:text-primary-foreground transition-colors" size={24} />
                     </motion.div>
@@ -520,7 +520,7 @@ const Home = () => {
                     </div>
                   </div>
                   <a href="https://stockxbd.com" target="_blank" rel="noopener noreferrer" className="flex-shrink-0 self-start w-full sm:w-auto">
-                    <Button variant="outline" className="rounded-full gap-2 text-sm group/btn hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all w-full sm:w-auto min-h-[48px]">
+                    <Button variant="outline" className="rounded-full gap-2 text-sm group/btn hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 w-full sm:w-auto min-h-[48px]">
                       Visit Site <ExternalLink size={14} className="group-hover/btn:translate-x-0.5 transition-transform" />
                     </Button>
                   </a>
@@ -650,7 +650,7 @@ const Home = () => {
                   <button
                     key={tab.key}
                     onClick={() => setActiveTab(tab.key)}
-                    className={`relative flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                    className={`relative flex items-center gap-1.5 px-4 py-2.5 min-h-[44px] rounded-full text-sm font-medium transition-all duration-200 ${
                       activeTab === tab.key
                         ? "bg-primary text-primary-foreground shadow-md"
                         : "bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/80"
@@ -870,7 +870,7 @@ const Home = () => {
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.15, y: -2 }}
                         whileTap={{ scale: 0.95 }}
-                        className="circle-icon w-12 h-12 bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary transition-all"
+                        className="circle-icon w-14 h-14 bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary transition-all duration-200"
                         aria-label={s.label}
                       >
                         <s.icon size={20} />
