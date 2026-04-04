@@ -173,7 +173,7 @@ const HeroSection = () => {
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: mounted ? 1 : 0, y: mounted ? 0 : 16 }}
                     transition={{ duration: 0.7, delay: 0.3 }}
-                    className="mt-3 hidden max-w-xl text-sm leading-relaxed text-white/72 sm:block sm:text-[15px] md:text-base"
+                    className="mt-3 hidden max-w-xl text-sm leading-relaxed text-white/80 sm:block sm:text-[15px] md:text-base"
                   >
                     {content.subtitle}
                   </motion.p>
