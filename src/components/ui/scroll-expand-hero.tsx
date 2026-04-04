@@ -153,7 +153,7 @@ const ScrollExpandHero = ({
             </div>
 
             {/* Main centered layout — image pushed slightly below center */}
-            <div className="relative flex h-screen w-full flex-col items-center justify-center px-4">
+            <div className="relative flex h-screen w-full flex-col items-center justify-center px-4 pt-12 sm:pt-16">
 
               {/* Title text — positioned over the image with split animation */}
               <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
