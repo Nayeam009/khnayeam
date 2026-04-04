@@ -134,7 +134,11 @@ const Navigation = () => {
         <div className="flex items-center gap-1 lg:hidden">
           <button
             onClick={toggleTheme}
-            className="p-2.5 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-200 min-h-[44px] min-w-[44px] flex items-center justify-center"
+            className={`p-2.5 rounded-full transition-all duration-300 min-h-[44px] min-w-[44px] flex items-center justify-center ${
+              overHero && !scrolled
+                ? "text-white/70 hover:text-white hover:bg-white/10"
+                : "text-muted-foreground hover:text-foreground hover:bg-muted"
+            }`}
             aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
           >
             {isDark ? <Sun size={18} /> : <Moon size={18} />}
