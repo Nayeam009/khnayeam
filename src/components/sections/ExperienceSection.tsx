@@ -5,6 +5,15 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import MotionCard from "@/components/MotionCard";
+import { ImageAccordion } from "@/components/ui/interactive-image-accordion";
+
+const skillImages = [
+  { id: 1, title: "Web Development", imageUrl: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1974&auto=format&fit=crop" },
+  { id: 2, title: "Agriculture & Farming", imageUrl: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&w=1974&auto=format&fit=crop" },
+  { id: 3, title: "UI/UX Design", imageUrl: "https://images.unsplash.com/photo-1559028012-481c04fa702d?q=80&w=2036&auto=format&fit=crop" },
+  { id: 4, title: "Leadership", imageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop" },
+  { id: 5, title: "Research & Innovation", imageUrl: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070&auto=format&fit=crop" },
+];
 
 const ExperienceSection = () => (
   <section id="experience" aria-label="Experience and projects" className="py-20 md:py-28 section-padding">
