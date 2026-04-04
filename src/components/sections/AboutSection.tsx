@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import {
   Sprout, Code, Briefcase, Trophy, Target,
-  GraduationCap, Award, BookOpen, Leaf, Globe, FolderKanban, Clock,
+  Award, BookOpen, Leaf, Globe, FolderKanban, Clock,
 } from "lucide-react";
 import MotionCard from "@/components/MotionCard";
 import { useSiteContent } from "@/hooks/useSiteContent";
