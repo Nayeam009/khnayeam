@@ -870,7 +870,7 @@ const Home = () => {
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.15, y: -2 }}
                         whileTap={{ scale: 0.95 }}
-                        className="circle-icon w-12 h-12 bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary transition-all"
+                        className="circle-icon w-14 h-14 bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary transition-all duration-200"
                         aria-label={s.label}
                       >
                         <s.icon size={20} />
