@@ -190,7 +190,7 @@ const Home = () => {
                     </Button>
                   </a>
                   <a href="/cv-kh-nayeam-ibna-nasir.pdf" download>
-                    <Button size="lg" variant="outline" className="rounded-full gap-2 w-full sm:w-auto min-h-[48px]">
+                    <Button size="lg" variant="outline" className="rounded-full gap-2 w-full sm:w-auto min-h-[48px] transition-all duration-200">
                       <Download size={16} /> Download CV
                     </Button>
                   </a>
