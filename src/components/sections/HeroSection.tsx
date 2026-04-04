@@ -112,7 +112,7 @@ const HeroSection = () => {
     <section
       ref={heroRef}
       id="hero"
-      className="relative min-h-[145svh] overflow-clip sm:min-h-[150svh] lg:min-h-[160svh]"
+      className="relative min-h-[115svh] overflow-clip sm:min-h-[120svh] lg:min-h-[130svh]"
     >
       <div className="sticky top-0 h-[100svh] w-full overflow-hidden">
         <div className="absolute inset-0 z-0">
