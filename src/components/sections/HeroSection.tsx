@@ -149,11 +149,6 @@ const HeroSection = () => {
                     transition: "transform 80ms linear, opacity 80ms linear",
                   }}
                 >
-                  <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-medium text-white/90 shadow-lg backdrop-blur-xl sm:px-4 sm:py-1.5 sm:text-xs">
-                    <span className="h-2 w-2 rounded-full bg-primary" />
-                    <span className="truncate">{content.status_badge}</span>
-                  </div>
-
                   <motion.h1
                     initial={{ opacity: 0, y: 24 }}
                     animate={{ opacity: mounted ? 1 : 0, y: mounted ? 0 : 24 }}
