@@ -1,121 +1,61 @@
 import { Trophy, Mic, Lightbulb, FlaskConical, Star, Briefcase, Users } from "lucide-react";
 import MotionCard from "@/components/MotionCard";
 import { AwardCard, type AwardItem } from "@/components/ui/award-carousel";
+import { useSiteContent } from "@/hooks/useSiteContent";
+import React from "react";
 
-const allAwards: AwardItem[] = [
-  {
-    title: "Agriculture Debating Club — Champion, Freshers Debate 3.0 & 4.0",
-    category: "Debating",
-    description: "Led the Agriculture Debating Club to back-to-back championship victories in the prestigious Freshers Debate tournaments at GSTU, showcasing strong argumentation and teamwork.",
-    icon: <Trophy className="text-accent" size={20} />,
-    badge: "Champion",
-    bgImage: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=600&auto=format&fit=crop&q=60",
-  },
-  {
-    title: "1st Runner-up — Intra-University Debate, LAW Debating Club, GSTU",
-    category: "Debating",
-    description: "Secured first runner-up position in the highly competitive Intra-University Debate Tournament organized by the LAW Debating Club at GSTU.",
-    icon: <Star className="text-accent" size={20} />,
-    badge: "Runner-up",
-    bgImage: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&auto=format&fit=crop&q=60",
-  },
-  {
-    title: "Semi-Finalist — BMB Debating Club Intra-University Tournament",
-    category: "Debating",
-    description: "Reached the semi-finals of the Intra-University Debate Tournament organized by the BMB Debating Club, competing against top debaters.",
-    icon: <Mic className="text-accent" size={20} />,
-    badge: "Semi-Final",
-    bgImage: "https://images.unsplash.com/photo-1560439514-4e9645039924?w=600&auto=format&fit=crop&q=60",
-  },
-  {
-    title: "Runner-up — Environment Science & Disaster Management Club",
-    category: "Debating",
-    description: "Agriculture Debating Club achieved runner-up position in the debate tournament organized by the Environment Science & Disaster Management Club.",
-    icon: <Star className="text-accent" size={20} />,
-    badge: "Runner-up",
-    bgImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=60",
-  },
-  {
-    title: "Top 3 — UIHP Startup Founders Competition",
-    category: "Startup & Entrepreneurship",
-    description: "Ranked in the Top 3 of the UIHP Startup Founders Competition, demonstrating innovative business acumen and entrepreneurial vision.",
-    icon: <Trophy className="text-accent" size={20} />,
-    badge: "Top 3",
-    bgImage: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&auto=format&fit=crop&q=60",
-  },
-  {
-    title: "Founder & CEO — Stock-X BD Ltd.",
-    category: "Startup & Entrepreneurship",
-    description: "Founded and led Stock-X BD Ltd., building a startup from the ground up with a focus on digital innovation and business strategy.",
-    icon: <Briefcase className="text-accent" size={20} />,
-    badge: "Founder",
-    bgImage: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&auto=format&fit=crop&q=60",
-  },
-  {
-    title: "Advisor — Coco Coffee & Vetmedix Startups",
-    category: "Startup & Entrepreneurship",
-    description: "Served as a strategic advisor for multiple startups including Coco Coffee and Vetmedix, providing guidance on growth and operations.",
-    icon: <Lightbulb className="text-accent" size={20} />,
-    badge: "Advisor",
-    bgImage: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&auto=format&fit=crop&q=60",
-  },
-  {
-    title: "Champion — Poster on Mushroom Production Technology, IAAS 2025",
-    category: "Scientific & Leadership",
-    description: "Won the championship in poster presentation on Mushroom Production Technology at IAAS Bangladesh 2025, demonstrating research excellence.",
-    icon: <FlaskConical className="text-accent" size={20} />,
-    badge: "Champion",
-    bgImage: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&auto=format&fit=crop&q=60",
-  },
-  {
-    title: "1st Runner-up — Poster Presentation, IAAS Bangladesh 2024",
-    category: "Scientific & Leadership",
-    description: "Achieved first runner-up in poster presentation at IAAS Bangladesh 2024 at GSTU, showcasing agricultural research findings.",
-    icon: <FlaskConical className="text-accent" size={20} />,
-    badge: "Runner-up",
-    bgImage: "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=600&auto=format&fit=crop&q=60",
-  },
-  {
-    title: "Vice President — GSTU Central Debating Society",
-    category: "Scientific & Leadership",
-    description: "Elected as Vice President of the GSTU Central Debating Society, leading organizational initiatives and mentoring new debaters.",
-    icon: <Users className="text-accent" size={20} />,
-    badge: "VP",
-    bgImage: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&auto=format&fit=crop&q=60",
-  },
-  {
-    title: "President — Agriculture Debating Club, GSTU",
-    category: "Scientific & Leadership",
-    description: "Served as President of the Agriculture Debating Club at GSTU, organizing tournaments and fostering a culture of intellectual discourse.",
-    icon: <Users className="text-accent" size={20} />,
-    badge: "President",
-    bgImage: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=600&auto=format&fit=crop&q=60",
-  },
+const iconMap: Record<string, React.ReactNode> = {
+  Trophy: <Trophy className="text-accent" size={20} />,
+  Star: <Star className="text-accent" size={20} />,
+  Mic: <Mic className="text-accent" size={20} />,
+  Lightbulb: <Lightbulb className="text-accent" size={20} />,
+  FlaskConical: <FlaskConical className="text-accent" size={20} />,
+  Briefcase: <Briefcase className="text-accent" size={20} />,
+  Users: <Users className="text-accent" size={20} />,
+};
+
+interface AchievementData {
+  title: string;
+  category: string;
+  description: string;
+  badge: string;
+  bgImage: string;
+  icon?: string;
+}
+
+const DEFAULTS: AchievementData[] = [
+  { title: "Agriculture Debating Club — Champion", category: "Debating", description: "Led to back-to-back championship victories.", badge: "Champion", bgImage: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=600" },
+  { title: "Top 3 — UIHP Startup Founders", category: "Startup", description: "Ranked Top 3.", badge: "Top 3", bgImage: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600" },
+  { title: "Champion — Mushroom Production Technology", category: "Scientific", description: "Won championship at IAAS 2025.", badge: "Champion", bgImage: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600" },
 ];
 
 const AchievementsSection = () => {
+  const { data } = useSiteContent<{ items: AchievementData[] }>("achievements");
+  const items = data?.items ?? DEFAULTS;
+
+  const allAwards: AwardItem[] = items.map((a) => ({
+    title: a.title,
+    category: a.category,
+    description: a.description,
+    badge: a.badge,
+    bgImage: a.bgImage,
+    icon: iconMap[a.icon || "Trophy"] || <Trophy className="text-accent" size={20} />,
+  }));
+
   const duplicated = [...allAwards, ...allAwards];
 
   return (
-    <section
-      id="achievements"
-      aria-label="Achievements and awards"
-      className="py-20 md:py-28 relative overflow-hidden"
-    >
-      {/* Background */}
+    <section id="achievements" aria-label="Achievements and awards" className="py-20 md:py-28 relative overflow-hidden">
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-card/50 to-background" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[120px]" />
         <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-primary/5 rounded-full blur-[100px]" />
       </div>
 
-      {/* Header */}
       <div className="max-w-7xl mx-auto section-padding">
         <MotionCard>
           <div className="text-center mb-12">
-            <span className="pill-tag pill-tag-primary mb-3">
-              <Trophy size={12} /> Achievements
-            </span>
+            <span className="pill-tag pill-tag-primary mb-3"><Trophy size={12} /> Achievements</span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-serif text-foreground mt-3">
               Awards & <span className="gradient-text">Recognition</span>
             </h2>
@@ -126,39 +66,20 @@ const AchievementsSection = () => {
         </MotionCard>
       </div>
 
-      {/* Infinite scroll slider */}
       <div className="relative">
-        {/* Edge fade masks */}
-        <div
-          className="absolute inset-0 z-10 pointer-events-none"
-          style={{
-            mask: "linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%)",
-            WebkitMask: "linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%)",
-          }}
-        />
-
-        <div
-          className="flex gap-5 py-4 w-max achievements-scroll"
-          style={{
-            animation: "achievements-scroll 40s linear infinite",
-          }}
-        >
+        <div className="absolute inset-0 z-10 pointer-events-none" style={{
+          mask: "linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%)",
+          WebkitMask: "linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%)",
+        }} />
+        <div className="flex gap-5 py-4 w-max achievements-scroll" style={{ animation: "achievements-scroll 40s linear infinite" }}>
           {duplicated.map((award, index) => (
-            <div
-              key={index}
-              className="shrink-0 w-[280px] sm:w-[320px] md:w-[360px]"
-            >
-              <AwardCard
-                award={award}
-                index={index}
-                backgroundImage={award.bgImage}
-              />
+            <div key={index} className="shrink-0 w-[280px] sm:w-[320px] md:w-[360px]">
+              <AwardCard award={award} index={index} backgroundImage={award.bgImage} />
             </div>
           ))}
         </div>
       </div>
 
-      {/* Inline keyframes */}
       <style>{`
         @keyframes achievements-scroll {
           0% { transform: translateX(0); }
