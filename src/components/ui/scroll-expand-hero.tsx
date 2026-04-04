@@ -93,7 +93,7 @@ const ScrollExpandHero = ({
         e.preventDefault();
       } else if (!expandedRef.current) {
         e.preventDefault();
-        const factor = deltaY < 0 ? 0.008 : 0.005;
+        const factor = deltaY < 0 ? 0.01 : 0.007;
         updateProgress(deltaY * factor);
         setTouchStartY(touchY);
       }
