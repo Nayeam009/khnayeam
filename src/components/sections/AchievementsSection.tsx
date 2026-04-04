@@ -2,6 +2,7 @@ import { Trophy, Mic, Lightbulb, FlaskConical, Star, Briefcase, Users } from "lu
 import MotionCard from "@/components/MotionCard";
 import { AwardCard, type AwardItem } from "@/components/ui/award-carousel";
 import { useSiteContent } from "@/hooks/useSiteContent";
+import { getOptimizedStorageUrl } from "@/lib/storage-images";
 import React from "react";
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -38,7 +39,7 @@ const AchievementsSection = () => {
     category: a.category,
     description: a.description,
     badge: a.badge,
-    bgImage: a.bgImage,
+    bgImage: getOptimizedStorageUrl(a.bgImage, { width: 960, quality: 80 }),
     icon: iconMap[a.icon || "Trophy"] || <Trophy className="text-accent" size={20} />,
   }));
 

@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { useTypingEffect } from "@/hooks/useTypingEffect";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import ScrollExpandHero from "@/components/ui/scroll-expand-hero";
+import { getOptimizedStorageUrl, resolveCmsImageSource } from "@/lib/storage-images";
 import profileImageFallback from "@/assets/nayeam-profile-latest.jpg";
 import heroBgFallback from "@/assets/hero-bg-default.jpg";
 
@@ -80,9 +81,20 @@ const HeroSection = () => {
   const [mounted, setMounted] = useState(false);
 
   const typedText = useTypingEffect(content.typing_roles);
-  const profileImage = content.profile_image || profileImageFallback;
-  const bgImage = content.bg_image || heroBgFallback;
-  const fullName = `${content.name_line1} ${content.name_line2}`;
+  const profileImage = getOptimizedStorageUrl(
+    resolveCmsImageSource({
+      primary: content.profile_image,
+      fallbackSrc: profileImageFallback,
+    }),
+    { width: 1200, quality: 82 }
+  );
+  const bgImage = getOptimizedStorageUrl(
+    resolveCmsImageSource({
+      primary: content.bg_image,
+      fallbackSrc: heroBgFallback,
+    }),
+    { width: 1920, quality: 78 }
+  );
 
   useEffect(() => {
     const timer = setTimeout(() => setMounted(true), 100);
@@ -98,14 +110,12 @@ const HeroSection = () => {
         titleLine2={content.name_line2}
         textBlend
       >
-        {/* Content revealed after full expansion */}
         <motion.div
           variants={stagger.container}
           initial="hidden"
           animate={mounted ? "visible" : "hidden"}
           className="space-y-7"
         >
-          {/* Typing role */}
           <motion.p
             variants={stagger.item}
             className="text-center font-serif text-base font-medium text-white/90 sm:text-lg md:text-xl"
@@ -114,7 +124,6 @@ const HeroSection = () => {
             <span className="animate-pulse text-primary">|</span>
           </motion.p>
 
-          {/* Subtitle */}
           <motion.p
             variants={stagger.item}
             className="mx-auto max-w-2xl text-center text-sm leading-relaxed text-white/65 sm:text-[15px]"
@@ -122,7 +131,6 @@ const HeroSection = () => {
             {content.subtitle}
           </motion.p>
 
-          {/* Tags */}
           <motion.div
             variants={stagger.item}
             className="flex flex-wrap justify-center gap-2"
@@ -141,7 +149,6 @@ const HeroSection = () => {
             })}
           </motion.div>
 
-          {/* CTA buttons */}
           <motion.div
             variants={stagger.item}
             className="flex flex-col items-center justify-center gap-3 pt-1 sm:flex-row"
