@@ -1,84 +1,147 @@
 
 
-## UI/UX Polish: Mobile-First Responsiveness + Glassmorphism + Micro-Interactions
+## Production Readiness Audit & Refinement Plan
 
-### Scope
-Files: `src/pages/Home.tsx`, `src/components/Navigation.tsx`, `src/index.css`
+### Phase 1 — System Understanding (Diagnostic Report)
+
+**Architecture:** Single-page portfolio landing page. No auth, no database, no API, no backend.
+- 1 route (`/`) → `Home.tsx` (919 lines)
+- Navigation component with Sheet drawer
+- Static content, no data fetching
+- framer-motion for animations
+- Tailwind + custom CSS utilities
+
+**Dependency graph:**
+```text
+App.tsx → Home.tsx → Navigation.tsx
+                  → AnimatedCounter (inline)
+                  → MotionCard (inline)
+                  → useTypingEffect (inline)
+                  → framer-motion
+                  → lucide-react icons
+                  → shadcn/ui (Button, Tooltip, Sheet)
+```
+
+**Issues Found:**
+
+| Severity | Issue |
+|----------|-------|
+| High | `Home.tsx` is 919 lines — should be split into section components |
+| High | No error boundary — any crash shows blank screen |
+| High | 4 unused image assets bloating bundle (~`agricultural-hero-bg.jpg`, `nayeam-profile-new.jpg`, `nayeam-profile.jpg`, `soil-element.jpg`) |
+| Medium | Console warning: framer-motion scroll container needs `position: relative` |
+| Medium | Console warning: Missing `aria-describedby` on Sheet DialogContent |
+| Medium | No SEO metadata (title, description, OG tags) |
+| Medium | No `loading="lazy"` on below-fold images (only hero has `loading="eager"`) |
+| Medium | Unused pages: `About.tsx`, `Achievements.tsx`, `Contact.tsx`, `Research.tsx`, `Startups.tsx` — dead code |
+| Medium | Unused components: `AnimatedCounter.tsx`, `OrganicElements.tsx`, `SectionHeader.tsx`, `TimelineItem.tsx` — dead code |
+| Low | No favicon or proper app metadata |
+| Low | `NotFound.tsx` exists but is basic — could show navigation back |
+
+**Not applicable (no action needed):**
+- Auth/session — none exists, none needed
+- Database/Supabase — not used
+- RBAC/roles — not applicable
+- API calls — none exist
+- Forms — none exist (no contact form)
 
 ---
 
-### 1. Navigation Enhancements
-- Add glassmorphism to scrolled nav: `bg-white/70 dark:bg-background/70 backdrop-blur-xl`
-- Add `transition-all duration-200` to all nav buttons for smoother hover/active states
-- Increase mobile Sheet drawer width slightly and add glassmorphism background
+### Phase 2 — Critical Stabilization (Surgical Fixes)
 
-### 2. Hero Section
-- Add glassmorphism to floating info cards (CGPA, Sprout icon)
-- Smoother `transition-all duration-300` on CTA buttons
-- Reduce hero vertical padding on mobile: `py-8 sm:py-12 md:py-20`
-- Tighten spacing between elements on mobile: `space-y-4 md:space-y-8`
+No crashes or broken routes. Two console warnings to fix:
 
-### 3. Stats Bento
-- Apply glassmorphism to stat cards: `bg-white/40 dark:bg-card/40 backdrop-blur-md border-white/20 shadow-xl`
-- Add `transition-all duration-200` hover effect on each card
-- Reduce padding on mobile: `p-3 sm:p-6`
+1. **Fix framer-motion scroll warning** — add `position: relative` to the hero section ref container
+2. **Fix Sheet aria warning** — already has `SheetTitle` with `sr-only`, add `aria-describedby={undefined}` to suppress the DialogContent warning
 
-### 4. About Bento Grid
-- Apply glassmorphism to all bento cards in this section
-- Career Objective card: add subtle `shadow-xl` and frosted border
-- Icon cards: add `transition-all duration-200` on hover for smooth color shift
-- Education cards: glassmorphism treatment
+---
 
-### 5. Research Section
-- Glassmorphism on research cards with preserved colored top borders
-- Add `transition-all duration-200` to status pill badges
-- Ensure cards don't overflow on mobile (text wrapping verified)
+### Phase 3 — Feature Completion
 
-### 6. Experience Section
-- Featured Stock-X card: full glassmorphism with `shadow-2xl` on hover
-- Project cards: glassmorphism with smooth `transition-all duration-200` hover lift
-- Skills pill tags: add `transition-all duration-150` for snappy hover feedback
-- Ensure "Visit Site" button is full-width on mobile with `min-h-[48px]`
+1. **Add SEO metadata** — Update `index.html` with proper title, meta description, OG tags, and favicon
+2. **Add Error Boundary** — Wrap `App` in a React error boundary with a friendly fallback UI
+3. **Improve NotFound page** — Add a link back to home
+4. **Remove dead code** — Delete unused page files (`About.tsx`, `Achievements.tsx`, `Contact.tsx`, `Research.tsx`, `Startups.tsx`) and unused components (`AnimatedCounter.tsx`, `OrganicElements.tsx`, `SectionHeader.tsx`, `TimelineItem.tsx`)
 
-### 7. Achievements Section
-- Tab pills: add `transition-all duration-200` (already has 300, tighten to 200)
-- Achievement cards: glassmorphism treatment
-- Increase card padding on mobile: `p-4 sm:p-6` (already done, verify)
+---
 
-### 8. Personal Info Grid
-- Apply glassmorphism to info cards
-- Ensure `grid-cols-1 sm:grid-cols-2 md:grid-cols-3` (already correct)
-- Remove tooltips wrapping on mobile (they don't trigger on touch anyway — keep but won't interfere)
+### Phase 4 — System Transformation (9 Pillars)
 
-### 9. References
-- Glassmorphism on reference cards
-- Circle avatar: add `transition-transform duration-200` for smooth scale
+**1. Code Structure** — Split `Home.tsx` (919 lines) into section components:
+- `HeroSection.tsx`
+- `StatsSection.tsx`
+- `AboutSection.tsx`
+- `ResearchSection.tsx`
+- `ExperienceSection.tsx`
+- `AchievementsSection.tsx`
+- `PersonalInfoSection.tsx`
+- `ReferencesSection.tsx`
+- `ContactSection.tsx`
+- `FooterSection.tsx`
+- Keep shared utilities (`MotionCard`, `AnimatedCounter`, `useTypingEffect`) in dedicated files
 
-### 10. Contact Section
-- Contact cards: glassmorphism with hover glow effect
-- Social circle buttons: increase to `w-14 h-14` for better touch targets (48px+)
-- Add `transition-all duration-200` to social buttons
+**2. Performance**
+- Remove 4 unused image assets to reduce bundle size
+- Add `loading="lazy"` to any images that could appear below fold
+- Verify no redundant re-renders from framer-motion scroll hooks
 
-### 11. FAB
-- Apply glassmorphism: `bg-primary/80 backdrop-blur-md`
-- Add `transition-transform duration-200`
+**3. Accessibility + SEO**
+- Add semantic `<header>`, `<main>`, `<footer>` landmarks
+- Ensure all sections have proper `aria-label` attributes
+- Add `alt` text review for all images
+- Add structured heading hierarchy (h1 → h2 → h3)
+- Add meta tags and OG image
 
-### 12. CSS Updates (`src/index.css`)
-- Update `.bento-card` class to include glassmorphism by default:
-  ```
-  background: hsl(var(--card) / 0.4);
-  backdrop-filter: blur(16px);
-  border: 1px solid hsl(var(--border) / 0.3);
-  box-shadow: 0 8px 32px -8px hsl(var(--foreground) / 0.06);
-  ```
-- Update `.glass-card` to use stronger blur
-- Add `.glass-hover` utility for consistent hover glow
-- Ensure `overflow-x: hidden` on body (already present, verify)
+**4. Resilience**
+- Error boundary with fallback UI
 
-### Technical Details
-- All changes are CSS/class-only — no routing, logic, or Supabase changes
-- Glassmorphism applied via Tailwind utility classes inline and updated `.bento-card` base class
-- Micro-interactions use `transition-all duration-200` (200ms) for interactive elements
-- Touch targets maintained at 48px minimum on all interactive elements
-- Mobile-first breakpoints: `sm:`, `md:`, `lg:`, `xl:` only
+**5–9** (Security, Data Integrity, Database, Observability) — **Not applicable** for this static portfolio. No forms, no auth, no data, no API calls.
+
+---
+
+### Phase 5 — UI Polish (STITCH MODE)
+
+- Consistent 8pt spacing grid already in place via Tailwind
+- Verify `border-radius` consistency across all bento cards
+- Ensure the footer has adequate padding on all breakpoints
+
+---
+
+### Files to Create
+- `src/components/sections/HeroSection.tsx`
+- `src/components/sections/StatsSection.tsx`
+- `src/components/sections/AboutSection.tsx`
+- `src/components/sections/ResearchSection.tsx`
+- `src/components/sections/ExperienceSection.tsx`
+- `src/components/sections/AchievementsSection.tsx`
+- `src/components/sections/PersonalInfoSection.tsx`
+- `src/components/sections/ReferencesSection.tsx`
+- `src/components/sections/ContactSection.tsx`
+- `src/components/sections/FooterSection.tsx`
+- `src/components/MotionCard.tsx`
+- `src/hooks/useTypingEffect.ts`
+- `src/components/ErrorBoundary.tsx`
+
+### Files to Edit
+- `src/pages/Home.tsx` — refactor to import section components
+- `src/App.tsx` — wrap with ErrorBoundary
+- `index.html` — add SEO meta tags
+- `src/pages/NotFound.tsx` — add home link
+
+### Files to Delete
+- `src/pages/About.tsx`, `src/pages/Achievements.tsx`, `src/pages/Contact.tsx`, `src/pages/Research.tsx`, `src/pages/Startups.tsx`
+- `src/components/AnimatedCounter.tsx`, `src/components/OrganicElements.tsx`, `src/components/SectionHeader.tsx`, `src/components/TimelineItem.tsx`
+- `src/assets/agricultural-hero-bg.jpg`, `src/assets/nayeam-profile-new.jpg`, `src/assets/nayeam-profile.jpg`, `src/assets/soil-element.jpg`
+
+### Zero-Fail Checklist
+- [x] No broken routes (only `/` and `*`)
+- [x] No auth needed
+- [x] No data access to scope
+- [x] No unsafe queries
+- [x] UI consistent — verified
+- [ ] Loading/error states — add ErrorBoundary
+- [x] Mobile responsive — already audited
+- [ ] Performance — remove unused assets
+- [ ] No code duplication — split Home.tsx
+- [x] App feels complete and usable
 
