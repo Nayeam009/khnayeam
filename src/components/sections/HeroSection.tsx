@@ -132,17 +132,17 @@ const HeroSection = () => {
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/45 to-transparent" />
         </div>
 
-        <div className="relative z-10 flex h-full items-center">
-          <div className="mx-auto flex h-full w-full max-w-7xl items-center px-4 pb-8 pt-24 sm:px-6 sm:pb-10 sm:pt-28 lg:px-10 lg:pt-32">
-            <div className="grid w-full items-center gap-6 sm:gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,420px)] lg:gap-12">
+        <div className="relative z-10 flex h-full items-start md:items-center">
+          <div className="mx-auto flex h-full w-full max-w-7xl items-start px-4 pb-8 pt-24 sm:px-6 sm:pb-10 sm:pt-28 md:items-center md:pb-12 lg:px-10 lg:pt-32">
+            <div className="flex w-full flex-col items-center justify-center gap-6 sm:gap-8 md:flex-row md:items-center md:justify-between md:gap-10 lg:gap-12">
               <motion.div
                 initial={{ opacity: 0, y: 28 }}
                 animate={{ opacity: mounted ? 1 : 0, y: mounted ? 0 : 28 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="order-1"
+                className="order-1 w-full md:min-w-0 md:flex-1"
               >
                 <div
-                  className="flex flex-col items-center text-center lg:items-start lg:text-left"
+                  className="flex flex-col items-center text-center md:items-start md:pr-4 md:text-left lg:pr-6"
                   style={{
                     transform: `translateY(${contentTranslateY}px)`,
                     opacity: contentOpacity,
@@ -183,7 +183,7 @@ const HeroSection = () => {
                     {content.subtitle}
                   </motion.p>
 
-                  <div className="mt-6 hidden w-full flex-col gap-3 lg:flex lg:max-w-xl xl:flex-row">
+                  <div className="mt-6 hidden w-full flex-col gap-3 md:flex md:max-w-xl md:items-start xl:flex-row">
                     <a href="#contact">
                       <Button
                         size="lg"
@@ -207,7 +207,7 @@ const HeroSection = () => {
                     </a>
                   </div>
 
-                  <div className="mt-5 hidden max-w-xl flex-wrap gap-2 lg:flex">
+                  <div className="mt-5 hidden max-w-xl flex-wrap gap-2 md:flex">
                     {content.tags.map((tag) => {
                       const Icon = iconMap[tag.icon] || MapPin;
                       return (
@@ -228,10 +228,10 @@ const HeroSection = () => {
                 initial={{ opacity: 0, scale: 0.92, y: 22 }}
                 animate={{ opacity: mounted ? 1 : 0, scale: mounted ? 1 : 0.92, y: mounted ? 0 : 22 }}
                 transition={{ duration: 0.95, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                className="order-2 flex justify-center lg:justify-end"
+                className="order-2 flex w-full justify-center md:w-auto md:flex-none md:justify-end"
               >
                 <div
-                  className="relative w-[72vw] max-w-[15rem] sm:max-w-[17.5rem] md:max-w-[20rem] lg:max-w-[24rem]"
+                  className="relative w-full max-w-[15rem] sm:max-w-[17.5rem] md:max-w-[18rem] lg:max-w-[21rem] xl:max-w-[24rem]"
                   style={{
                     transform: `translateY(${cardTranslateY}px) scale(${cardScale})`,
                     transition: "transform 80ms linear",
@@ -283,7 +283,7 @@ const HeroSection = () => {
                 </div>
               </motion.div>
 
-              <div className="order-3 flex flex-col items-center gap-3 lg:hidden">
+              <div className="order-3 flex flex-col items-center gap-3 md:hidden">
                 <div className="flex w-full max-w-sm flex-col gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-center">
                   <a href="#contact" className="w-full sm:w-auto">
                     <Button
@@ -308,7 +308,7 @@ const HeroSection = () => {
                   </a>
                 </div>
 
-                <div className="hidden max-w-2xl flex-wrap justify-center gap-2 sm:flex lg:hidden">
+                <div className="hidden max-w-2xl flex-wrap justify-center gap-2 sm:flex md:hidden">
                   {content.tags.map((tag) => {
                     const Icon = iconMap[tag.icon] || MapPin;
                     return (
