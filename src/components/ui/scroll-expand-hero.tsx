@@ -181,7 +181,7 @@ const ScrollExpandHero = ({
               </div>
 
               {/* Title text below image — splits on scroll */}
-              <div className="mt-4 sm:mt-6 flex flex-col items-center overflow-hidden">
+              <div className="mt-4 sm:mt-6 min-h-0 flex flex-col items-center overflow-hidden">
                 {titleLine1 && (
                   <motion.span
                     className={`block font-serif font-bold leading-[1] tracking-[-0.02em] ${
