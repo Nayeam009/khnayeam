@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { GraduationCap, BookOpen, Award } from "lucide-react";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import MotionCard from "@/components/MotionCard";
+import { getOptimizedStorageUrl, resolveCmsImageSource } from "@/lib/storage-images";
 
 import eduUniversity from "@/assets/edu-university.jpg";
 import eduCollege from "@/assets/edu-college.jpg";
@@ -87,7 +88,15 @@ const EduCard = ({ item, index }: { item: EducationItem; index: number }) => {
   const translateY = useTransform(scrollYProgress, [0, 1], [60, 0]);
 
   const reverse = index % 2 !== 0;
-  const imgSrc = item.imageUrl || DEFAULT_IMAGE_MAP[item.imageKey] || eduUniversity;
+  const imgSrc = getOptimizedStorageUrl(
+    resolveCmsImageSource({
+      primary: item.imageUrl,
+      fallbackKey: item.imageKey,
+      fallbackMap: DEFAULT_IMAGE_MAP,
+      fallbackSrc: eduUniversity,
+    }),
+    { width: 960, quality: 80 }
+  );
 
   return (
     <div ref={ref} className="py-10 md:py-16">
@@ -96,7 +105,6 @@ const EduCard = ({ item, index }: { item: EducationItem; index: number }) => {
           reverse ? "md:flex-row-reverse" : "md:flex-row"
         } gap-8 md:gap-12 items-center`}
       >
-        {/* Text content */}
         <motion.div
           style={{ opacity, y: translateY }}
           className="flex-1 space-y-4"
@@ -129,7 +137,6 @@ const EduCard = ({ item, index }: { item: EducationItem; index: number }) => {
           </div>
         </motion.div>
 
-        {/* Image */}
         <motion.div
           style={{ clipPath }}
           className="flex-1 w-full max-w-md"
@@ -161,7 +168,6 @@ const EducationSection = () => {
       className="py-20 md:py-28 section-padding"
     >
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
         <MotionCard>
           <div className="flex items-center gap-3 mb-2">
             <span className="pill-tag pill-tag-primary">
@@ -176,7 +182,6 @@ const EducationSection = () => {
           </p>
         </MotionCard>
 
-        {/* Parallax education cards */}
         <div className="mt-8 divide-y divide-border/30">
           {items.map((item, i) => (
             <EduCard key={item.step || i} item={item} index={i} />

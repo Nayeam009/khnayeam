@@ -10,9 +10,25 @@ import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
 import {
-  Sprout, LogOut, Save, Loader2, Upload, Trash2, Plus, ChevronDown, ChevronRight,
-  Image as ImageIcon, FileText, Settings, Home,
+  LogOut,
+  Save,
+  Loader2,
+  Upload,
+  Trash2,
+  Plus,
+  ChevronDown,
+  ChevronRight,
+  Settings,
+  Home,
 } from "lucide-react";
+import {
+  ACCEPTED_IMAGE_TYPES,
+  MAX_UPLOAD_BYTES,
+  buildStorageFilePath,
+  prepareImageForUpload,
+  resolveUploadFieldPath,
+} from "@/lib/admin-image-upload";
+import { isImageUrl } from "@/lib/storage-images";
 
 const SECTION_LABELS: Record<string, string> = {
   hero: "🏠 Hero Section",
@@ -92,30 +108,48 @@ const Admin = () => {
   const handleImageUpload = async (sectionKey: string, fieldPath: string) => {
     const input = document.createElement("input");
     input.type = "file";
-    input.accept = "image/jpeg,image/png,image/webp,image/gif,image/svg+xml";
+    input.accept = ACCEPTED_IMAGE_TYPES;
     input.onchange = async (e) => {
       const file = (e.target as HTMLInputElement).files?.[0];
       if (!file) return;
-      if (file.size > 10 * 1024 * 1024) {
-        toast({ title: "File too large", description: "Maximum file size is 10MB.", variant: "destructive" });
-        return;
-      }
+
       setUploading(true);
-      const sanitizedName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
-      const fileName = `${sectionKey}/${Date.now()}-${sanitizedName}`;
-      const { error } = await supabase.storage.from("portfolio-images").upload(fileName, file, {
-        cacheControl: "3600",
-        upsert: true,
-      });
-      if (error) {
-        toast({ title: "Upload failed", description: error.message, variant: "destructive" });
+
+      try {
+        const processedFile = await prepareImageForUpload(file);
+
+        if (processedFile.size > MAX_UPLOAD_BYTES) {
+          throw new Error("Please choose an image under 10MB.");
+        }
+
+        const fileName = buildStorageFilePath(sectionKey, processedFile.name);
+        const { error } = await supabase.storage.from("portfolio-images").upload(fileName, processedFile, {
+          cacheControl: "3600",
+          upsert: true,
+          contentType: processedFile.type,
+        });
+
+        if (error) throw error;
+
+        const { data: urlData } = supabase.storage.from("portfolio-images").getPublicUrl(fileName);
+        updateField(sectionKey, resolveUploadFieldPath(fieldPath), urlData.publicUrl);
+
+        toast({
+          title: "Image uploaded!",
+          description:
+            processedFile !== file
+              ? "Image optimized and uploaded. Don’t forget to save the section."
+              : "Don’t forget to save the section.",
+        });
+      } catch (error) {
+        toast({
+          title: "Upload failed",
+          description: error instanceof Error ? error.message : "Failed to upload image.",
+          variant: "destructive",
+        });
+      } finally {
         setUploading(false);
-        return;
       }
-      const { data: urlData } = supabase.storage.from("portfolio-images").getPublicUrl(fileName);
-      updateField(sectionKey, fieldPath, urlData.publicUrl);
-      setUploading(false);
-      toast({ title: "Image uploaded!", description: "Don't forget to save the section." });
     };
     input.click();
   };
@@ -136,7 +170,6 @@ const Admin = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
         <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -159,7 +192,6 @@ const Admin = () => {
         </div>
       </header>
 
-      {/* Content */}
       <main className="max-w-4xl mx-auto px-4 py-6 space-y-3">
         {Object.entries(editedSections)
           .sort(([a], [b]) => {
@@ -168,7 +200,6 @@ const Admin = () => {
           })
           .map(([sectionKey, content]) => (
             <div key={sectionKey} className="border border-border/50 rounded-xl bg-card overflow-hidden">
-              {/* Section Header */}
               <button
                 onClick={() => toggleSection(sectionKey)}
                 className="w-full flex items-center justify-between px-5 py-4 hover:bg-muted/30 transition-colors text-left"
@@ -194,7 +225,6 @@ const Admin = () => {
                 </div>
               </button>
 
-              {/* Section Fields */}
               {expandedSections[sectionKey] && (
                 <div className="px-5 pb-5 space-y-4 border-t border-border/30">
                   <SectionFields
@@ -213,7 +243,6 @@ const Admin = () => {
   );
 };
 
-// Recursive field renderer
 const SectionFields = ({
   sectionKey,
   content,
@@ -280,11 +309,23 @@ const SectionFields = ({
   }
 
   if (typeof content === "object") {
+    const objectContent = content as Record<string, unknown>;
+
     return (
       <div className="space-y-3">
-        {Object.entries(content as Record<string, unknown>).map(([key, value]) => {
+        {Object.entries(objectContent).map(([key, value]) => {
           const fullPath = parentPath ? `${parentPath}.${key}` : key;
           const isImageField = key.toLowerCase().includes("image") || key.toLowerCase().includes("bgimage") || key.toLowerCase().includes("profile_image");
+          const siblingImageUrl = key === "imageKey" && typeof objectContent.imageUrl === "string"
+            ? objectContent.imageUrl
+            : undefined;
+          const imagePreviewSrc = isImageField
+            ? isImageUrl(typeof value === "string" ? value : undefined)
+              ? (value as string)
+              : isImageUrl(siblingImageUrl)
+                ? siblingImageUrl
+                : undefined
+            : undefined;
 
           if (typeof value === "string") {
             return (
@@ -316,8 +357,8 @@ const SectionFields = ({
                     </Button>
                   )}
                 </div>
-                {isImageField && value && (
-                  <img src={value} alt="" className="h-16 w-16 rounded-md object-cover border" />
+                {imagePreviewSrc && (
+                  <img src={imagePreviewSrc} alt="" className="h-16 w-16 rounded-md object-cover border" />
                 )}
               </div>
             );
@@ -366,7 +407,6 @@ const SectionFields = ({
             );
           }
 
-          // Nested object or array
           return (
             <div key={key} className="space-y-2">
               <Label className="text-xs font-semibold capitalize text-foreground">{key.replace(/_/g, " ")}</Label>
