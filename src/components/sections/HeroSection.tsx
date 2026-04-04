@@ -94,9 +94,8 @@ const HeroSection = () => {
       <ScrollExpandHero
         mediaSrc={profileImage}
         bgImageSrc={bgImage}
-        title={fullName}
-        subtitle={content.status_badge}
-        scrollToExpand="Scroll to Explore"
+        titleLine1={content.name_line1}
+        titleLine2={content.name_line2}
         textBlend
       >
         {/* Content revealed after full expansion */}
