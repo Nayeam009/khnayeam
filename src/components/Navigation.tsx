@@ -88,7 +88,7 @@ const Navigation = () => {
               <Menu size={20} />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-[280px] sm:w-[320px] pt-12">
+          <SheetContent side="right" className="w-[300px] sm:w-[340px] pt-12 bg-card/80 backdrop-blur-2xl border-l border-border/30">
             <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
             <div className="flex flex-col gap-1 mt-4">
               {navItems.map((item) => (
