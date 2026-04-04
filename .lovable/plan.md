@@ -1,57 +1,56 @@
+## Hero Section Redesign — Scroll-Expand with Background Image
 
+### Concept
 
-## Footer Section UI/UX Redesign
+Adapt the scroll-expansion hero pattern for a portfolio context: the profile image starts as a centered rounded card that expands as the user scrolls, with a beautiful background image behind it. The hero content (name, typing effect, CTA buttons, tags) overlays on top. Once fully expanded, the rest of the page becomes scrollable.
 
-Inspired by the provided 4-column footer design with glassmorphism, social icons with hover effects, structured link columns, and contact info section.
+**Key difference from the reference:** This is NOT a separate page-blocking component. The scroll-hijacking UX from the reference would break the portfolio flow. Instead, we take the visual DNA — centered expanding image over a background, text with mix-blend-difference, smooth transitions — but implement it as a standard scroll-parallax hero that doesn't hijack scrolling.
 
 ### Layout
 
 ```text
-Desktop (lg) — 5 sections across 2 rows:
-┌──────────────────────┬──────────┬──────────┬──────────┬──────────┐
-│  Brand + Description │  About   │ Projects │ Helpful  │ Contact  │
-│  + Social Icons      │  Links   │  Links   │  Links   │  Info    │
-│  (col-span-2)        │          │          │          │          │
-├──────────────────────┴──────────┴──────────┴──────────┴──────────┤
-│  Bottom bar: Copyright + "All rights reserved"                   │
-└──────────────────────────────────────────────────────────────────┘
-
-Tablet (sm): 2 columns  |  Mobile: 1 column stacked
+┌─────────────────────────────────────────────┐
+│  Full-screen background image (Unsplash     │
+│  nature/agriculture landscape)              │
+│  with dark overlay gradient                 │
+│                                             │
+│         ┌─────────────────┐                 │
+│         │  Profile Image  │                 │
+│         │  (rounded card) │                 │
+│         └─────────────────┘                 │
+│                                             │
+│        KH. NAYEAM IBNA NASIR                │
+│     Agriculture Graduate | Developer        │
+│                                             │
+│     [Get In Touch]  [Download CV]           │
+│     📍 Dhaka  🎓 GSTU  💼 Stock-X BD        │
+│                                             │
+│              ▼ Scroll Down                  │
+└─────────────────────────────────────────────┘
 ```
 
-### Changes to `src/components/sections/FooterSection.tsx`
+### Design Details
 
-1. **Grid**: Change to `lg:grid-cols-6` — brand takes `lg:col-span-2`, each link column takes `lg:col-span-1`
+1. **Background image**: Use a beautiful Unsplash agriculture/nature landscape as `bg_image` field in Supabase hero content (with a hardcoded fallback URL). Full-screen cover with `bg-black/40` overlay gradient for text readability.
+2. **Profile image**: Centered at the top portion of the hero, larger than current (w-40 h-48 on mobile, w-56 h-64 on desktop). Rounded-2xl with a gradient border ring and shadow. Floating CGPA badge and Sprout icon retained.
+3. **Text layout**: Centered below the profile image instead of side-by-side grid. Name in large bold white text, typing effect below, subtitle in muted white. All text is white/light since it's over the dark background image.
+4. **CTA buttons**: Centered row, white/translucent glass style to match the dark background aesthetic.
+5. **Tags**: Centered pill tags in glass/translucent style.
+6. **Parallax**: Keep existing `useScroll`/`useTransform` for subtle parallax on scroll — background moves slower than content. No scroll hijacking.
+7. **Scroll indicator**: Animated chevron-down at bottom.
 
-2. **Brand column** (expanded):
-   - Larger logo area with `w-10 h-10` circle icon
-   - Longer description text with `max-w-sm`
-   - Social icons row with glassmorphism hover: `hover:bg-primary/10 hover:text-primary hover:scale-110 transition-all duration-300`
-   - Each social icon `w-10 h-10` (larger touch targets)
+### Backend Integration
 
-3. **Add new "About" column**: Links to #about, #personal-info, #research, #references
+Add `bg_image` field to the hero content interface and DEFAULTS. The admin panel already supports editing any field in the hero JSON, so adding a new string field is automatically editable.
 
-4. **Navigation column** renamed to "Quick Links": #experience, #achievements, #stats, #contact
+### Technical Notes
 
-5. **Projects column**: Keep existing 3 projects with `ArrowUpRight` icon
+- Replace `next/image` with standard `<img>` tags (no Next.js)
+- No scroll hijacking — standard parallax only
+- All colors switch to white/light variants for dark background contrast
+- Button variants: primary button stays solid, outline button gets `border-white/30 text-white` styling
+- Fallback background: `https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920` (golden wheat field)
 
-6. **New "Contact Us" column**:
-   - Email with `Mail` icon
-   - Phone with `Phone` icon
-   - Address with `MapPin` icon
-   - Each item as horizontal flex with icon + text
+### File Changes
 
-7. **Bottom bar**:
-   - Add top border with `border-border/20`
-   - Flex row with "All rights reserved" on left, copyright on right
-   - Increase font size slightly to `text-xs`
-
-8. **Visual polish**:
-   - Link hover underline effect via `hover:translate-x-1 transition-transform`
-   - Section headers: `text-sm font-semibold uppercase tracking-wider` with subtle bottom border or dot accent
-   - Overall padding increase: `py-16 md:py-20`
-   - Subtle gradient background kept but strengthened slightly
-
-### File
-Only `src/components/sections/FooterSection.tsx` changes.
-
+- `src/components/sections/HeroSection.tsx` — full rewrite with new layout. Update the backend & admin panel as well. 
