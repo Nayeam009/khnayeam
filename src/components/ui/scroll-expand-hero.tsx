@@ -6,14 +6,12 @@ import {
   ReactNode,
 } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
 
 interface ScrollExpandHeroProps {
   mediaSrc: string;
   bgImageSrc: string;
-  title?: string;
-  subtitle?: string;
-  scrollToExpand?: string;
+  titleLine1?: string;
+  titleLine2?: string;
   textBlend?: boolean;
   children?: ReactNode;
 }
@@ -21,9 +19,8 @@ interface ScrollExpandHeroProps {
 const ScrollExpandHero = ({
   mediaSrc,
   bgImageSrc,
-  title,
-  subtitle,
-  scrollToExpand = 'Scroll to Explore',
+  titleLine1,
+  titleLine2,
   textBlend = true,
   children,
 }: ScrollExpandHeroProps) => {
@@ -44,7 +41,6 @@ const ScrollExpandHero = ({
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Keep refs in sync for event handlers
   useEffect(() => {
     progressRef.current = scrollProgress;
   }, [scrollProgress]);
@@ -122,17 +118,18 @@ const ScrollExpandHero = ({
 
   // Responsive media dimensions
   const mediaWidth = isMobile
-    ? 240 + scrollProgress * 720
-    : 320 + scrollProgress * 1200;
+    ? 220 + scrollProgress * (window.innerWidth - 220)
+    : 300 + scrollProgress * (window.innerWidth - 300);
   const mediaHeight = isMobile
-    ? 320 + scrollProgress * 300
-    : 420 + scrollProgress * 380;
-  const textTranslateX = scrollProgress * (isMobile ? 200 : 160);
-  const borderRadius = Math.max(24 - scrollProgress * 24, 0);
-  const overlayOpacity = Math.min(scrollProgress * 0.6, 0.5);
+    ? 300 + scrollProgress * (window.innerHeight - 300)
+    : 400 + scrollProgress * (window.innerHeight - 400);
+  const borderRadius = Math.max(20 - scrollProgress * 20, 0);
+  const overlayOpacity = Math.min(scrollProgress * 0.5, 0.4);
 
-  const firstWord = title ? title.split(' ').slice(0, 2).join(' ') : '';
-  const restOfTitle = title ? title.split(' ').slice(2).join(' ') : '';
+  // Text split animation: line1 goes LEFT, line2 goes RIGHT
+  const line1TranslateX = scrollProgress * (isMobile ? -120 : -200);
+  const line2TranslateX = scrollProgress * (isMobile ? 120 : 200);
+  const textOpacity = Math.max(1 - scrollProgress * 1.5, 0);
 
   return (
     <div ref={sectionRef}>
@@ -148,86 +145,78 @@ const ScrollExpandHero = ({
                 className="h-full w-full object-cover will-change-transform"
                 loading="eager"
                 style={{
-                  transform: `scale(${1 + scrollProgress * 0.05})`,
+                  transform: `scale(${1 + scrollProgress * 0.08})`,
                   transition: 'transform 150ms linear',
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_30%,_rgba(0,0,0,0.4)_100%)]" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
             </div>
 
-            {/* Main centered layout */}
+            {/* Main centered layout — image pushed slightly below center */}
             <div className="relative flex h-screen w-full flex-col items-center justify-center px-4">
 
-              {/* Profile image container with scroll-driven expansion */}
-              <div className="relative flex items-center justify-center">
+              {/* Title text — positioned over the image with split animation */}
+              <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
+                <div className="flex flex-col items-center overflow-hidden">
+                  {titleLine1 && (
+                    <motion.span
+                      className={`block font-serif font-bold leading-[0.95] tracking-[-0.02em] ${
+                        textBlend ? 'text-white mix-blend-difference' : 'text-white drop-shadow-[0_4px_30px_rgba(0,0,0,0.6)]'
+                      }`}
+                      style={{
+                        fontSize: isMobile ? 'clamp(2rem, 11vw, 3rem)' : 'clamp(3rem, 6vw, 5.5rem)',
+                        transform: `translateX(${line1TranslateX}%)`,
+                        opacity: textOpacity,
+                        transition: 'transform 100ms linear, opacity 100ms linear',
+                      }}
+                    >
+                      {titleLine1}
+                    </motion.span>
+                  )}
+                  {titleLine2 && (
+                    <motion.span
+                      className={`block font-serif font-bold leading-[0.95] tracking-[-0.02em] ${
+                        textBlend ? 'text-white mix-blend-difference' : 'text-white drop-shadow-[0_4px_30px_rgba(0,0,0,0.6)]'
+                      }`}
+                      style={{
+                        fontSize: isMobile ? 'clamp(2rem, 11vw, 3rem)' : 'clamp(3rem, 6vw, 5.5rem)',
+                        transform: `translateX(${line2TranslateX}%)`,
+                        opacity: textOpacity,
+                        transition: 'transform 100ms linear, opacity 100ms linear',
+                      }}
+                    >
+                      {titleLine2}
+                    </motion.span>
+                  )}
+                </div>
+              </div>
+
+              {/* Profile image container — lowered with mt-8 */}
+              <div className="relative mt-8 sm:mt-12 flex items-center justify-center">
                 <div
                   className="overflow-hidden shadow-[0_20px_80px_-20px_rgba(0,0,0,0.8)] will-change-transform"
                   style={{
-                    width: `${mediaWidth}px`,
-                    height: `${mediaHeight}px`,
-                    maxWidth: '96vw',
-                    maxHeight: '92vh',
+                    width: `${Math.min(mediaWidth, window.innerWidth)}px`,
+                    height: `${Math.min(mediaHeight, window.innerHeight)}px`,
+                    maxWidth: '98vw',
+                    maxHeight: '95vh',
                     borderRadius: `${borderRadius}px`,
                     transition: 'width 80ms linear, height 80ms linear, border-radius 80ms linear',
                   }}
                 >
                   <img
                     src={mediaSrc}
-                    alt={title || 'Profile'}
+                    alt="Profile"
                     className="h-full w-full object-cover object-[50%_15%]"
                     loading="eager"
                   />
                   {/* Gradient overlay on image */}
                   <div
-                    className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20"
-                    style={{ opacity: 0.4 + overlayOpacity }}
+                    className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10"
+                    style={{ opacity: 0.3 + overlayOpacity }}
                   />
                 </div>
-
-                {/* Bottom overlay hints (fade out as media expands) */}
-                <AnimatePresence>
-                  {scrollProgress < 0.7 && (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="pointer-events-none absolute inset-x-0 bottom-4 flex flex-col items-center gap-2 px-4 sm:bottom-6 sm:flex-row sm:justify-between sm:px-8"
-                    >
-                      {subtitle && (
-                        <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[10px] font-medium tracking-[0.2em] text-white/70 uppercase backdrop-blur-md sm:text-xs">
-                          {subtitle}
-                        </span>
-                      )}
-                      <div className="flex items-center gap-1.5 text-[10px] font-medium tracking-[0.2em] text-white/50 uppercase sm:text-xs">
-                        <span>{scrollToExpand}</span>
-                        <motion.div
-                          animate={{ y: [0, 4, 0] }}
-                          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                        >
-                          <ChevronDown size={14} className="text-white/50" />
-                        </motion.div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
               </div>
-
-              {/* Title text with mix-blend-difference */}
-              <motion.h1
-                className={`pointer-events-none absolute select-none font-serif font-bold leading-[0.9] tracking-[-0.03em] ${
-                  textBlend ? 'text-white mix-blend-difference' : 'text-white drop-shadow-[0_4px_30px_rgba(0,0,0,0.6)]'
-                }`}
-                style={{
-                  fontSize: isMobile ? 'clamp(2.2rem, 12vw, 3.5rem)' : 'clamp(3rem, 7vw, 6rem)',
-                  transform: `translateX(-${textTranslateX}%)`,
-                  transition: 'transform 80ms linear',
-                }}
-              >
-                <span className="block">{firstWord}</span>
-                <span className="block">{restOfTitle}</span>
-              </motion.h1>
             </div>
 
             {/* Revealed content after full expansion */}
