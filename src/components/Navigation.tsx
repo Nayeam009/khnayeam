@@ -79,16 +79,16 @@ const Navigation = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-card/60 backdrop-blur-2xl shadow-lg border-b border-border/30"
+          ? "bg-background/70 backdrop-blur-2xl shadow-lg border-b border-border/30"
           : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between section-padding py-3 md:py-4">
         <button onClick={() => scrollTo("#hero")} className="text-lg md:text-xl font-bold tracking-tight font-serif">
           <span className="gradient-text">KN</span>
-          <span className="text-foreground ml-1 font-medium font-sans text-sm md:text-base">Nayeam</span>
+          <span className={`ml-1 font-medium font-sans text-sm md:text-base transition-colors duration-300 ${overHero && !scrolled ? "text-white/90" : "text-foreground"}`}>Nayeam</span>
         </button>
 
         {/* Desktop */}
