@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, Download } from "lucide-react";
+import { Menu, Download, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -12,6 +12,12 @@ const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const [open, setOpen] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window !== "undefined") {
+      return document.documentElement.classList.contains("dark");
+    }
+    return false;
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,6 +35,22 @@ const Navigation = () => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    // Check saved preference or system preference on mount
+    const saved = localStorage.getItem("theme");
+    if (saved === "dark" || (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+      document.documentElement.classList.add("dark");
+      setIsDark(true);
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const next = !isDark;
+    setIsDark(next);
+    document.documentElement.classList.toggle("dark", next);
+    localStorage.setItem("theme", next ? "dark" : "light");
+  };
 
   const navItems = [
     { name: "Home", href: "#hero" },
@@ -74,44 +96,60 @@ const Navigation = () => {
               {item.name}
             </button>
           ))}
-          <a href="/cv-kh-nayeam-ibna-nasir.pdf" download className="ml-2">
+          <button
+            onClick={toggleTheme}
+            className="ml-1 p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-200"
+            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            {isDark ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
+          <a href="/cv-kh-nayeam-ibna-nasir.pdf" download className="ml-1">
             <Button size="sm" className="rounded-full text-xs gap-1.5">
               <Download size={14} /> CV
             </Button>
           </a>
         </div>
 
-        {/* Mobile Sheet Drawer */}
-        <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="lg:hidden rounded-full min-h-[44px] min-w-[44px]">
-              <Menu size={20} />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="w-[300px] sm:w-[340px] pt-12 bg-card/80 backdrop-blur-2xl border-l border-border/30">
-            <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
-            <div className="flex flex-col gap-1 mt-4">
-              {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => scrollTo(item.href)}
-                  className={`px-4 py-4 min-h-[48px] rounded-xl text-sm font-medium text-left transition-all duration-200 ${
-                    activeSection === item.href.slice(1)
-                      ? "bg-primary text-primary-foreground"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                  }`}
-                >
-                  {item.name}
-                </button>
-              ))}
-              <a href="/cv-kh-nayeam-ibna-nasir.pdf" download className="mt-4">
-                <Button className="w-full rounded-xl gap-2 min-h-[48px]">
-                  <Download size={16} /> Download CV
-                </Button>
-              </a>
-            </div>
-          </SheetContent>
-        </Sheet>
+        {/* Mobile: theme toggle + hamburger */}
+        <div className="flex items-center gap-1 lg:hidden">
+          <button
+            onClick={toggleTheme}
+            className="p-2.5 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-200 min-h-[44px] min-w-[44px] flex items-center justify-center"
+            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            {isDark ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="rounded-full min-h-[44px] min-w-[44px]">
+                <Menu size={20} />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px] sm:w-[340px] pt-12 bg-card/80 backdrop-blur-2xl border-l border-border/30">
+              <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+              <div className="flex flex-col gap-1 mt-4">
+                {navItems.map((item) => (
+                  <button
+                    key={item.name}
+                    onClick={() => scrollTo(item.href)}
+                    className={`px-4 py-4 min-h-[48px] rounded-xl text-sm font-medium text-left transition-all duration-200 ${
+                      activeSection === item.href.slice(1)
+                        ? "bg-primary text-primary-foreground"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    }`}
+                  >
+                    {item.name}
+                  </button>
+                ))}
+                <a href="/cv-kh-nayeam-ibna-nasir.pdf" download className="mt-4">
+                  <Button className="w-full rounded-xl gap-2 min-h-[48px]">
+                    <Download size={16} /> Download CV
+                  </Button>
+                </a>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
     </nav>
   );
