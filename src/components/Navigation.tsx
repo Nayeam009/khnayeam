@@ -87,7 +87,7 @@ const Navigation = () => {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between section-padding py-3 md:py-4">
         <button onClick={() => scrollTo("#hero")} className="flex items-baseline gap-1.5 text-lg md:text-xl tracking-tight">
-          <span className="gradient-text font-serif font-bold italic">KN</span>
+          <span className="gradient-text font-serif font-bold italic">KH.</span>
           <span className={`font-serif font-semibold text-sm md:text-base transition-colors duration-300 ${overHero && !scrolled ? "text-white/90" : "text-foreground"}`}>Nayeam</span>
         </button>
 
