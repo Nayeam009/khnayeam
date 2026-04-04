@@ -145,7 +145,9 @@ const Navigation = () => {
           </button>
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="rounded-full min-h-[44px] min-w-[44px]">
+              <Button variant="ghost" size="icon" className={`rounded-full min-h-[44px] min-w-[44px] transition-colors duration-300 ${
+                overHero && !scrolled ? "text-white/80 hover:text-white hover:bg-white/10" : ""
+              }`}>
                 <Menu size={20} />
               </Button>
             </SheetTrigger>
