@@ -335,9 +335,9 @@ const Home = () => {
               ].map((skill, i) => (
                 <MotionCard key={skill.title} index={i + 1} className="group">
                   <div className="bento-card h-full flex flex-col items-start gap-4 group-hover:bg-card min-h-[140px]">
-                    <motion.div
+                   <motion.div
                       whileHover={{ rotate: 10, scale: 1.1 }}
-                      className="circle-icon circle-icon-lg bg-primary/10 group-hover:bg-primary transition-all duration-300"
+                      className="circle-icon circle-icon-lg bg-primary/10 group-hover:bg-primary transition-all duration-200"
                     >
                       <skill.icon className="text-primary group-hover:text-primary-foreground transition-colors" size={24} />
                     </motion.div>
