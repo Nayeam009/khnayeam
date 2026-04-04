@@ -116,13 +116,11 @@ const ScrollExpandHero = ({
     };
   }, [touchStartY]);
 
-  // Responsive media dimensions
-  const mediaWidth = isMobile
-    ? 220 + scrollProgress * (window.innerWidth - 220)
-    : 300 + scrollProgress * (window.innerWidth - 300);
-  const mediaHeight = isMobile
-    ? 300 + scrollProgress * (window.innerHeight - 300)
-    : 400 + scrollProgress * (window.innerHeight - 400);
+  // Responsive media dimensions (viewport-relative)
+  const initialW = isMobile ? window.innerWidth * 0.55 : window.innerWidth * 0.22;
+  const initialH = isMobile ? window.innerHeight * 0.45 : window.innerHeight * 0.55;
+  const mediaWidth = initialW + scrollProgress * (window.innerWidth - initialW);
+  const mediaHeight = initialH + scrollProgress * (window.innerHeight - initialH);
   const borderRadius = Math.max(20 - scrollProgress * 20, 0);
   const overlayOpacity = Math.min(scrollProgress * 0.5, 0.4);
 
@@ -153,7 +151,7 @@ const ScrollExpandHero = ({
             </div>
 
             {/* Main centered layout */}
-            <div className="relative flex h-screen w-full flex-col items-center justify-end px-4 pb-[12vh] sm:pb-[10vh]">
+            <div className="relative flex h-screen w-full flex-col items-center justify-center px-4">
 
               {/* Profile image container */}
               <div className="relative flex items-center justify-center">
@@ -171,7 +169,7 @@ const ScrollExpandHero = ({
                   <img
                     src={mediaSrc}
                     alt="Profile"
-                    className="h-full w-full object-cover object-[50%_15%]"
+                    className="h-full w-full object-cover object-[50%_20%]"
                     loading="eager"
                   />
                   {/* Gradient overlay on image */}
@@ -183,14 +181,14 @@ const ScrollExpandHero = ({
               </div>
 
               {/* Title text below image — splits on scroll */}
-              <div className="mt-4 sm:mt-6 flex flex-col items-center overflow-hidden">
+              <div className="mt-4 sm:mt-6 min-h-0 flex flex-col items-center overflow-hidden">
                 {titleLine1 && (
                   <motion.span
                     className={`block font-serif font-bold leading-[1] tracking-[-0.02em] ${
                       textBlend ? 'text-white mix-blend-difference' : 'text-white drop-shadow-[0_4px_30px_rgba(0,0,0,0.6)]'
                     }`}
                     style={{
-                      fontSize: isMobile ? 'clamp(1.8rem, 10vw, 2.8rem)' : 'clamp(2.5rem, 5vw, 4.5rem)',
+                      fontSize: isMobile ? 'clamp(1.5rem, 7vw, 2.2rem)' : 'clamp(2.5rem, 4vw, 4rem)',
                       transform: `translateX(${line1TranslateX}%)`,
                       opacity: textOpacity,
                       transition: 'transform 100ms linear, opacity 100ms linear',
@@ -205,7 +203,7 @@ const ScrollExpandHero = ({
                       textBlend ? 'text-white mix-blend-difference' : 'text-white drop-shadow-[0_4px_30px_rgba(0,0,0,0.6)]'
                     }`}
                     style={{
-                      fontSize: isMobile ? 'clamp(1.8rem, 10vw, 2.8rem)' : 'clamp(2.5rem, 5vw, 4.5rem)',
+                      fontSize: isMobile ? 'clamp(1.5rem, 7vw, 2.2rem)' : 'clamp(2.5rem, 4vw, 4rem)',
                       transform: `translateX(${line2TranslateX}%)`,
                       opacity: textOpacity,
                       transition: 'transform 100ms linear, opacity 100ms linear',
