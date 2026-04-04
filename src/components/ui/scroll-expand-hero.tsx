@@ -181,6 +181,40 @@ const ScrollExpandHero = ({
                   />
                 </div>
               </div>
+
+              {/* Title text below image — splits on scroll */}
+              <div className="mt-4 sm:mt-6 flex flex-col items-center overflow-hidden">
+                {titleLine1 && (
+                  <motion.span
+                    className={`block font-serif font-bold leading-[1] tracking-[-0.02em] ${
+                      textBlend ? 'text-white mix-blend-difference' : 'text-white drop-shadow-[0_4px_30px_rgba(0,0,0,0.6)]'
+                    }`}
+                    style={{
+                      fontSize: isMobile ? 'clamp(1.8rem, 10vw, 2.8rem)' : 'clamp(2.5rem, 5vw, 4.5rem)',
+                      transform: `translateX(${line1TranslateX}%)`,
+                      opacity: textOpacity,
+                      transition: 'transform 100ms linear, opacity 100ms linear',
+                    }}
+                  >
+                    {titleLine1}
+                  </motion.span>
+                )}
+                {titleLine2 && (
+                  <motion.span
+                    className={`block font-serif font-bold leading-[1] tracking-[-0.02em] ${
+                      textBlend ? 'text-white mix-blend-difference' : 'text-white drop-shadow-[0_4px_30px_rgba(0,0,0,0.6)]'
+                    }`}
+                    style={{
+                      fontSize: isMobile ? 'clamp(1.8rem, 10vw, 2.8rem)' : 'clamp(2.5rem, 5vw, 4.5rem)',
+                      transform: `translateX(${line2TranslateX}%)`,
+                      opacity: textOpacity,
+                      transition: 'transform 100ms linear, opacity 100ms linear',
+                    }}
+                  >
+                    {titleLine2}
+                  </motion.span>
+                )}
+              </div>
             </div>
 
             {/* Revealed content after full expansion */}
