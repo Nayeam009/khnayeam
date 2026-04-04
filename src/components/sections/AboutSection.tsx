@@ -23,7 +23,7 @@ interface AboutContent {
 
 const AboutSection = () => {
   const { data: aboutData } = useSiteContent<AboutContent>("about");
-  const { data: eduData } = useSiteContent<EducationContent>("education");
+  
 
   const about = aboutData ?? {
     heading: "Rooted in Agriculture, Growing in Technology",
