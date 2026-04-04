@@ -208,14 +208,18 @@
 }
 
 /* Bento box card */
-.bento-card {
-  @apply rounded-3xl border border-border/50 bg-card/50 p-6 sm:p-8 relative overflow-hidden;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.3s ease;
-}
-.bento-card:hover {
-  @apply border-primary/20 shadow-lg;
-  transform: translateY(-4px);
-}
+  .bento-card {
+    @apply rounded-3xl border border-border/30 p-6 sm:p-8 relative overflow-hidden;
+    background: hsl(var(--card) / 0.4);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 8px 32px -8px hsl(var(--foreground) / 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .bento-card:hover {
+    @apply border-primary/20;
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px -12px hsl(var(--foreground) / 0.12);
+  }
 
 /* Pill tag */
 .pill-tag {
