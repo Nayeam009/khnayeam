@@ -169,7 +169,7 @@ const ScrollExpandHero = ({
                   <img
                     src={mediaSrc}
                     alt="Profile"
-                    className="h-full w-full object-cover object-[50%_15%]"
+                    className="h-full w-full object-cover object-[50%_20%]"
                     loading="eager"
                   />
                   {/* Gradient overlay on image */}
