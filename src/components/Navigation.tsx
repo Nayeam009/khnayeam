@@ -10,6 +10,7 @@ import {
 
 const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [overHero, setOverHero] = useState(true);
   const [activeSection, setActiveSection] = useState("hero");
   const [open, setOpen] = useState(false);
   const [isDark, setIsDark] = useState(() => {
@@ -22,6 +23,14 @@ const Navigation = () => {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      // Detect if nav is over the hero section
+      const heroEl = document.getElementById("hero");
+      if (heroEl) {
+        const heroBottom = heroEl.offsetTop + heroEl.offsetHeight;
+        setOverHero(window.scrollY < heroBottom - 60);
+      }
+
       const sections = document.querySelectorAll("section[id]");
       let current = "hero";
       sections.forEach((section) => {
@@ -33,6 +42,7 @@ const Navigation = () => {
       setActiveSection(current);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
