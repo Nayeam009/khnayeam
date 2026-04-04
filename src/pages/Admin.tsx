@@ -92,13 +92,21 @@ const Admin = () => {
   const handleImageUpload = async (sectionKey: string, fieldPath: string) => {
     const input = document.createElement("input");
     input.type = "file";
-    input.accept = "image/*";
+    input.accept = "image/jpeg,image/png,image/webp,image/gif,image/svg+xml";
     input.onchange = async (e) => {
       const file = (e.target as HTMLInputElement).files?.[0];
       if (!file) return;
+      if (file.size > 10 * 1024 * 1024) {
+        toast({ title: "File too large", description: "Maximum file size is 10MB.", variant: "destructive" });
+        return;
+      }
       setUploading(true);
-      const fileName = `${sectionKey}/${Date.now()}-${file.name}`;
-      const { error } = await supabase.storage.from("portfolio-images").upload(fileName, file);
+      const sanitizedName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+      const fileName = `${sectionKey}/${Date.now()}-${sanitizedName}`;
+      const { error } = await supabase.storage.from("portfolio-images").upload(fileName, file, {
+        cacheControl: "3600",
+        upsert: true,
+      });
       if (error) {
         toast({ title: "Upload failed", description: error.message, variant: "destructive" });
         setUploading(false);
