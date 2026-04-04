@@ -1,5 +1,22 @@
 import { User, Calendar, Heart, Flag, Star } from "lucide-react";
 import MotionCard from "@/components/MotionCard";
+import { InfoColumn } from "@/components/ui/info-columns";
+
+const personalItems = [
+  { icon: <User className="text-primary" size={18} />, label: "Full Name", text: "KH. Nayeam Ibna Nasir" },
+  { icon: <User className="text-primary" size={18} />, label: "Father", text: "Kh Nasir Uddin" },
+  { icon: <User className="text-primary" size={18} />, label: "Mother", text: "Nasima Khandakar" },
+  { icon: <Calendar className="text-primary" size={18} />, label: "Date of Birth", text: "31 Jan, 2000" },
+  { icon: <Heart className="text-primary" size={18} />, label: "Blood Group", text: "AB+ve" },
+  { icon: <Flag className="text-primary" size={18} />, label: "Nationality", text: "Bangladeshi" },
+  { icon: <Star className="text-primary" size={18} />, label: "Religion", text: "Islam" },
+  { icon: <User className="text-primary" size={18} />, label: "Gender", text: "Male" },
+  { icon: <Heart className="text-primary" size={18} />, label: "Marital Status", text: "Unmarried" },
+];
+
+const col1 = personalItems.slice(0, 3);
+const col2 = personalItems.slice(3, 6);
+const col3 = personalItems.slice(6, 9);
 
 const PersonalInfoSection = () => (
   <section aria-label="Personal information" className="py-16 md:py-20 section-padding">
@@ -15,30 +32,12 @@ const PersonalInfoSection = () => (
           </p>
         </div>
       </MotionCard>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-        {[
-          { icon: User, label: "Full Name", value: "KH. Nayeam Ibna Nasir" },
-          { icon: User, label: "Father", value: "Kh Nasir Uddin" },
-          { icon: User, label: "Mother", value: "Nasima Khandakar" },
-          { icon: Calendar, label: "Date of Birth", value: "31 Jan, 2000" },
-          { icon: Heart, label: "Blood Group", value: "AB+ve" },
-          { icon: Flag, label: "Nationality", value: "Bangladeshi" },
-          { icon: Star, label: "Religion", value: "Islam" },
-          { icon: User, label: "Gender", value: "Male" },
-          { icon: Heart, label: "Marital Status", value: "Unmarried" },
-        ].map((info, i) => (
-          <MotionCard key={info.label} index={i}>
-            <div className="flex items-center gap-4 p-6 rounded-2xl bg-card/80 backdrop-blur-sm border border-border/50 hover:shadow-lg hover:border-primary/20 transition-all duration-300">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <info.icon className="text-primary" size={20} />
-              </div>
-              <div className="min-w-0">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold">{info.label}</p>
-                <p className="text-base font-bold text-foreground mt-0.5 truncate">{info.value}</p>
-              </div>
-            </div>
-          </MotionCard>
-        ))}
+
+      {/* Scrolling columns — desktop: 3 cols, tablet: 2, mobile: 1 */}
+      <div className="flex justify-center gap-6 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] max-h-[500px] overflow-hidden">
+        <InfoColumn items={col1} duration={12} className="hidden md:block" />
+        <InfoColumn items={col2} duration={16} className="hidden sm:block" />
+        <InfoColumn items={col3} duration={14} />
       </div>
     </div>
   </section>
