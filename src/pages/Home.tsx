@@ -520,7 +520,7 @@ const Home = () => {
                     </div>
                   </div>
                   <a href="https://stockxbd.com" target="_blank" rel="noopener noreferrer" className="flex-shrink-0 self-start w-full sm:w-auto">
-                    <Button variant="outline" className="rounded-full gap-2 text-sm group/btn hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all w-full sm:w-auto min-h-[48px]">
+                    <Button variant="outline" className="rounded-full gap-2 text-sm group/btn hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 w-full sm:w-auto min-h-[48px]">
                       Visit Site <ExternalLink size={14} className="group-hover/btn:translate-x-0.5 transition-transform" />
                     </Button>
                   </a>

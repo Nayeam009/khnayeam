@@ -95,7 +95,7 @@ const Navigation = () => {
                 <button
                   key={item.name}
                   onClick={() => scrollTo(item.href)}
-                  className={`px-4 py-4 min-h-[48px] rounded-xl text-sm font-medium text-left transition-all ${
+                  className={`px-4 py-4 min-h-[48px] rounded-xl text-sm font-medium text-left transition-all duration-200 ${
                     activeSection === item.href.slice(1)
                       ? "bg-primary text-primary-foreground"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted"
