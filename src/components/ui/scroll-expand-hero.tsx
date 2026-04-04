@@ -152,47 +152,11 @@ const ScrollExpandHero = ({
               <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
             </div>
 
-            {/* Main centered layout — image pushed slightly below center */}
-            <div className="relative flex h-screen w-full flex-col items-center justify-center px-4 pt-12 sm:pt-16">
+            {/* Main centered layout */}
+            <div className="relative flex h-screen w-full flex-col items-center justify-center px-4">
 
-              {/* Title text — positioned over the image with split animation */}
-              <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
-                <div className="flex flex-col items-center overflow-hidden">
-                  {titleLine1 && (
-                    <motion.span
-                      className={`block font-serif font-bold leading-[0.95] tracking-[-0.02em] ${
-                        textBlend ? 'text-white mix-blend-difference' : 'text-white drop-shadow-[0_4px_30px_rgba(0,0,0,0.6)]'
-                      }`}
-                      style={{
-                        fontSize: isMobile ? 'clamp(2rem, 11vw, 3rem)' : 'clamp(3rem, 6vw, 5.5rem)',
-                        transform: `translateX(${line1TranslateX}%)`,
-                        opacity: textOpacity,
-                        transition: 'transform 100ms linear, opacity 100ms linear',
-                      }}
-                    >
-                      {titleLine1}
-                    </motion.span>
-                  )}
-                  {titleLine2 && (
-                    <motion.span
-                      className={`block font-serif font-bold leading-[0.95] tracking-[-0.02em] ${
-                        textBlend ? 'text-white mix-blend-difference' : 'text-white drop-shadow-[0_4px_30px_rgba(0,0,0,0.6)]'
-                      }`}
-                      style={{
-                        fontSize: isMobile ? 'clamp(2rem, 11vw, 3rem)' : 'clamp(3rem, 6vw, 5.5rem)',
-                        transform: `translateX(${line2TranslateX}%)`,
-                        opacity: textOpacity,
-                        transition: 'transform 100ms linear, opacity 100ms linear',
-                      }}
-                    >
-                      {titleLine2}
-                    </motion.span>
-                  )}
-                </div>
-              </div>
-
-              {/* Profile image container — lowered with mt-8 */}
-              <div className="relative mt-8 sm:mt-12 flex items-center justify-center">
+              {/* Profile image container */}
+              <div className="relative flex items-center justify-center">
                 <div
                   className="overflow-hidden shadow-[0_20px_80px_-20px_rgba(0,0,0,0.8)] will-change-transform"
                   style={{
