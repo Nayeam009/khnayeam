@@ -10,6 +10,7 @@ import {
 
 const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [overHero, setOverHero] = useState(true);
   const [activeSection, setActiveSection] = useState("hero");
   const [open, setOpen] = useState(false);
   const [isDark, setIsDark] = useState(() => {
@@ -22,6 +23,14 @@ const Navigation = () => {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      // Detect if nav is over the hero section
+      const heroEl = document.getElementById("hero");
+      if (heroEl) {
+        const heroBottom = heroEl.offsetTop + heroEl.offsetHeight;
+        setOverHero(window.scrollY < heroBottom - 60);
+      }
+
       const sections = document.querySelectorAll("section[id]");
       let current = "hero";
       sections.forEach((section) => {
@@ -33,6 +42,7 @@ const Navigation = () => {
       setActiveSection(current);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -69,36 +79,46 @@ const Navigation = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-card/60 backdrop-blur-2xl shadow-lg border-b border-border/30"
+          ? "bg-background/70 backdrop-blur-2xl shadow-lg border-b border-border/30"
           : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between section-padding py-3 md:py-4">
         <button onClick={() => scrollTo("#hero")} className="text-lg md:text-xl font-bold tracking-tight font-serif">
           <span className="gradient-text">KN</span>
-          <span className="text-foreground ml-1 font-medium font-sans text-sm md:text-base">Nayeam</span>
+          <span className={`ml-1 font-medium font-sans text-sm md:text-base transition-colors duration-300 ${overHero && !scrolled ? "text-white/90" : "text-foreground"}`}>Nayeam</span>
         </button>
 
         {/* Desktop */}
         <div className="hidden lg:flex items-center gap-1">
-          {navItems.map((item) => (
-            <button
-              key={item.name}
-              onClick={() => scrollTo(item.href)}
-              className={`px-3 xl:px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                activeSection === item.href.slice(1)
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
-              }`}
-            >
-              {item.name}
-            </button>
-          ))}
+          {navItems.map((item) => {
+            const isActive = activeSection === item.href.slice(1);
+            const heroStyle = overHero && !scrolled;
+            return (
+              <button
+                key={item.name}
+                onClick={() => scrollTo(item.href)}
+                className={`px-3 xl:px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  isActive
+                    ? "bg-primary text-primary-foreground"
+                    : heroStyle
+                      ? "text-white/70 hover:text-white hover:bg-white/10"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                }`}
+              >
+                {item.name}
+              </button>
+            );
+          })}
           <button
             onClick={toggleTheme}
-            className="ml-1 p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-200"
+            className={`ml-1 p-2 rounded-full transition-all duration-300 ${
+              overHero && !scrolled
+                ? "text-white/70 hover:text-white hover:bg-white/10"
+                : "text-muted-foreground hover:text-foreground hover:bg-muted"
+            }`}
             aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
           >
             {isDark ? <Sun size={16} /> : <Moon size={16} />}
@@ -114,14 +134,20 @@ const Navigation = () => {
         <div className="flex items-center gap-1 lg:hidden">
           <button
             onClick={toggleTheme}
-            className="p-2.5 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-200 min-h-[44px] min-w-[44px] flex items-center justify-center"
+            className={`p-2.5 rounded-full transition-all duration-300 min-h-[44px] min-w-[44px] flex items-center justify-center ${
+              overHero && !scrolled
+                ? "text-white/70 hover:text-white hover:bg-white/10"
+                : "text-muted-foreground hover:text-foreground hover:bg-muted"
+            }`}
             aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
           >
             {isDark ? <Sun size={18} /> : <Moon size={18} />}
           </button>
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="rounded-full min-h-[44px] min-w-[44px]">
+              <Button variant="ghost" size="icon" className={`rounded-full min-h-[44px] min-w-[44px] transition-colors duration-300 ${
+                overHero && !scrolled ? "text-white/80 hover:text-white hover:bg-white/10" : ""
+              }`}>
                 <Menu size={20} />
               </Button>
             </SheetTrigger>
