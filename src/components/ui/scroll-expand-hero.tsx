@@ -73,7 +73,7 @@ const ScrollExpandHero = ({
         e.preventDefault();
       } else if (!expandedRef.current) {
         e.preventDefault();
-        updateProgress(e.deltaY * 0.001);
+        updateProgress(e.deltaY * 0.0015);
       }
     };
 
@@ -93,7 +93,7 @@ const ScrollExpandHero = ({
         e.preventDefault();
       } else if (!expandedRef.current) {
         e.preventDefault();
-        const factor = deltaY < 0 ? 0.008 : 0.005;
+        const factor = deltaY < 0 ? 0.01 : 0.007;
         updateProgress(deltaY * factor);
         setTouchStartY(touchY);
       }
@@ -122,10 +122,10 @@ const ScrollExpandHero = ({
 
   // Responsive media dimensions
   const mediaWidth = isMobile
-    ? 260 + scrollProgress * 700
+    ? 240 + scrollProgress * 720
     : 320 + scrollProgress * 1200;
   const mediaHeight = isMobile
-    ? 340 + scrollProgress * 260
+    ? 320 + scrollProgress * 300
     : 420 + scrollProgress * 380;
   const textTranslateX = scrollProgress * (isMobile ? 200 : 160);
   const borderRadius = Math.max(24 - scrollProgress * 24, 0);
