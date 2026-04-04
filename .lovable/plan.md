@@ -1,50 +1,45 @@
 
 
-## About Section — Bento Box Mixed Card Redesign
+## Fix About Section Bento Grid Layout
 
-Redesign the About Me section using a true asymmetric bento grid with varied card sizes, creating visual hierarchy through mixed spans.
+### Problem
+The current 6-column grid creates awkward proportions: the 1-column skill cards (Agricultural Science, Startup Leadership) are too narrow on desktop, the Career Objective card dominates too much space, and the Quick Stats strip leaves a visual gap. The overall grid feels unbalanced and cramped.
 
-### Layout Structure
+### New Layout
 
 ```text
-Desktop (lg) — 6-column grid:
-┌──────────────────────┬────────────┬────────────┐
-│  Career Objective    │  Agri Sci  │  Full-Stack │
-│  (span 3, row 2)     │  (span 1)  │  (span 2)  │
-│                      ├────────────┤            │
-│                      │  Startup   │            │
-├──────────────────────┼────────────┼────────────┤
-│  Award-Winning       │  Quick Stats Card       │
-│  (span 2)            │  (span 4)               │
-├──────────────────────┴────────────────────────-─┤
-│  Education Row (3 equal cards)                  │
-└─────────────────────────────────────────────────┘
+Desktop (lg) — 4-column grid:
+┌────────────────┬────────────┬────────────┐
+│  Career        │  Agri Sci  │  Full-Stack │
+│  Objective     │  (span 1)  │  Dev        │
+│  (span 2,      ├────────────┤  (span 1)   │
+│   row-span 2)  │  Startup   │             │
+│                │  (span 1)  │             │
+├────────────────┼────────────┴─────────────┤
+│  Award-Winning │  Quick Stats             │
+│  (span 1)      │  (span 3)                │
+├────────────────┴──────────────────────────┤
+│  Education (3 equal cards, full width)    │
+└───────────────────────────────────────────┘
 
-Mobile: all cards stack to 1 column
-Tablet (sm): 2 columns with selective spans
+Tablet (sm): 2 columns
+Mobile: 1 column, all stacked
 ```
 
 ### Changes to `src/components/sections/AboutSection.tsx`
 
-1. **Replace** `grid-cols-1 sm:grid-cols-2 lg:grid-cols-4` with `grid-cols-1 sm:grid-cols-2 lg:grid-cols-6` for more layout flexibility
-
-2. **Career Objective card** — `lg:col-span-3 lg:row-span-2` with a decorative gradient blob background, larger padding, and a quote-style pull quote for the objective text
-
-3. **Skill cards** — varied spans:
-   - Agricultural Science: `lg:col-span-1` (small square)
-   - Full-Stack Dev: `sm:col-span-1 lg:col-span-2 lg:row-span-1` (wide)
-   - Startup Leadership: `lg:col-span-1` (small square, stacks under Agri)
-   - Award-Winning: `sm:col-span-2 lg:col-span-2` (wide accent card)
-
-4. **New "Quick Stats" mini card** — `lg:col-span-4`, a horizontal strip with inline stats (Languages, Projects, Experience duration) using pill tags in a row
-
-5. **Education section** — keep the 3-column grid below but wrap each card with a subtle numbered step indicator (01, 02, 03) in the top-left for visual rhythm
-
-6. **Visual enhancements on all cards:**
-   - Glassmorphism hover with `hover:shadow-xl hover:border-primary/20`
-   - Subtle gradient accent stripe on left edge of Career Objective card
-   - Staggered `MotionCard` delays for a cascading reveal effect
+1. **Grid**: Change from `lg:grid-cols-6` to `lg:grid-cols-4` for better proportions
+2. **Career Objective**: `lg:col-span-2 lg:row-span-2` — feels balanced, not overwhelming
+3. **Skill cards**: All `lg:col-span-1` — equal width, clean alignment. Full-Stack Dev gets `lg:row-span-2` to pair with Career Objective height
+4. **Award-Winning**: `lg:col-span-1` — same width as others
+5. **Quick Stats**: `lg:col-span-3` — fills remaining row cleanly with full-width feel
+6. **Visual improvements**:
+   - Increase `min-h` on skill cards for better vertical rhythm
+   - Center icon and text vertically in small cards
+   - Add subtle background patterns to differentiate card types
+   - Make the Quick Stats strip span full remaining width
+   - Improve spacing and padding consistency
 
 ### File
-Only `src/components/sections/AboutSection.tsx` is modified. No other files change.
+Only `src/components/sections/AboutSection.tsx` changes.
 
