@@ -158,7 +158,7 @@ const HeroSection = () => {
                     initial={{ opacity: 0, y: 24 }}
                     animate={{ opacity: mounted ? 1 : 0, y: mounted ? 0 : 24 }}
                     transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                    className="mt-4 max-w-[11ch] font-serif text-[clamp(2.9rem,14vw,6.8rem)] font-bold tracking-[-0.05em] leading-[0.88] text-white drop-shadow-[0_12px_34px_rgba(0,0,0,0.35)] sm:mt-5 lg:max-w-none"
+                    className="mt-4 max-w-[11ch] font-serif text-[clamp(2.2rem,8vw,4.8rem)] font-bold tracking-[-0.04em] leading-[0.92] text-white drop-shadow-[0_12px_34px_rgba(0,0,0,0.35)] sm:mt-5 lg:max-w-none"
                   >
                     <span className="block">{content.name_line1}</span>
                     <span className="block">{content.name_line2}</span>
