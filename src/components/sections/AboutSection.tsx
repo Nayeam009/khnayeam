@@ -8,7 +8,7 @@ import { useSiteContent } from "@/hooks/useSiteContent";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const iconMap: Record<string, any> = {
-  Sprout, Code, Briefcase, Trophy, Target, GraduationCap, Award, BookOpen, Leaf, Globe, FolderKanban, Clock,
+  Sprout, Code, Briefcase, Trophy, Target, Award, BookOpen, Leaf, Globe, FolderKanban, Clock,
 };
 
 interface AboutContent {
