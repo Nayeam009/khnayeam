@@ -43,11 +43,6 @@ const AboutSection = () => {
     ],
   };
 
-  const education = eduData?.items ?? [
-    { step: "01", year: "2019–2025", title: "B.Sc. (Honours) in Agriculture", subtitle: "Gopalganj Science & Technology University", badge: "CGPA 3.59 / 4.00" },
-    { step: "02", year: "2019", title: "HSC — Science", subtitle: "Notre Dame College, Mymensingh", badge: "GPA 4.25 / 5.00" },
-    { step: "03", year: "2016", title: "SSC — Science", subtitle: "Suti V.M. Pilot Model High School", badge: "GPA 5.00 / 5.00" },
-  ];
 
   // Map skill icon names
   const skillIconNames = ["Sprout", "Code", "Briefcase", "Trophy"];
