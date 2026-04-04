@@ -650,7 +650,7 @@ const Home = () => {
                   <button
                     key={tab.key}
                     onClick={() => setActiveTab(tab.key)}
-                    className={`relative flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                    className={`relative flex items-center gap-1.5 px-4 py-2.5 min-h-[44px] rounded-full text-sm font-medium transition-all duration-200 ${
                       activeTab === tab.key
                         ? "bg-primary text-primary-foreground shadow-md"
                         : "bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/80"
