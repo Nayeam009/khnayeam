@@ -7,6 +7,7 @@ import HeroSection from "@/components/sections/HeroSection";
 import StatsSection from "@/components/sections/StatsSection";
 
 const AboutSection = lazy(() => import("@/components/sections/AboutSection"));
+const EducationSection = lazy(() => import("@/components/sections/EducationSection"));
 const ResearchSection = lazy(() => import("@/components/sections/ResearchSection"));
 const ExperienceSection = lazy(() => import("@/components/sections/ExperienceSection"));
 const AchievementsSection = lazy(() => import("@/components/sections/AchievementsSection"));
