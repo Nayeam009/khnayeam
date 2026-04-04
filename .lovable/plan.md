@@ -1,56 +1,48 @@
-## Hero Section Redesign — Scroll-Expand with Background Image
 
-### Concept
 
-Adapt the scroll-expansion hero pattern for a portfolio context: the profile image starts as a centered rounded card that expands as the user scrolls, with a beautiful background image behind it. The hero content (name, typing effect, CTA buttons, tags) overlays on top. Once fully expanded, the rest of the page becomes scrollable.
+## Fix Hero Section — Layout, Zoom, and Mobile Responsiveness
 
-**Key difference from the reference:** This is NOT a separate page-blocking component. The scroll-hijacking UX from the reference would break the portfolio flow. Instead, we take the visual DNA — centered expanding image over a background, text with mix-blend-difference, smooth transitions — but implement it as a standard scroll-parallax hero that doesn't hijack scrolling.
+### Problems Identified (from screenshot)
+1. **Profile image too large** — overlaps the name text badly, especially "Ibna Nasir" is hidden behind the image
+2. **Text alignment broken** — name lines sit behind the image instead of clearly above/below it
+3. **Zoom/expansion effect too aggressive** — the `mediaWidth` goes from 260px to 1600px which is excessive
+4. **Mobile layout broken** — bottom content (tags, status badge) cramped and overlapping with the expanding image
+5. **mix-blend-difference on text** — causes readability issues when image overlaps text
 
-### Layout
+### Changes to `src/components/sections/HeroSection.tsx`
 
-```text
-┌─────────────────────────────────────────────┐
-│  Full-screen background image (Unsplash     │
-│  nature/agriculture landscape)              │
-│  with dark overlay gradient                 │
-│                                             │
-│         ┌─────────────────┐                 │
-│         │  Profile Image  │                 │
-│         │  (rounded card) │                 │
-│         └─────────────────┘                 │
-│                                             │
-│        KH. NAYEAM IBNA NASIR                │
-│     Agriculture Graduate | Developer        │
-│                                             │
-│     [Get In Touch]  [Download CV]           │
-│     📍 Dhaka  🎓 GSTU  💼 Stock-X BD        │
-│                                             │
-│              ▼ Scroll Down                  │
-└─────────────────────────────────────────────┘
-```
+**1. Reduce expansion range**
+- Desktop: `mediaWidth` from `220` to max `~1100px` (was 1600)
+- Desktop: `mediaHeight` from `280` to max `~650px` (was 800)
+- Mobile: `mediaWidth` from `200` to max `~screen width` but capped smaller
+- Mobile: `mediaHeight` from `250` to max `~450px`
 
-### Design Details
+**2. Fix layout structure — move text ABOVE the image**
+- Instead of centering both text and image at `top-1/2 left-1/2` (causing overlap), restructure:
+  - Name text positioned in the upper portion of the viewport (around 20-30% from top)
+  - Profile image positioned in the center-bottom area
+  - Bottom content (status, typing, tags) stays at absolute bottom
+- Remove `mix-blend-difference` — use proper z-indexing so text is always readable above the background
 
-1. **Background image**: Use a beautiful Unsplash agriculture/nature landscape as `bg_image` field in Supabase hero content (with a hardcoded fallback URL). Full-screen cover with `bg-black/40` overlay gradient for text readability.
-2. **Profile image**: Centered at the top portion of the hero, larger than current (w-40 h-48 on mobile, w-56 h-64 on desktop). Rounded-2xl with a gradient border ring and shadow. Floating CGPA badge and Sprout icon retained.
-3. **Text layout**: Centered below the profile image instead of side-by-side grid. Name in large bold white text, typing effect below, subtitle in muted white. All text is white/light since it's over the dark background image.
-4. **CTA buttons**: Centered row, white/translucent glass style to match the dark background aesthetic.
-5. **Tags**: Centered pill tags in glass/translucent style.
-6. **Parallax**: Keep existing `useScroll`/`useTransform` for subtle parallax on scroll — background moves slower than content. No scroll hijacking.
-7. **Scroll indicator**: Animated chevron-down at bottom.
+**3. Reduce textTranslateX range**
+- Desktop: cap at `80vw` (was 160vw) 
+- Mobile: cap at `60vw` (was 200vw) — prevents text from flying completely off screen
 
-### Backend Integration
+**4. Mobile-specific fixes**
+- Smaller initial image size on mobile: `180px` wide, `240px` tall
+- Smaller font sizes: `text-4xl` on mobile (was `text-5xl`)
+- Bottom content padding increased: `bottom-6` with `gap-2` 
+- Tags use `text-[10px]` on mobile
+- Hide CGPA and Sprout badges on mobile entirely (already `hidden sm:flex` but ensure consistency)
 
-Add `bg_image` field to the hero content interface and DEFAULTS. The admin panel already supports editing any field in the hero JSON, so adding a new string field is automatically editable.
+**5. Content opacity fade refined**
+- `contentOpacity` fades slower: `Math.max(1 - scrollProgress * 2, 0)` (was `* 3`)
+- This keeps bottom content visible longer during scroll
 
-### Technical Notes
+**6. Image positioning**
+- Shift image center slightly below viewport center: `top-[55%]` instead of `top-1/2`
+- This gives the name text clear space above
 
-- Replace `next/image` with standard `<img>` tags (no Next.js)
-- No scroll hijacking — standard parallax only
-- All colors switch to white/light variants for dark background contrast
-- Button variants: primary button stays solid, outline button gets `border-white/30 text-white` styling
-- Fallback background: `https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920` (golden wheat field)
+### File
+Only `src/components/sections/HeroSection.tsx` changes.
 
-### File Changes
-
-- `src/components/sections/HeroSection.tsx` — full rewrite with new layout. Update the backend & admin panel as well. 
