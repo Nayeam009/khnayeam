@@ -20,11 +20,11 @@ const AboutSection = () => (
         </p>
       </MotionCard>
 
-      {/* Bento Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 sm:gap-5 mt-10 auto-rows-auto">
+      {/* Bento Grid — 4 columns */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mt-10">
 
-        {/* Career Objective — large card */}
-        <MotionCard index={0} className="sm:col-span-2 lg:col-span-3 lg:row-span-2">
+        {/* Career Objective — span 2, row 2 */}
+        <MotionCard index={0} className="sm:col-span-2 lg:col-span-2 lg:row-span-2">
           <div className="bento-card h-full relative overflow-hidden bg-gradient-to-br from-primary/5 via-card to-card p-6 sm:p-8 hover:shadow-xl hover:border-primary/20 transition-all duration-300">
             <div className="absolute top-0 right-0 w-40 h-40 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-1 h-full bg-gradient-to-b from-primary/40 via-primary/20 to-transparent rounded-full" />
@@ -48,9 +48,9 @@ const AboutSection = () => (
           </div>
         </MotionCard>
 
-        {/* Agricultural Science — small */}
+        {/* Agricultural Science */}
         <MotionCard index={1} className="lg:col-span-1 group">
-          <div className="bento-card h-full flex flex-col items-start gap-4 min-h-[140px] hover:shadow-xl hover:border-primary/20 transition-all duration-300">
+          <div className="bento-card h-full flex flex-col items-start justify-center gap-4 min-h-[160px] hover:shadow-xl hover:border-primary/20 transition-all duration-300">
             <motion.div
               whileHover={{ rotate: 10, scale: 1.1 }}
               className="circle-icon circle-icon-lg bg-primary/10 group-hover:bg-primary transition-all duration-200"
@@ -64,9 +64,9 @@ const AboutSection = () => (
           </div>
         </MotionCard>
 
-        {/* Full-Stack Dev — wide */}
-        <MotionCard index={2} className="lg:col-span-2 group">
-          <div className="bento-card h-full flex flex-col items-start gap-4 min-h-[140px] hover:shadow-xl hover:border-primary/20 transition-all duration-300">
+        {/* Full-Stack Dev — row-span-2 to match Career Objective height */}
+        <MotionCard index={2} className="lg:col-span-1 lg:row-span-2 group">
+          <div className="bento-card h-full flex flex-col items-start justify-center gap-4 min-h-[160px] bg-gradient-to-b from-card to-primary/[0.03] hover:shadow-xl hover:border-primary/20 transition-all duration-300">
             <motion.div
               whileHover={{ rotate: 10, scale: 1.1 }}
               className="circle-icon circle-icon-lg bg-primary/10 group-hover:bg-primary transition-all duration-200"
@@ -77,12 +77,17 @@ const AboutSection = () => (
               <h3 className="font-semibold text-foreground text-sm">Full-Stack Dev</h3>
               <p className="text-xs text-muted-foreground mt-1 leading-relaxed">React, TypeScript, Figma, backend integration</p>
             </div>
+            <div className="flex flex-wrap gap-1.5 mt-auto pt-4">
+              {["React", "TypeScript", "Tailwind", "Figma"].map(t => (
+                <span key={t} className="pill-tag pill-tag-muted text-[10px]">{t}</span>
+              ))}
+            </div>
           </div>
         </MotionCard>
 
-        {/* Startup Leadership — small */}
+        {/* Startup Leadership */}
         <MotionCard index={3} className="lg:col-span-1 group">
-          <div className="bento-card h-full flex flex-col items-start gap-4 min-h-[140px] hover:shadow-xl hover:border-primary/20 transition-all duration-300">
+          <div className="bento-card h-full flex flex-col items-start justify-center gap-4 min-h-[160px] hover:shadow-xl hover:border-primary/20 transition-all duration-300">
             <motion.div
               whileHover={{ rotate: 10, scale: 1.1 }}
               className="circle-icon circle-icon-lg bg-primary/10 group-hover:bg-primary transition-all duration-200"
@@ -96,14 +101,14 @@ const AboutSection = () => (
           </div>
         </MotionCard>
 
-        {/* Award-Winning — wide accent */}
-        <MotionCard index={4} className="sm:col-span-2 lg:col-span-2 group">
-          <div className="bento-card h-full flex flex-col items-start gap-4 min-h-[140px] bg-gradient-to-br from-accent/30 to-card hover:shadow-xl hover:border-primary/20 transition-all duration-300">
+        {/* Award-Winning */}
+        <MotionCard index={4} className="lg:col-span-1 group">
+          <div className="bento-card h-full flex flex-col items-start justify-center gap-4 min-h-[160px] bg-gradient-to-br from-accent/10 to-card hover:shadow-xl hover:border-primary/20 transition-all duration-300">
             <motion.div
               whileHover={{ rotate: 10, scale: 1.1 }}
-              className="circle-icon circle-icon-lg bg-primary/10 group-hover:bg-primary transition-all duration-200"
+              className="circle-icon circle-icon-lg bg-accent/10 group-hover:bg-accent transition-all duration-200"
             >
-              <Trophy className="text-primary group-hover:text-primary-foreground transition-colors" size={24} />
+              <Trophy className="text-accent group-hover:text-accent-foreground transition-colors" size={24} />
             </motion.div>
             <div>
               <h3 className="font-semibold text-foreground text-sm">Award-Winning</h3>
@@ -112,15 +117,15 @@ const AboutSection = () => (
           </div>
         </MotionCard>
 
-        {/* Quick Stats — horizontal strip */}
-        <MotionCard index={5} className="sm:col-span-2 lg:col-span-4">
-          <div className="bento-card h-full flex flex-wrap items-center justify-around gap-4 sm:gap-6 py-5 hover:shadow-xl hover:border-primary/20 transition-all duration-300">
+        {/* Quick Stats — span 3 */}
+        <MotionCard index={5} className="sm:col-span-2 lg:col-span-3">
+          <div className="bento-card h-full flex flex-wrap items-center justify-around gap-6 py-6 hover:shadow-xl hover:border-primary/20 transition-all duration-300">
             {[
               { icon: Globe, label: "Languages", value: "3", sub: "BN · EN · HI" },
               { icon: FolderKanban, label: "Projects", value: "10+", sub: "Built & shipped" },
               { icon: Clock, label: "Experience", value: "3+ yrs", sub: "Tech & Agri" },
-            ].map((stat, i) => (
-              <div key={stat.label} className="flex items-center gap-3 text-center sm:text-left">
+            ].map((stat) => (
+              <div key={stat.label} className="flex items-center gap-3">
                 <div className="circle-icon circle-icon-sm bg-primary/10">
                   <stat.icon className="text-primary" size={14} />
                 </div>
