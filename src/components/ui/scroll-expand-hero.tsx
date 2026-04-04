@@ -203,7 +203,7 @@ const ScrollExpandHero = ({
                       textBlend ? 'text-white mix-blend-difference' : 'text-white drop-shadow-[0_4px_30px_rgba(0,0,0,0.6)]'
                     }`}
                     style={{
-                      fontSize: isMobile ? 'clamp(1.8rem, 10vw, 2.8rem)' : 'clamp(2.5rem, 5vw, 4.5rem)',
+                      fontSize: isMobile ? 'clamp(1.5rem, 7vw, 2.2rem)' : 'clamp(2.5rem, 4vw, 4rem)',
                       transform: `translateX(${line2TranslateX}%)`,
                       opacity: textOpacity,
                       transition: 'transform 100ms linear, opacity 100ms linear',
