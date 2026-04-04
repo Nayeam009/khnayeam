@@ -5,6 +5,15 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import MotionCard from "@/components/MotionCard";
+import { ImageAccordion } from "@/components/ui/interactive-image-accordion";
+
+const skillImages = [
+  { id: 1, title: "Web Development", imageUrl: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1974&auto=format&fit=crop" },
+  { id: 2, title: "Agriculture & Farming", imageUrl: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?q=80&w=1974&auto=format&fit=crop" },
+  { id: 3, title: "UI/UX Design", imageUrl: "https://images.unsplash.com/photo-1559028012-481c04fa702d?q=80&w=2036&auto=format&fit=crop" },
+  { id: 4, title: "Leadership", imageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop" },
+  { id: 5, title: "Research & Innovation", imageUrl: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070&auto=format&fit=crop" },
+];
 
 const ExperienceSection = () => (
   <section id="experience" aria-label="Experience and projects" className="py-20 md:py-28 section-padding">
@@ -113,34 +122,55 @@ const ExperienceSection = () => (
       </div>
 
       <MotionCard index={2} className="mt-10">
-        <div className="bento-card">
-          <h3 className="font-bold text-foreground text-xl font-serif mb-6 flex items-center gap-3">
-            <div className="circle-icon circle-icon-md bg-primary/10">
-              <Zap className="text-primary" size={20} />
-            </div>
-            Technical Skills & Competencies
-          </h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { category: "Development", skills: ["Full-Stack Web Dev", "React / TypeScript", "UI/UX Design (Figma)", "Frontend & Backend", "ERP Development", "E-commerce"] },
-              { category: "Agriculture", skills: ["Crop Science", "Soil Management", "Plant Nutrition", "Sustainable Farming", "Agricultural Research", "Organic Solutions"] },
-              { category: "Soft Skills", skills: ["Leadership", "Public Speaking", "Strategic Planning", "Team Coordination", "MS Office (Expert)", "English & Bengali"] },
-            ].map((group) => (
-              <div key={group.category} className="space-y-3">
-                <h4 className="text-sm font-semibold text-foreground">{group.category}</h4>
-                <div className="flex flex-wrap gap-2">
-                  {group.skills.map((skill) => (
-                    <motion.span
-                      key={skill}
-                      whileHover={{ scale: 1.05 }}
-                      className="pill-tag pill-tag-muted cursor-default"
-                    >
-                      {skill}
-                    </motion.span>
-                  ))}
+        <div className="bento-card p-0 overflow-hidden">
+          <div className="flex flex-col lg:flex-row">
+            {/* Left: Skills content */}
+            <div className="flex-1 p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="circle-icon circle-icon-md bg-primary/10">
+                  <Zap className="text-primary" size={20} />
                 </div>
+                <span className="pill-tag pill-tag-primary text-xs">Core Expertise</span>
               </div>
-            ))}
+              <h3 className="font-bold text-foreground text-2xl sm:text-3xl font-serif mb-2">
+                Technical Skills & Competencies
+              </h3>
+              <p className="text-sm text-muted-foreground mb-6 max-w-lg">
+                Build high-performance solutions across web development, agriculture, and leadership domains.
+              </p>
+
+              <div className="space-y-5">
+                {[
+                  { category: "Development", skills: ["Full-Stack Web Dev", "React / TypeScript", "UI/UX Design (Figma)", "Frontend & Backend", "ERP Development", "E-commerce"] },
+                  { category: "Agriculture", skills: ["Crop Science", "Soil Management", "Plant Nutrition", "Sustainable Farming", "Agricultural Research", "Organic Solutions"] },
+                  { category: "Soft Skills", skills: ["Leadership", "Public Speaking", "Strategic Planning", "Team Coordination", "MS Office (Expert)", "English & Bengali"] },
+                ].map((group) => (
+                  <div key={group.category} className="space-y-2.5">
+                    <h4 className="text-sm font-bold text-foreground tracking-wide">{group.category}</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {group.skills.map((skill) => (
+                        <motion.span
+                          key={skill}
+                          whileHover={{ scale: 1.05 }}
+                          className="pill-tag pill-tag-muted cursor-default"
+                        >
+                          {skill}
+                        </motion.span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right: Interactive Image Accordion */}
+            <div className="lg:w-[45%] p-4 sm:p-6">
+              <ImageAccordion
+                items={skillImages}
+                defaultActive={2}
+                className="h-[280px] sm:h-[350px] lg:h-full lg:min-h-[420px]"
+              />
+            </div>
           </div>
         </div>
       </MotionCard>
