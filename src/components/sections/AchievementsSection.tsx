@@ -1,9 +1,6 @@
-import {
-  Trophy, Mic, Lightbulb, FlaskConical,
-  Star, Briefcase, Users,
-} from "lucide-react";
+import { Trophy, Mic, Lightbulb, FlaskConical, Star, Briefcase, Users } from "lucide-react";
 import MotionCard from "@/components/MotionCard";
-import { AwardCarousel, AwardCard, type AwardItem } from "@/components/ui/award-carousel";
+import { AwardCard, type AwardItem } from "@/components/ui/award-carousel";
 
 const allAwards: AwardItem[] = [
   {
@@ -97,24 +94,28 @@ const allAwards: AwardItem[] = [
 ];
 
 const AchievementsSection = () => {
-  const cards = allAwards.map((award, index) => (
-    <AwardCard
-      key={index}
-      award={award}
-      index={index}
-      backgroundImage={award.bgImage}
-    />
-  ));
+  const duplicated = [...allAwards, ...allAwards];
 
   return (
-    <section id="achievements" aria-label="Achievements and awards" className="py-20 md:py-28 section-padding bg-card/50 relative overflow-hidden">
+    <section
+      id="achievements"
+      aria-label="Achievements and awards"
+      className="py-20 md:py-28 relative overflow-hidden"
+    >
+      {/* Background */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/3 rounded-full blur-[120px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-card/50 to-background" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[120px]" />
+        <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-primary/5 rounded-full blur-[100px]" />
       </div>
-      <div className="max-w-7xl mx-auto">
+
+      {/* Header */}
+      <div className="max-w-7xl mx-auto section-padding">
         <MotionCard>
-          <div className="text-center mb-10">
-            <span className="pill-tag pill-tag-primary mb-3"><Trophy size={12} /> Achievements</span>
+          <div className="text-center mb-12">
+            <span className="pill-tag pill-tag-primary mb-3">
+              <Trophy size={12} /> Achievements
+            </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-serif text-foreground mt-3">
               Awards & <span className="gradient-text">Recognition</span>
             </h2>
@@ -123,9 +124,50 @@ const AchievementsSection = () => {
             </p>
           </div>
         </MotionCard>
-
-        <AwardCarousel items={cards} />
       </div>
+
+      {/* Infinite scroll slider */}
+      <div className="relative">
+        {/* Edge fade masks */}
+        <div
+          className="absolute inset-0 z-10 pointer-events-none"
+          style={{
+            mask: "linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%)",
+            WebkitMask: "linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%)",
+          }}
+        />
+
+        <div
+          className="flex gap-5 py-4 w-max achievements-scroll"
+          style={{
+            animation: "achievements-scroll 40s linear infinite",
+          }}
+        >
+          {duplicated.map((award, index) => (
+            <div
+              key={index}
+              className="shrink-0 w-[280px] sm:w-[320px] md:w-[360px]"
+            >
+              <AwardCard
+                award={award}
+                index={index}
+                backgroundImage={award.bgImage}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Inline keyframes */}
+      <style>{`
+        @keyframes achievements-scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .achievements-scroll:hover {
+          animation-play-state: paused !important;
+        }
+      `}</style>
     </section>
   );
 };
