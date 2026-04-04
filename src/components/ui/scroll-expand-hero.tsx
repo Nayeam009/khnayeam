@@ -116,13 +116,11 @@ const ScrollExpandHero = ({
     };
   }, [touchStartY]);
 
-  // Responsive media dimensions
-  const mediaWidth = isMobile
-    ? 220 + scrollProgress * (window.innerWidth - 220)
-    : 300 + scrollProgress * (window.innerWidth - 300);
-  const mediaHeight = isMobile
-    ? 300 + scrollProgress * (window.innerHeight - 300)
-    : 400 + scrollProgress * (window.innerHeight - 400);
+  // Responsive media dimensions (viewport-relative)
+  const initialW = isMobile ? window.innerWidth * 0.55 : window.innerWidth * 0.22;
+  const initialH = isMobile ? window.innerHeight * 0.45 : window.innerHeight * 0.55;
+  const mediaWidth = initialW + scrollProgress * (window.innerWidth - initialW);
+  const mediaHeight = initialH + scrollProgress * (window.innerHeight - initialH);
   const borderRadius = Math.max(20 - scrollProgress * 20, 0);
   const overlayOpacity = Math.min(scrollProgress * 0.5, 0.4);
 
