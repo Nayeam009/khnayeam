@@ -184,7 +184,7 @@ const Home = () => {
                   className="flex flex-col sm:flex-row flex-wrap gap-3 pt-2"
                 >
                   <a href="#contact">
-                    <Button size="lg" className="rounded-full shadow-lg hover:shadow-xl transition-all group w-full sm:w-auto min-h-[48px]">
+                    <Button size="lg" className="rounded-full shadow-lg hover:shadow-xl transition-all duration-200 group w-full sm:w-auto min-h-[48px]">
                       Get In Touch
                       <ArrowUpRight className="ml-1 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" size={16} />
                     </Button>
