@@ -1,25 +1,36 @@
 
 
-## Soften Dark Mode Colors
+## Fix Hero Section Layout & Centering
 
-The current dark mode uses very low lightness values (6%, 9%, 14%) making it feel too black. Raising these by ~4-6% will create a softer, more refined dark theme with better contrast.
+The profile picture and text are misaligned because the container uses `justify-end` with fixed bottom padding, which doesn't adapt well across screen sizes. The image also has hardcoded initial dimensions that don't scale properly on smaller or larger viewports.
 
-### Changes — `src/index.css` (`.dark` block only)
+### Changes — `src/components/ui/scroll-expand-hero.tsx`
 
-| Variable | Current | New | Purpose |
-|---|---|---|---|
-| `--background` | `30 15% 6%` | `30 12% 10%` | Less black base |
-| `--card` | `30 15% 9%` | `30 12% 13%` | Cards stand out more |
-| `--popover` | `30 15% 9%` | `30 12% 13%` | Match card |
-| `--secondary` | `30 15% 14%` | `30 12% 18%` | Softer secondary |
-| `--muted` | `30 12% 14%` | `30 10% 17%` | Less harsh muted areas |
-| `--muted-foreground` | `30 8% 55%` | `30 8% 60%` | Slightly brighter muted text |
-| `--border` | `30 12% 18%` | `30 10% 22%` | More visible borders |
-| `--input` | `30 12% 18%` | `30 10% 22%` | Match border |
-| `--soil` | `28 30% 18%` | `28 28% 22%` | Softer soil tone |
-| `--primary-foreground` | `30 15% 6%` | `30 12% 10%` | Match new background |
-| `--accent-foreground` | `30 15% 6%` | `30 12% 10%` | Match new background |
-| `--warm-foreground` | `30 15% 6%` | `30 12% 10%` | Match new background |
+**1. Center the content group (image + text) in the viewport**
 
-Single file change: `src/index.css`
+Replace `justify-end pb-[12vh] sm:pb-[10vh]` with `justify-center` on the main layout container (line 156). This ensures the profile image + name text block is always vertically centered regardless of screen size.
+
+**2. Use viewport-relative initial image dimensions**
+
+Replace the hardcoded pixel values for `mediaWidth` and `mediaHeight` with viewport-relative calculations:
+- Mobile: start at `55vw` width / `45vh` height, expand to full viewport
+- Desktop: start at `22vw` width / `55vh` height, expand to full viewport
+
+This prevents the image from being too large or too small on any screen.
+
+**3. Adjust image object-position**
+
+Change `object-[50%_15%]` to `object-[50%_20%]` so more of the face/upper body is visible in the initial cropped state.
+
+**4. Constrain text font size for small screens**
+
+Reduce mobile font clamp from `clamp(1.8rem, 10vw, 2.8rem)` to `clamp(1.5rem, 7vw, 2.2rem)` so text doesn't overflow on narrow screens. Desktop stays at `clamp(2.5rem, 4vw, 4rem)`.
+
+**5. Add a small gap between image and text**
+
+Keep `mt-4 sm:mt-6` but add `min-h-0` to prevent flex overflow issues on short viewports.
+
+### Summary
+
+Single file change: `src/components/ui/scroll-expand-hero.tsx`. The layout container switches to true centering, image dimensions become viewport-relative, and text sizing is tightened for small screens.
 
