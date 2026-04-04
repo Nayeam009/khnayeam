@@ -153,7 +153,7 @@ const HeroSection = () => {
                     initial={{ opacity: 0, y: 24 }}
                     animate={{ opacity: mounted ? 1 : 0, y: mounted ? 0 : 24 }}
                     transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                    className="mt-4 max-w-[11ch] font-serif text-[clamp(2.2rem,8vw,4.8rem)] font-bold tracking-[-0.04em] leading-[0.92] text-white drop-shadow-[0_12px_34px_rgba(0,0,0,0.35)] sm:mt-5 lg:max-w-none"
+                    className="mt-4 max-w-[11ch] font-serif text-[clamp(1.8rem,6vw,3.6rem)] font-bold tracking-[-0.03em] leading-[0.95] text-white/95 drop-shadow-[0_8px_24px_rgba(0,0,0,0.4)] sm:mt-5 lg:max-w-none"
                   >
                     <span className="block">{content.name_line1}</span>
                     <span className="block">{content.name_line2}</span>
@@ -163,7 +163,7 @@ const HeroSection = () => {
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: mounted ? 1 : 0, y: mounted ? 0 : 16 }}
                     transition={{ duration: 0.7, delay: 0.2 }}
-                    className="mt-3 text-sm font-medium text-white/85 sm:mt-4 sm:text-base md:text-lg"
+                    className="mt-3 text-sm font-medium text-white/90 sm:mt-4 sm:text-base md:text-lg"
                   >
                     {typedText}
                     <span className="animate-pulse text-primary">|</span>
@@ -173,7 +173,7 @@ const HeroSection = () => {
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: mounted ? 1 : 0, y: mounted ? 0 : 16 }}
                     transition={{ duration: 0.7, delay: 0.3 }}
-                    className="mt-3 hidden max-w-xl text-sm leading-relaxed text-white/72 sm:block sm:text-[15px] md:text-base"
+                    className="mt-3 hidden max-w-xl text-sm leading-relaxed text-white/80 sm:block sm:text-[15px] md:text-base"
                   >
                     {content.subtitle}
                   </motion.p>
