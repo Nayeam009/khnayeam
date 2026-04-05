@@ -146,6 +146,7 @@ const EduCard = ({ item, index }: { item: EducationItem; index: number }) => {
               src={imgSrc}
               alt={item.title}
               loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 via-transparent to-transparent" />
