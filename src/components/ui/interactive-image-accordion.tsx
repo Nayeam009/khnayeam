@@ -28,6 +28,8 @@ const AccordionItem = ({
       <img
         src={item.imageUrl}
         alt={item.title}
+        loading="lazy"
+        decoding="async"
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
         style={{ transform: isActive ? "scale(1.05)" : "scale(1)" }}
         onError={(e) => {

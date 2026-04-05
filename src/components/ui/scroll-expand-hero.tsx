@@ -173,6 +173,8 @@ const ScrollExpandHero = ({
                     alt="Profile"
                     className="h-full w-full object-cover object-[50%_20%]"
                     loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
                   />
                   {/* Gradient overlay on image */}
                   <div
