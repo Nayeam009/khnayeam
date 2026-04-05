@@ -116,7 +116,7 @@ const AboutSection = () => {
 
           {/* Quick Stats */}
           <MotionCard index={5} className="sm:col-span-2 lg:col-span-3">
-            <div className="bento-card h-full flex flex-wrap items-center justify-around gap-6 py-6 hover:shadow-xl hover:border-primary/20 transition-all duration-300">
+            <div className="bento-card h-full flex flex-col sm:flex-row flex-wrap items-center justify-around gap-4 sm:gap-6 py-5 sm:py-6 hover:shadow-xl hover:border-primary/20 transition-all duration-300">
               {about.quick_stats.map((stat) => {
                 const Icon = iconMap[stat.icon] || Globe;
                 return (

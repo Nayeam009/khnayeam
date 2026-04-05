@@ -132,10 +132,10 @@ const FooterSection = () => {
             <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-5 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block" /> Projects
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               {content.project_links.map(({ text, href }) => (
                 <li key={text}>
-                  <a href={href} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary hover:translate-x-1.5 transition-all duration-200 inline-flex items-center gap-1.5">
+                  <a href={href} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary hover:translate-x-1.5 transition-all duration-200 inline-flex items-center gap-1.5 py-1 min-h-[44px]">
                     {text} <ArrowUpRight size={12} className="opacity-50" />
                   </a>
                 </li>
