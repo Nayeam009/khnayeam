@@ -114,7 +114,7 @@ const ScrollExpandHero = ({
       window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [touchStartY]);
+  }, []);
 
   // Responsive media dimensions (viewport-relative)
   const initialW = isMobile ? window.innerWidth * 0.55 : window.innerWidth * 0.22;
