@@ -74,7 +74,7 @@ const AchievementsSection = () => {
         }} />
         <div className="flex gap-5 py-4 w-max achievements-scroll" style={{ animation: "achievements-scroll 40s linear infinite" }}>
           {duplicated.map((award, index) => (
-            <div key={index} className="shrink-0 w-[280px] sm:w-[320px] md:w-[360px]">
+            <div key={index} className="shrink-0 w-[300px] sm:w-[340px] md:w-[380px]">
               <AwardCard award={award} index={index} backgroundImage={award.bgImage} />
             </div>
           ))}
