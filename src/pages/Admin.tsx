@@ -52,13 +52,25 @@ const Admin = () => {
   const { toast } = useToast();
   const [editedSections, setEditedSections] = useState<Record<string, Record<string, unknown>>>({});
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
-  const [uploading, setUploading] = useState(false);
+  const [uploadingField, setUploadingField] = useState<string | null>(null);
+  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
 
   useEffect(() => {
     if (!authLoading && !user) {
       navigate("/admin/login");
+      return;
     }
-  }, [user, authLoading, navigate]);
+    if (user) {
+      supabase.rpc("has_role" as never, { _user_id: user.id, _role: "admin" } as never)
+        .then(({ data }) => {
+          setIsAdmin(!!data);
+          if (!data) {
+            toast({ title: "Access Denied", description: "You do not have admin privileges.", variant: "destructive" });
+            navigate("/");
+          }
+        });
+    }
+  }, [user, authLoading, navigate, toast]);
 
   useEffect(() => {
     if (allContent) {
@@ -113,7 +125,8 @@ const Admin = () => {
       const file = (e.target as HTMLInputElement).files?.[0];
       if (!file) return;
 
-      setUploading(true);
+      const fieldId = `${sectionKey}.${fieldPath}`;
+      setUploadingField(fieldId);
 
       try {
         const processedFile = await prepareImageForUpload(file);
@@ -148,7 +161,7 @@ const Admin = () => {
           variant: "destructive",
         });
       } finally {
-        setUploading(false);
+        setUploadingField(null);
       }
     };
     input.click();
@@ -200,9 +213,12 @@ const Admin = () => {
           })
           .map(([sectionKey, content]) => (
             <div key={sectionKey} className="border border-border/50 rounded-xl bg-card overflow-hidden">
-              <button
+              <div
+                role="button"
+                tabIndex={0}
                 onClick={() => toggleSection(sectionKey)}
-                className="w-full flex items-center justify-between px-5 py-4 hover:bg-muted/30 transition-colors text-left"
+                onKeyDown={(e) => e.key === 'Enter' && toggleSection(sectionKey)}
+                className="w-full flex items-center justify-between px-5 py-4 hover:bg-muted/30 transition-colors text-left cursor-pointer"
               >
                 <span className="font-semibold text-foreground">
                   {SECTION_LABELS[sectionKey] || sectionKey}
@@ -223,7 +239,7 @@ const Admin = () => {
                   </Button>
                   {expandedSections[sectionKey] ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
                 </div>
-              </button>
+              </div>
 
               {expandedSections[sectionKey] && (
                 <div className="px-5 pb-5 space-y-4 border-t border-border/30">
@@ -232,7 +248,7 @@ const Admin = () => {
                     content={content}
                     updateField={updateField}
                     handleImageUpload={handleImageUpload}
-                    uploading={uploading}
+                    uploadingField={uploadingField}
                   />
                 </div>
               )}
@@ -248,14 +264,14 @@ const SectionFields = ({
   content,
   updateField,
   handleImageUpload,
-  uploading,
+  uploadingField,
   parentPath = "",
 }: {
   sectionKey: string;
   content: unknown;
   updateField: (sectionKey: string, path: string, value: unknown) => void;
   handleImageUpload: (sectionKey: string, fieldPath: string) => void;
-  uploading: boolean;
+  uploadingField: string | null;
   parentPath?: string;
 }) => {
   if (content === null || content === undefined) return null;
@@ -284,7 +300,7 @@ const SectionFields = ({
               content={item}
               updateField={updateField}
               handleImageUpload={handleImageUpload}
-              uploading={uploading}
+              uploadingField={uploadingField}
               parentPath={`${parentPath}.${idx}`}
             />
           </div>
@@ -350,7 +366,7 @@ const SectionFields = ({
                       variant="outline"
                       size="sm"
                       className="shrink-0 gap-1"
-                      disabled={uploading}
+                      disabled={uploadingField === `${sectionKey}.${fullPath}`}
                       onClick={() => handleImageUpload(sectionKey, fullPath)}
                     >
                       <Upload size={12} /> Upload
@@ -415,7 +431,7 @@ const SectionFields = ({
                 content={value}
                 updateField={updateField}
                 handleImageUpload={handleImageUpload}
-                uploading={uploading}
+                uploadingField={uploadingField}
                 parentPath={fullPath}
               />
             </div>

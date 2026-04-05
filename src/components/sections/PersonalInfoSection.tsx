@@ -41,7 +41,7 @@ const PersonalInfoSection = () => {
   const col3 = mapped.slice(6, 9);
 
   return (
-    <section aria-label="Personal information" className="py-16 md:py-20 section-padding">
+    <section id="personal-info" aria-label="Personal information" className="py-16 md:py-20 section-padding">
       <div className="max-w-5xl mx-auto">
         <MotionCard>
           <div className="text-center mb-12">

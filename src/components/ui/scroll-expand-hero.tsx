@@ -27,7 +27,7 @@ const ScrollExpandHero = ({
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showContent, setShowContent] = useState(false);
   const [mediaFullyExpanded, setMediaFullyExpanded] = useState(false);
-  const [touchStartY, setTouchStartY] = useState(0);
+  const touchStartRef = useRef(0);
   const [isMobile, setIsMobile] = useState(false);
 
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -74,11 +74,11 @@ const ScrollExpandHero = ({
     };
 
     const handleTouchStart = (e: TouchEvent) => {
-      setTouchStartY(e.touches[0].clientY);
+      touchStartRef.current = e.touches[0].clientY;
     };
 
     const handleTouchMove = (e: TouchEvent) => {
-      const startY = touchStartY;
+      const startY = touchStartRef.current;
       if (!startY) return;
       const touchY = e.touches[0].clientY;
       const deltaY = startY - touchY;
@@ -91,11 +91,11 @@ const ScrollExpandHero = ({
         e.preventDefault();
         const factor = deltaY < 0 ? 0.01 : 0.007;
         updateProgress(deltaY * factor);
-        setTouchStartY(touchY);
+        touchStartRef.current = touchY;
       }
     };
 
-    const handleTouchEnd = () => setTouchStartY(0);
+    const handleTouchEnd = () => { touchStartRef.current = 0; };
 
     const handleScroll = () => {
       if (!expandedRef.current) window.scrollTo(0, 0);
@@ -114,7 +114,7 @@ const ScrollExpandHero = ({
       window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [touchStartY]);
+  }, []);
 
   // Responsive media dimensions (viewport-relative)
   const initialW = isMobile ? window.innerWidth * 0.55 : window.innerWidth * 0.22;

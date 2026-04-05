@@ -28,7 +28,7 @@ const StatsSection = () => {
   const items = data?.items ?? DEFAULTS;
 
   return (
-    <section aria-label="Key statistics" className="py-12 md:py-16 section-padding border-y border-border/30 bg-card/20">
+    <section id="stats" aria-label="Key statistics" className="py-16 md:py-20 section-padding border-y border-border/30 bg-card/20">
       <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
         {items.map((stat, i) => {
           const Icon = iconMap[stat.icon] || GraduationCap;
