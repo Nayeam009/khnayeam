@@ -21,7 +21,7 @@ const ReferencesSection = () => {
   const items = data?.items ?? DEFAULTS;
 
   return (
-    <section aria-label="Professional references" className="py-16 md:py-20 section-padding bg-card/50">
+    <section id="references" aria-label="Professional references" className="py-16 md:py-20 section-padding bg-card/50">
       <div className="max-w-4xl mx-auto">
         <MotionCard>
           <div className="text-center mb-10">

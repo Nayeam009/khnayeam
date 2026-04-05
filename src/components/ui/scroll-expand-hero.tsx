@@ -27,7 +27,7 @@ const ScrollExpandHero = ({
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showContent, setShowContent] = useState(false);
   const [mediaFullyExpanded, setMediaFullyExpanded] = useState(false);
-  const [touchStartY, setTouchStartY] = useState(0);
+  const touchStartRef = useRef(0);
   const [isMobile, setIsMobile] = useState(false);
 
   const sectionRef = useRef<HTMLDivElement>(null);
