@@ -366,7 +366,7 @@ const SectionFields = ({
                       variant="outline"
                       size="sm"
                       className="shrink-0 gap-1"
-                      disabled={uploading}
+                      disabled={uploadingField === `${sectionKey}.${fullPath}`}
                       onClick={() => handleImageUpload(sectionKey, fullPath)}
                     >
                       <Upload size={12} /> Upload
