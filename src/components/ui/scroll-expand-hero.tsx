@@ -142,6 +142,8 @@ const ScrollExpandHero = ({
                 alt=""
                 className="h-full w-full object-cover will-change-transform"
                 loading="eager"
+                decoding="async"
+                fetchPriority="high"
                 style={{
                   transform: `scale(${1 + scrollProgress * 0.08})`,
                   transition: 'transform 150ms linear',
