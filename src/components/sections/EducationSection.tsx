@@ -141,7 +141,7 @@ const EduCard = ({ item, index }: { item: EducationItem; index: number }) => {
           style={{ clipPath }}
           className="flex-1 w-full max-w-md"
         >
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-border/30 aspect-[4/5]">
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-border/30 aspect-[4/3] sm:aspect-[4/5]">
             <img
               src={imgSrc}
               alt={item.title}

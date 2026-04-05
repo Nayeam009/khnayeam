@@ -34,7 +34,7 @@ const StatsSection = () => {
           const Icon = iconMap[stat.icon] || GraduationCap;
           return (
             <MotionCard key={stat.label} index={i}>
-              <div className="bento-card flex flex-col items-center gap-2 sm:gap-3 text-center p-3 sm:p-6">
+              <div className="bento-card flex flex-col items-center gap-2 sm:gap-3 text-center p-4 sm:p-6">
                 <div className="circle-icon circle-icon-md bg-primary/10">
                   <Icon className="text-primary" size={20} />
                 </div>
