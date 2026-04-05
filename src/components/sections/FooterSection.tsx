@@ -98,9 +98,9 @@ const FooterSection = () => {
             <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-5 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block" /> About
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               {content.about_links.map(({ text, href }) => (
-                <li key={text}><a href={href} className="text-sm text-muted-foreground hover:text-primary hover:translate-x-1.5 transition-all duration-200 inline-block">{text}</a></li>
+                <li key={text}><a href={href} className="text-sm text-muted-foreground hover:text-primary hover:translate-x-1.5 transition-all duration-200 inline-block py-1 min-h-[44px] flex items-center">{text}</a></li>
               ))}
             </ul>
           </div>
