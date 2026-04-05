@@ -300,7 +300,7 @@ const SectionFields = ({
               content={item}
               updateField={updateField}
               handleImageUpload={handleImageUpload}
-              uploading={uploading}
+              uploadingField={uploadingField}
               parentPath={`${parentPath}.${idx}`}
             />
           </div>
