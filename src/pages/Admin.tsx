@@ -52,7 +52,8 @@ const Admin = () => {
   const { toast } = useToast();
   const [editedSections, setEditedSections] = useState<Record<string, Record<string, unknown>>>({});
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
-  const [uploading, setUploading] = useState(false);
+  const [uploadingField, setUploadingField] = useState<string | null>(null);
+  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
 
   useEffect(() => {
     if (!authLoading && !user) {
