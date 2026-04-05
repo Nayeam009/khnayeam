@@ -161,7 +161,7 @@ const Admin = () => {
           variant: "destructive",
         });
       } finally {
-        setUploading(false);
+        setUploadingField(null);
       }
     };
     input.click();
