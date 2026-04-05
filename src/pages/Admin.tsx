@@ -125,7 +125,8 @@ const Admin = () => {
       const file = (e.target as HTMLInputElement).files?.[0];
       if (!file) return;
 
-      setUploading(true);
+      const fieldId = `${sectionKey}.${fieldPath}`;
+      setUploadingField(fieldId);
 
       try {
         const processedFile = await prepareImageForUpload(file);
