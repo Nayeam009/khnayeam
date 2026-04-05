@@ -248,7 +248,7 @@ const Admin = () => {
                     content={content}
                     updateField={updateField}
                     handleImageUpload={handleImageUpload}
-                    uploading={uploading}
+                    uploadingField={uploadingField}
                   />
                 </div>
               )}
