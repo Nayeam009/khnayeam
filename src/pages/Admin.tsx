@@ -431,7 +431,7 @@ const SectionFields = ({
                 content={value}
                 updateField={updateField}
                 handleImageUpload={handleImageUpload}
-                uploading={uploading}
+                uploadingField={uploadingField}
                 parentPath={fullPath}
               />
             </div>
