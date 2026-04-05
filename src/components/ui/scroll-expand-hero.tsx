@@ -74,11 +74,11 @@ const ScrollExpandHero = ({
     };
 
     const handleTouchStart = (e: TouchEvent) => {
-      setTouchStartY(e.touches[0].clientY);
+      touchStartRef.current = e.touches[0].clientY;
     };
 
     const handleTouchMove = (e: TouchEvent) => {
-      const startY = touchStartY;
+      const startY = touchStartRef.current;
       if (!startY) return;
       const touchY = e.touches[0].clientY;
       const deltaY = startY - touchY;
@@ -91,11 +91,11 @@ const ScrollExpandHero = ({
         e.preventDefault();
         const factor = deltaY < 0 ? 0.01 : 0.007;
         updateProgress(deltaY * factor);
-        setTouchStartY(touchY);
+        touchStartRef.current = touchY;
       }
     };
 
-    const handleTouchEnd = () => setTouchStartY(0);
+    const handleTouchEnd = () => { touchStartRef.current = 0; };
 
     const handleScroll = () => {
       if (!expandedRef.current) window.scrollTo(0, 0);
