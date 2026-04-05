@@ -86,7 +86,7 @@ const FooterSection = () => {
             </p>
             <div className="flex gap-2">
               {socials.map((s) => (
-                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} className="group relative w-10 h-10 rounded-full bg-card border border-border/50 flex items-center justify-center text-muted-foreground hover:bg-primary/10 hover:text-primary hover:border-primary/30 hover:scale-110 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} className="group relative w-11 h-11 rounded-full bg-card border border-border/50 flex items-center justify-center text-muted-foreground hover:bg-primary/10 hover:text-primary hover:border-primary/30 hover:scale-110 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
                   <s.icon size={16} />
                 </a>
               ))}
