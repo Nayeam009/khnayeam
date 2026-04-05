@@ -264,14 +264,14 @@ const SectionFields = ({
   content,
   updateField,
   handleImageUpload,
-  uploading,
+  uploadingField,
   parentPath = "",
 }: {
   sectionKey: string;
   content: unknown;
   updateField: (sectionKey: string, path: string, value: unknown) => void;
   handleImageUpload: (sectionKey: string, fieldPath: string) => void;
-  uploading: boolean;
+  uploadingField: string | null;
   parentPath?: string;
 }) => {
   if (content === null || content === undefined) return null;
