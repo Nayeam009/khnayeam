@@ -112,7 +112,7 @@ const ContactSection = () => {
                 return (
                   <Tooltip key={s.label}>
                     <TooltipTrigger asChild>
-                      <motion.a href={s.href} target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.15, y: -3 }} whileTap={{ scale: 0.95 }} className={`circle-icon w-14 h-14 bg-muted text-muted-foreground ${hover} transition-all duration-200 shadow-sm hover:shadow-md`} aria-label={s.label}>
+                      <motion.a href={s.href} target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.15, y: -3 }} whileTap={{ scale: 0.95 }} className={`circle-icon w-12 h-12 sm:w-14 sm:h-14 bg-muted text-muted-foreground ${hover} transition-all duration-200 shadow-sm hover:shadow-md`} aria-label={s.label}>
                         <Icon size={20} />
                       </motion.a>
                     </TooltipTrigger>

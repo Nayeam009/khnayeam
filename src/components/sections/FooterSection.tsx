@@ -86,7 +86,7 @@ const FooterSection = () => {
             </p>
             <div className="flex gap-2">
               {socials.map((s) => (
-                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} className="group relative w-10 h-10 rounded-full bg-card border border-border/50 flex items-center justify-center text-muted-foreground hover:bg-primary/10 hover:text-primary hover:border-primary/30 hover:scale-110 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} className="group relative w-11 h-11 rounded-full bg-card border border-border/50 flex items-center justify-center text-muted-foreground hover:bg-primary/10 hover:text-primary hover:border-primary/30 hover:scale-110 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
                   <s.icon size={16} />
                 </a>
               ))}
@@ -98,9 +98,9 @@ const FooterSection = () => {
             <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-5 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block" /> About
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               {content.about_links.map(({ text, href }) => (
-                <li key={text}><a href={href} className="text-sm text-muted-foreground hover:text-primary hover:translate-x-1.5 transition-all duration-200 inline-block">{text}</a></li>
+                <li key={text}><a href={href} className="text-sm text-muted-foreground hover:text-primary hover:translate-x-1.5 transition-all duration-200 inline-block py-1 min-h-[44px] flex items-center">{text}</a></li>
               ))}
             </ul>
           </div>
@@ -110,10 +110,10 @@ const FooterSection = () => {
             <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-5 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block" /> Quick Links
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               {content.quick_links.map(({ text, href, hasIndicator }) => (
                 <li key={text}>
-                  <a href={href} className="text-sm text-muted-foreground hover:text-primary hover:translate-x-1.5 transition-all duration-200 inline-flex items-center gap-2">
+                  <a href={href} className="text-sm text-muted-foreground hover:text-primary hover:translate-x-1.5 transition-all duration-200 inline-flex items-center gap-2 py-1 min-h-[44px]">
                     {text}
                     {hasIndicator && (
                       <span className="relative flex h-2 w-2">
@@ -132,10 +132,10 @@ const FooterSection = () => {
             <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-5 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block" /> Projects
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               {content.project_links.map(({ text, href }) => (
                 <li key={text}>
-                  <a href={href} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary hover:translate-x-1.5 transition-all duration-200 inline-flex items-center gap-1.5">
+                  <a href={href} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary hover:translate-x-1.5 transition-all duration-200 inline-flex items-center gap-1.5 py-1 min-h-[44px]">
                     {text} <ArrowUpRight size={12} className="opacity-50" />
                   </a>
                 </li>

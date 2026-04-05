@@ -209,7 +209,7 @@
 
 /* Bento box card */
   .bento-card {
-    @apply rounded-3xl border border-border/30 p-6 sm:p-8 relative overflow-hidden;
+    @apply rounded-2xl sm:rounded-3xl border border-border/30 p-4 sm:p-6 md:p-8 relative overflow-hidden;
     background: hsl(var(--card) / 0.4);
     backdrop-filter: blur(16px);
     box-shadow: 0 8px 32px -8px hsl(var(--foreground) / 0.06);
