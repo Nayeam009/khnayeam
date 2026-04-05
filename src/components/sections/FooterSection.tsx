@@ -110,10 +110,10 @@ const FooterSection = () => {
             <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-5 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block" /> Quick Links
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               {content.quick_links.map(({ text, href, hasIndicator }) => (
                 <li key={text}>
-                  <a href={href} className="text-sm text-muted-foreground hover:text-primary hover:translate-x-1.5 transition-all duration-200 inline-flex items-center gap-2">
+                  <a href={href} className="text-sm text-muted-foreground hover:text-primary hover:translate-x-1.5 transition-all duration-200 inline-flex items-center gap-2 py-1 min-h-[44px]">
                     {text}
                     {hasIndicator && (
                       <span className="relative flex h-2 w-2">
