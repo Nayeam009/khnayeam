@@ -222,7 +222,7 @@ export const AwardCard = ({
         className="cursor-pointer rounded-3xl border border-border/50 bg-card/80 backdrop-blur-sm shadow-lg shadow-primary/5 overflow-hidden hover:shadow-xl hover:border-primary/20 transition-all duration-300 h-full flex flex-col"
       >
         {/* Top image strip */}
-        <div className="relative h-32 overflow-hidden">
+        <div className="relative h-44 overflow-hidden">
           <img
             src={backgroundImage}
             alt=""
