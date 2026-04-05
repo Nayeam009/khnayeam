@@ -58,8 +58,19 @@ const Admin = () => {
   useEffect(() => {
     if (!authLoading && !user) {
       navigate("/admin/login");
+      return;
     }
-  }, [user, authLoading, navigate]);
+    if (user) {
+      supabase.rpc("has_role" as never, { _user_id: user.id, _role: "admin" } as never)
+        .then(({ data }) => {
+          setIsAdmin(!!data);
+          if (!data) {
+            toast({ title: "Access Denied", description: "You do not have admin privileges.", variant: "destructive" });
+            navigate("/");
+          }
+        });
+    }
+  }, [user, authLoading, navigate, toast]);
 
   useEffect(() => {
     if (allContent) {
