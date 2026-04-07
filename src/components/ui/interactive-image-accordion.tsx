@@ -33,9 +33,10 @@ const AccordionItem = ({
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
         style={{ transform: isActive ? "scale(1.05)" : "scale(1)" }}
         onError={(e) => {
-          (e.target as HTMLImageElement).onerror = null;
-          (e.target as HTMLImageElement).src =
-            "https://placehold.co/400x450/2d3748/ffffff?text=Image";
+          const img = e.target as HTMLImageElement;
+          img.onerror = null;
+          img.src =
+            "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='450' fill='%232d3748'%3E%3Crect width='400' height='450'/%3E%3Ctext x='50%25' y='50%25' fill='%23fff' font-size='16' text-anchor='middle' dominant-baseline='middle'%3EImage%3C/text%3E%3C/svg%3E";
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-foreground/20 to-transparent" />

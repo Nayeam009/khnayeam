@@ -1,10 +1,9 @@
 import { motion } from "framer-motion";
-import { FlaskConical, Lightbulb, Briefcase } from "lucide-react";
+import { FlaskConical, Lightbulb, Briefcase, type LucideIcon } from "lucide-react";
 import MotionCard from "@/components/MotionCard";
 import { useSiteContent } from "@/hooks/useSiteContent";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, LucideIcon> = {
   FlaskConical, Lightbulb, Briefcase,
 };
 

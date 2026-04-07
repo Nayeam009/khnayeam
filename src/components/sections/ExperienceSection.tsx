@@ -2,14 +2,14 @@ import { motion } from "framer-motion";
 import {
   Briefcase, HeartPulse, Globe, Coffee,
   ExternalLink, Zap,
+  type LucideIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import MotionCard from "@/components/MotionCard";
 import { ImageAccordion } from "@/components/ui/interactive-image-accordion";
 import { useSiteContent } from "@/hooks/useSiteContent";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, LucideIcon> = {
   Briefcase, HeartPulse, Globe, Coffee, ExternalLink, Zap,
 };
 

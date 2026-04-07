@@ -79,6 +79,7 @@ const Navigation = () => {
 
   return (
     <nav
+      aria-label="Main navigation"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? "bg-background/70 backdrop-blur-2xl shadow-lg border-b border-border/30"
@@ -123,7 +124,7 @@ const Navigation = () => {
           >
             {isDark ? <Sun size={16} /> : <Moon size={16} />}
           </button>
-          <a href="/cv-kh-nayeam-ibna-nasir.pdf" download className="ml-1">
+          <a href="/Kh_Nayeam_Ibna_Nasir_CV.pdf" download className="ml-1">
             <Button size="sm" className="rounded-full text-xs gap-1.5">
               <Download size={14} /> CV
             </Button>
@@ -167,7 +168,7 @@ const Navigation = () => {
                     {item.name}
                   </button>
                 ))}
-                <a href="/cv-kh-nayeam-ibna-nasir.pdf" download className="mt-4">
+                <a href="/Kh_Nayeam_Ibna_Nasir_CV.pdf" download className="mt-4">
                   <Button className="w-full rounded-xl gap-2 min-h-[48px]">
                     <Download size={16} /> Download CV
                   </Button>

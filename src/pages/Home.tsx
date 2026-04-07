@@ -34,18 +34,40 @@ const Home = () => {
   return (
     <TooltipProvider>
       <div className="min-h-screen bg-background overflow-x-hidden">
+        {/* Skip to content — accessibility */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-full focus:bg-primary focus:text-primary-foreground focus:text-sm focus:font-medium focus:shadow-lg"
+        >
+          Skip to content
+        </a>
+
         <Navigation />
-        <main>
+        <main id="main-content">
           <HeroSection />
           <StatsSection />
           <Suspense fallback={<SectionFallback />}>
             <AboutSection />
+          </Suspense>
+          <Suspense fallback={<SectionFallback />}>
             <EducationSection />
+          </Suspense>
+          <Suspense fallback={<SectionFallback />}>
             <ResearchSection />
+          </Suspense>
+          <Suspense fallback={<SectionFallback />}>
             <ExperienceSection />
+          </Suspense>
+          <Suspense fallback={<SectionFallback />}>
             <AchievementsSection />
+          </Suspense>
+          <Suspense fallback={<SectionFallback />}>
             <PersonalInfoSection />
+          </Suspense>
+          <Suspense fallback={<SectionFallback />}>
             <ReferencesSection />
+          </Suspense>
+          <Suspense fallback={<SectionFallback />}>
             <ContactSection />
           </Suspense>
         </main>

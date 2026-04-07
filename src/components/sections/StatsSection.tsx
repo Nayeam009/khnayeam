@@ -1,10 +1,9 @@
-import { GraduationCap, Code, Trophy, Briefcase } from "lucide-react";
+import { GraduationCap, Code, Trophy, Briefcase, type LucideIcon } from "lucide-react";
 import MotionCard from "@/components/MotionCard";
 import AnimatedCounter from "@/components/AnimatedCounterInline";
 import { useSiteContent } from "@/hooks/useSiteContent";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, LucideIcon> = {
   GraduationCap, Code, Trophy, Briefcase,
 };
 

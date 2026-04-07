@@ -1,11 +1,9 @@
-import { User, Calendar, Heart, Flag, Star } from "lucide-react";
+import { User, Calendar, Heart, Flag, Star, type LucideIcon } from "lucide-react";
 import MotionCard from "@/components/MotionCard";
 import { InfoColumn } from "@/components/ui/info-columns";
 import { useSiteContent } from "@/hooks/useSiteContent";
-import React from "react";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, LucideIcon> = {
   User, Calendar, Heart, Flag, Star,
 };
 
@@ -54,9 +52,31 @@ const PersonalInfoSection = () => {
             </p>
           </div>
         </MotionCard>
-        <div className="flex justify-center gap-6 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] max-h-[500px] overflow-hidden">
+
+        {/* Mobile: simple grid showing all items */}
+        <div className="sm:hidden grid grid-cols-2 gap-3">
+          {mapped.map(({ icon, label, text }, i) => (
+            <div
+              key={i}
+              className="p-4 rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm shadow-sm"
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  {icon}
+                </div>
+                <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">
+                  {label}
+                </span>
+              </div>
+              <div className="text-sm font-bold text-foreground">{text}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop/tablet: animated scrolling columns */}
+        <div className="hidden sm:flex justify-center gap-6 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] max-h-[500px] overflow-hidden">
           <InfoColumn items={col1} duration={12} className="hidden md:block" />
-          <InfoColumn items={col2} duration={16} className="hidden sm:block" />
+          <InfoColumn items={col2} duration={16} />
           <InfoColumn items={col3} duration={14} />
         </div>
       </div>
