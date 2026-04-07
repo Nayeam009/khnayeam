@@ -2,12 +2,12 @@ import { motion } from "framer-motion";
 import {
   Sprout, Code, Briefcase, Trophy, Target,
   Award, BookOpen, Leaf, Globe, FolderKanban, Clock,
+  type LucideIcon,
 } from "lucide-react";
 import MotionCard from "@/components/MotionCard";
 import { useSiteContent } from "@/hooks/useSiteContent";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, LucideIcon> = {
   Sprout, Code, Briefcase, Trophy, Target, Award, BookOpen, Leaf, Globe, FolderKanban, Clock,
 };
 

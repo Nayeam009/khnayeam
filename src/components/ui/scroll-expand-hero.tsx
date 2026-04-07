@@ -34,11 +34,17 @@ const ScrollExpandHero = ({
   const progressRef = useRef(0);
   const expandedRef = useRef(false);
 
+  // Track viewport dimensions in state so they update on resize
+  const [viewportSize, setViewportSize] = useState({ w: 0, h: 0 });
+
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    const update = () => {
+      setViewportSize({ w: window.innerWidth, h: window.innerHeight });
+      setIsMobile(window.innerWidth < 768);
+    };
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
   }, []);
 
   useEffect(() => {
@@ -116,11 +122,13 @@ const ScrollExpandHero = ({
     };
   }, []);
 
-  // Responsive media dimensions (viewport-relative)
-  const initialW = isMobile ? window.innerWidth * 0.55 : window.innerWidth * 0.22;
-  const initialH = isMobile ? window.innerHeight * 0.45 : window.innerHeight * 0.55;
-  const mediaWidth = initialW + scrollProgress * (window.innerWidth - initialW);
-  const mediaHeight = initialH + scrollProgress * (window.innerHeight - initialH);
+  // Responsive media dimensions (viewport-relative, reactive to resize)
+  const vw = viewportSize.w || 1;
+  const vh = viewportSize.h || 1;
+  const initialW = isMobile ? vw * 0.55 : vw * 0.22;
+  const initialH = isMobile ? vh * 0.45 : vh * 0.55;
+  const mediaWidth = initialW + scrollProgress * (vw - initialW);
+  const mediaHeight = initialH + scrollProgress * (vh - initialH);
   const borderRadius = Math.max(20 - scrollProgress * 20, 0);
   const overlayOpacity = Math.min(scrollProgress * 0.5, 0.4);
 
@@ -159,8 +167,8 @@ const ScrollExpandHero = ({
                 <div
                   className="overflow-hidden shadow-[0_20px_80px_-20px_rgba(0,0,0,0.8)] will-change-transform"
                   style={{
-                    width: `${Math.min(mediaWidth, window.innerWidth)}px`,
-                    height: `${Math.min(mediaHeight, window.innerHeight)}px`,
+                    width: `${Math.min(mediaWidth, vw)}px`,
+                    height: `${Math.min(mediaHeight, vh)}px`,
                     maxWidth: '98vw',
                     maxHeight: '95vh',
                     borderRadius: `${borderRadius}px`,

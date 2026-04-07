@@ -67,7 +67,7 @@ const AchievementsSection = () => {
         </MotionCard>
       </div>
 
-      <div className="relative">
+      <div className="relative" role="region" aria-label="Achievements carousel">
         <div className="absolute inset-0 z-10 pointer-events-none" style={{
           mask: "linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%)",
           WebkitMask: "linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%)",
@@ -80,16 +80,6 @@ const AchievementsSection = () => {
           ))}
         </div>
       </div>
-
-      <style>{`
-        @keyframes achievements-scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .achievements-scroll:hover {
-          animation-play-state: paused !important;
-        }
-      `}</style>
     </section>
   );
 };

@@ -165,7 +165,7 @@ const HeroSection = () => {
                 />
               </Button>
             </a>
-            <a href="/cv-kh-nayeam-ibna-nasir.pdf" download>
+            <a href="/Kh_Nayeam_Ibna_Nasir_CV.pdf" download>
               <Button
                 size="lg"
                 variant="outline"

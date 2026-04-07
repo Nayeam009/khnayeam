@@ -2,13 +2,13 @@ import { motion } from "framer-motion";
 import {
   Phone, Mail, MapPin, Linkedin, Github, Facebook,
   MessageCircle, Send,
+  type LucideIcon,
 } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import MotionCard from "@/components/MotionCard";
 import { useSiteContent } from "@/hooks/useSiteContent";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, LucideIcon> = {
   Phone, Mail, MapPin, Linkedin, Github, Facebook,
 };
 
@@ -34,7 +34,7 @@ const DEFAULTS: ContactContent = {
   ],
   social_links: [
     { icon: "Linkedin", href: "https://linkedin.com/in/khnayeam", label: "LinkedIn" },
-    { icon: "Github", href: "https://github.com/khnayeam", label: "GitHub" },
+    { icon: "Github", href: "https://github.com/Nayeam009", label: "GitHub" },
     { icon: "Facebook", href: "https://facebook.com/khnayeam", label: "Facebook" },
   ],
   cta_heading: "Have a project in mind?",

@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap');
 
+/* Note: &display=swap is already included above — verified ✓ */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -310,3 +312,24 @@
 
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Achievements auto-scroll */
+@keyframes achievements-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.achievements-scroll:hover {
+  animation-play-state: paused !important;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .achievements-scroll,
+  .animate-float,
+  .badge-pulse {
+    animation: none !important;
+  }
+  .reveal {
+    transition-duration: 0.01ms !important;
+  }
+}

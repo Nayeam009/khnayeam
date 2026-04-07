@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 interface ColumnItem {
   text: string;
@@ -13,10 +13,12 @@ export const InfoColumn = (props: {
   items: ColumnItem[];
   duration?: number;
 }) => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <div className={props.className}>
       <motion.div
-        animate={{ translateY: "-50%" }}
+        animate={shouldReduceMotion ? {} : { translateY: "-50%" }}
         transition={{
           duration: props.duration || 14,
           repeat: Infinity,

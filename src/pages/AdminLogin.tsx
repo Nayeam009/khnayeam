@@ -11,16 +11,32 @@ const AdminLogin = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [failCount, setFailCount] = useState(0);
+  const [lockedUntil, setLockedUntil] = useState<number | null>(null);
   const { signIn } = useAuth();
   const navigate = useNavigate();
 
+  const isLocked = lockedUntil !== null && Date.now() < lockedUntil;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isLocked) return;
     setError("");
     setLoading(true);
     const { error } = await signIn(email, password);
     if (error) {
-      setError(error.message);
+      const newCount = failCount + 1;
+      setFailCount(newCount);
+      if (newCount >= 3) {
+        setLockedUntil(Date.now() + 5000);
+        setError("Too many failed attempts. Please wait 5 seconds.");
+        setTimeout(() => {
+          setLockedUntil(null);
+          setFailCount(0);
+        }, 5000);
+      } else {
+        setError(error.message);
+      }
       setLoading(false);
     } else {
       navigate("/admin");
@@ -66,9 +82,9 @@ const AdminLogin = () => {
             <p className="text-sm text-destructive bg-destructive/10 rounded-md px-3 py-2">{error}</p>
           )}
 
-          <Button type="submit" className="w-full" disabled={loading}>
+          <Button type="submit" className="w-full" disabled={loading || isLocked}>
             {loading ? <Loader2 className="animate-spin mr-2" size={16} /> : <LogIn className="mr-2" size={16} />}
-            Sign In
+            {isLocked ? "Please wait..." : "Sign In"}
           </Button>
         </form>
 
