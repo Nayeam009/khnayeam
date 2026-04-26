@@ -11,19 +11,23 @@ const AccordionItem = ({
   item,
   isActive,
   onMouseEnter,
+  onClick,
 }: {
   item: AccordionItemData;
   isActive: boolean;
   onMouseEnter: () => void;
+  onClick: () => void;
 }) => {
   return (
     <div
       onMouseEnter={onMouseEnter}
+      onFocus={onMouseEnter}
+      onClick={onClick}
+      tabIndex={0}
       className={cn(
-        "relative overflow-hidden rounded-2xl cursor-pointer transition-all duration-500 ease-in-out",
+        "relative h-full min-h-0 overflow-hidden rounded-2xl cursor-pointer transition-all duration-500 ease-in-out",
         isActive ? "flex-[4]" : "flex-[0.8]"
       )}
-      style={{ minHeight: "350px" }}
     >
       <img
         src={item.imageUrl}
@@ -42,11 +46,11 @@ const AccordionItem = ({
       <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-foreground/20 to-transparent" />
       <div
         className={cn(
-          "absolute bottom-0 left-0 right-0 p-4 transition-all duration-500",
+          "absolute bottom-0 left-0 right-0 p-3 sm:p-4 transition-all duration-500",
           isActive ? "opacity-100 translate-y-0" : "opacity-70 translate-y-1"
         )}
       >
-        <span className="text-sm sm:text-base font-semibold text-primary-foreground drop-shadow-lg">
+        <span className="block max-w-full text-sm sm:text-base font-semibold leading-tight text-primary-foreground drop-shadow-lg">
           {item.title}
         </span>
       </div>
@@ -68,13 +72,14 @@ export function ImageAccordion({
   const [activeIndex, setActiveIndex] = useState(defaultActive);
 
   return (
-    <div className={cn("flex gap-2 h-[350px] sm:h-[400px]", className)}>
+    <div className={cn("flex h-[280px] items-stretch gap-2 sm:h-[350px]", className)}>
       {items.map((item, index) => (
         <AccordionItem
           key={item.id}
           item={item}
           isActive={activeIndex === index}
           onMouseEnter={() => setActiveIndex(index)}
+          onClick={() => setActiveIndex(index)}
         />
       ))}
     </div>
