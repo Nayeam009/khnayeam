@@ -5,7 +5,7 @@ import {
   useCallback,
   ReactNode,
 } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 
 interface ScrollExpandHeroProps {
   mediaSrc: string;
@@ -24,15 +24,24 @@ const ScrollExpandHero = ({
   textBlend = true,
   children,
 }: ScrollExpandHeroProps) => {
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [showContent, setShowContent] = useState(false);
-  const [mediaFullyExpanded, setMediaFullyExpanded] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
+  const [scrollProgress, setScrollProgress] = useState(shouldReduceMotion ? 1 : 0);
+  const [showContent, setShowContent] = useState(shouldReduceMotion ? true : false);
+  const [mediaFullyExpanded, setMediaFullyExpanded] = useState(shouldReduceMotion ? true : false);
   const touchStartRef = useRef(0);
   const [isMobile, setIsMobile] = useState(false);
 
   const sectionRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef(0);
-  const expandedRef = useRef(false);
+  const progressRef = useRef(shouldReduceMotion ? 1 : 0);
+  const expandedRef = useRef(shouldReduceMotion ? true : false);
+
+  useEffect(() => {
+    if (shouldReduceMotion) {
+      setScrollProgress(1);
+      setMediaFullyExpanded(true);
+      setShowContent(true);
+    }
+  }, [shouldReduceMotion]);
 
   // Track viewport dimensions in state so they update on resize
   const [viewportSize, setViewportSize] = useState({ w: 0, h: 0 });
@@ -55,6 +64,8 @@ const ScrollExpandHero = ({
   }, [mediaFullyExpanded]);
 
   useEffect(() => {
+    if (shouldReduceMotion) return;
+
     const updateProgress = (delta: number) => {
       const current = progressRef.current;
       const next = Math.min(Math.max(current + delta, 0), 1);
@@ -120,7 +131,7 @@ const ScrollExpandHero = ({
       window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('touchend', handleTouchEnd);
     };
-  }, []);
+  }, [shouldReduceMotion]);
 
   // Responsive media dimensions (viewport-relative, reactive to resize)
   const vw = viewportSize.w || 1;

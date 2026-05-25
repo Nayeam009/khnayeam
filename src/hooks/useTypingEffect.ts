@@ -8,24 +8,31 @@ export const useTypingEffect = (texts: string[], speed = 80, pause = 2000) => {
 
   useEffect(() => {
     const current = texts[index];
+    const duration = isDeleting
+      ? speed / 2
+      : charIndex === current.length
+      ? pause
+      : speed;
+
     const timeout = setTimeout(() => {
       if (!isDeleting) {
-        setDisplayed(current.slice(0, charIndex + 1));
-        if (charIndex + 1 === current.length) {
-          setTimeout(() => setIsDeleting(true), pause);
+        if (charIndex === current.length) {
+          setIsDeleting(true);
         } else {
+          setDisplayed(current.slice(0, charIndex + 1));
           setCharIndex(charIndex + 1);
         }
       } else {
-        setDisplayed(current.slice(0, charIndex));
-        if (charIndex === 0) {
+        setDisplayed(current.slice(0, charIndex - 1));
+        if (charIndex - 1 === 0) {
           setIsDeleting(false);
-          setIndex((index + 1) % texts.length);
+          setIndex((prevIndex) => (prevIndex + 1) % texts.length);
+          setCharIndex(0);
         } else {
           setCharIndex(charIndex - 1);
         }
       }
-    }, isDeleting ? speed / 2 : speed);
+    }, duration);
     return () => clearTimeout(timeout);
   }, [charIndex, isDeleting, index, texts, speed, pause]);
 

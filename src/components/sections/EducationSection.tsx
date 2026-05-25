@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { GraduationCap, BookOpen, Award } from "lucide-react";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import MotionCard from "@/components/MotionCard";
@@ -74,6 +74,8 @@ const DEFAULTS: EducationContent = {
 
 const EduCard = ({ item, index }: { item: EducationItem; index: number }) => {
   const ref = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "center start"],
@@ -106,7 +108,7 @@ const EduCard = ({ item, index }: { item: EducationItem; index: number }) => {
         } gap-8 md:gap-12 items-center`}
       >
         <motion.div
-          style={{ opacity, y: translateY }}
+          style={shouldReduceMotion ? { opacity: 1 } : { opacity, y: translateY }}
           className="flex-1 space-y-4"
         >
           <div className="flex items-center gap-3 mb-2">
@@ -138,7 +140,7 @@ const EduCard = ({ item, index }: { item: EducationItem; index: number }) => {
         </motion.div>
 
         <motion.div
-          style={{ clipPath }}
+          style={shouldReduceMotion ? { clipPath: "inset(0 0% 0 0)" } : { clipPath }}
           className="flex-1 w-full max-w-md"
         >
           <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-border/30 aspect-[4/3] sm:aspect-[4/5]">
