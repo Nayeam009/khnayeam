@@ -35,6 +35,7 @@ export function useUpdateSiteContent() {
     },
     onSuccess: (_, vars) => {
       qc.invalidateQueries({ queryKey: ["site-content", vars.sectionKey] });
+      qc.invalidateQueries({ queryKey: ["site-content-all"] });
     },
   });
 }
