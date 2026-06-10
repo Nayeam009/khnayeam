@@ -39,6 +39,11 @@ export const getOptimizedStorageUrl = (
   src: string,
   options: { width?: number; quality?: number } = {},
 ) => {
+  // Supabase Image Transformation requires a paid plan (Pro tier or above).
+  // Returning the original source URL directly to prevent 403 Forbidden errors on free tier.
+  return src;
+
+  /*
   if (!src || !src.includes(SUPABASE_PUBLIC_SEGMENT) || src.includes(SUPABASE_RENDER_SEGMENT)) {
     return src;
   }
@@ -63,4 +68,5 @@ export const getOptimizedStorageUrl = (
   const query = params.toString();
 
   return query ? `${optimizedBaseUrl}?${query}` : optimizedBaseUrl;
+  */
 };
