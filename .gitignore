@@ -14,6 +14,7 @@ renders
 *.local
 .env
 .env.*
+!.env.example
 
 # Editor directories and files
 .vscode/*
@@ -26,3 +27,6 @@ renders
 *.sln
 *.sw?
 .vercel
+supabase/.temp/
+supabase/.branches/
+.codex/

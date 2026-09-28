@@ -71,3 +71,33 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+
+## Supabase
+
+This repository is intentionally wired to **one** Supabase project only:
+
+| | |
+|---|---|
+| Project ref | `quleuwbwldqhercdnjqc` |
+| Project URL | https://quleuwbwldqhercdnjqc.supabase.co |
+| Dashboard | https://supabase.com/dashboard/project/quleuwbwldqhercdnjqc |
+
+It powers the CMS (`public.site_content`), the admin authentication/roles (`public.user_roles` +
+`has_role()`), and the public `portfolio-images` storage bucket. Do not point this repository at any other
+Supabase project or account.
+
+`src/integrations/supabase/client.ts` resolves the connection in this order:
+
+1. `VITE_SUPABASE_URL` / `VITE_SUPABASE_PUBLISHABLE_KEY` - from `.env` locally, or from the Vercel
+   project's Environment Variables in production.
+2. Fallback: the literals committed in `client.ts`, which always point at the project above.
+
+To use the Supabase CLI against this project you must be signed in as the account that owns it, since a
+token for a different account cannot see it:
+
+```sh
+npx supabase login
+npx supabase link --project-ref quleuwbwldqhercdnjqc
+```
+
+The `supabase/.temp/` folder created by `link` is git-ignored.
