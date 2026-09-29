@@ -65,8 +65,11 @@ const Navigation = () => {
   const navItems = [
     { name: "Home", href: "#hero" },
     { name: "About", href: "#about" },
+    { name: "Education", href: "#education" },
     { name: "Research", href: "#research" },
+    { name: "Professional", href: "#professional" },
     { name: "Experience", href: "#experience" },
+    { name: "Funding", href: "#funding" },
     { name: "Achievements", href: "#achievements" },
     { name: "Contact", href: "#contact" },
   ];
@@ -101,7 +104,7 @@ const Navigation = () => {
               <button
                 key={item.name}
                 onClick={() => scrollTo(item.href)}
-                className={`px-3 xl:px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                className={`px-2.5 xl:px-3 py-1.5 rounded-full text-[13px] font-medium transition-all duration-300 ${
                   isActive
                     ? "bg-primary text-primary-foreground"
                     : heroStyle
@@ -124,7 +127,7 @@ const Navigation = () => {
           >
             {isDark ? <Sun size={16} /> : <Moon size={16} />}
           </button>
-          <a href="/Kh_Nayeam_Ibna_Nasir_CV.pdf" download className="ml-1">
+          <a href="/KH_Nayeam_Ibna_Nasir_Academic_CV.pdf" download className="ml-1">
             <Button size="sm" className="rounded-full text-xs gap-1.5">
               <Download size={14} /> CV
             </Button>
@@ -168,7 +171,7 @@ const Navigation = () => {
                     {item.name}
                   </button>
                 ))}
-                <a href="/Kh_Nayeam_Ibna_Nasir_CV.pdf" download className="mt-4">
+                <a href="/KH_Nayeam_Ibna_Nasir_Academic_CV.pdf" download className="mt-4">
                   <Button className="w-full rounded-xl gap-2 min-h-[48px]">
                     <Download size={16} /> Download CV
                   </Button>

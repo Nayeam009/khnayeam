@@ -15,7 +15,7 @@ interface PersonalItem {
 
 const DEFAULTS: PersonalItem[] = [
   { icon: "User", label: "Full Name", text: "KH. Nayeam Ibna Nasir" },
-  { icon: "User", label: "Father", text: "Kh Nasir Uddin" },
+  { icon: "User", label: "Father", text: "KH. Nasir Uddin" },
   { icon: "User", label: "Mother", text: "Nasima Khandakar" },
   { icon: "Calendar", label: "Date of Birth", text: "31 Jan, 2000" },
   { icon: "Heart", label: "Blood Group", text: "AB+ve" },

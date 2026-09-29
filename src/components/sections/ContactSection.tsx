@@ -33,7 +33,7 @@ const DEFAULTS: ContactContent = {
     { icon: "MapPin", label: "Farmgate, Dhaka", subtitle: "132/A, Jahanara Garden, Green Road", href: "#" },
   ],
   social_links: [
-    { icon: "Linkedin", href: "https://linkedin.com/in/khnayeam", label: "LinkedIn" },
+    { icon: "Linkedin", href: "https://linkedin.com/in/kh-nayeam-b46228336", label: "LinkedIn" },
     { icon: "Github", href: "https://github.com/Nayeam009", label: "GitHub" },
     { icon: "Facebook", href: "https://facebook.com/khnayeam", label: "Facebook" },
   ],

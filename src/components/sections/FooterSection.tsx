@@ -35,7 +35,10 @@ const DEFAULTS: FooterContent = {
   ],
   project_links: [
     { text: "Stock-X BD", href: "https://stockxbd.com" },
-    { text: "Vetmedix", href: "https://vetmedixbd.com" },
+    { text: "Vetmedix", href: "https://vetmedixbd.vercel.app" },
+    { text: "Research Simulator", href: "https://researchsimulator.lovable.app" },
+    { text: "Acqua Lence", href: "https://acqualence.insforge.site" },
+    { text: "Z AgroTech", href: "https://z-agro.vercel.app" },
     { text: "SLI Calculator", href: "https://slipolicy.vercel.app" },
   ],
   contact_info: [
@@ -46,7 +49,7 @@ const DEFAULTS: FooterContent = {
 };
 
 const defaultSocials = [
-  { icon: Linkedin, href: "https://linkedin.com/in/khnayeam", label: "LinkedIn" },
+  { icon: Linkedin, href: "https://linkedin.com/in/kh-nayeam-b46228336", label: "LinkedIn" },
   { icon: Github, href: "https://github.com/Nayeam009", label: "GitHub" },
   { icon: Facebook, href: "https://facebook.com/khnayeam", label: "Facebook" },
 ];

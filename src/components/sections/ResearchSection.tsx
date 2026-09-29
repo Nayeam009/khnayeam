@@ -16,9 +16,9 @@ interface ResearchItem {
 }
 
 const DEFAULTS: ResearchItem[] = [
-  { title: "Adaptation of Technology in Entrepreneurship", supervisor: "Md. Rahat Tuhin, Lecturer, Dept. of Marketing, GSTU", desc: "Conducting research on the integration of modern technology into entrepreneurial ventures.", status: "Ongoing", icon: "Lightbulb" },
-  { title: "Developing 4-4-4 Super Food for Plants", supervisor: "Md. Mahfuzur Rahman, Lecturer, Dept. of Agriculture, GSTU", desc: "Working on formulation and application methods for an organic plant nutrient solution.", status: "Ongoing", icon: "FlaskConical" },
-  { title: "University Innovation Hub Program (UIHP)", supervisor: "GSTU Entrepreneurship Program", desc: "Completed intensive entrepreneurship training focused on innovation.", status: "Completed", icon: "Briefcase" },
+  { title: "Adaptation of Technology in Entrepreneurship", supervisor: "Md. Rahat Tuhin, Lecturer, Dept. of Marketing, GSTU | 2024 – Present", desc: "Examined the adoption and integration of modern technologies within entrepreneurial ventures, with emphasis on technology-enabled student entrepreneurship. Contributed to literature review, research framing, data-related work, interpretation, and academic presentation.", status: "Ongoing", icon: "Lightbulb" },
+  { title: "Developing 4-4-4 Super Food for Plants", supervisor: "Md. Mahfuzur Rahman, Lecturer, Dept. of Agriculture, GSTU | 2024 – Present", desc: "Worked on formulation and application approaches for an organic plant nutrient/biofertilizer concept using locally available organic inputs. Focused on balanced nutrient management, sustainable soil fertility, formulation planning, documentation, and practical application considerations.", status: "Ongoing", icon: "FlaskConical" },
+  { title: "Champion — Poster Presentation, IAAS 2025", supervisor: "IAAS Bangladesh Scientific Event 2025, GSTU", desc: "Champion — Poster Presentation on Mushroom Production Technology at IAAS Bangladesh Scientific Event 2025. 1st Runner-up — Poster Presentation at IAAS Bangladesh Scientific Event 2024. Experienced in translating agricultural concepts into concise scientific posters and audience-oriented explanations.", status: "Awarded", icon: "Briefcase" },
 ];
 
 const accentMap: Record<number, string> = {

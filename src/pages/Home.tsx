@@ -9,8 +9,11 @@ import StatsSection from "@/components/sections/StatsSection";
 const AboutSection = lazy(() => import("@/components/sections/AboutSection"));
 const EducationSection = lazy(() => import("@/components/sections/EducationSection"));
 const ResearchSection = lazy(() => import("@/components/sections/ResearchSection"));
+const ProfessionalExperienceSection = lazy(() => import("@/components/sections/ProfessionalExperienceSection"));
 const ExperienceSection = lazy(() => import("@/components/sections/ExperienceSection"));
+const EntrepreneurshipFundingSection = lazy(() => import("@/components/sections/EntrepreneurshipFundingSection"));
 const AchievementsSection = lazy(() => import("@/components/sections/AchievementsSection"));
+const DebateLeadershipSection = lazy(() => import("@/components/sections/DebateLeadershipSection"));
 const PersonalInfoSection = lazy(() => import("@/components/sections/PersonalInfoSection"));
 const ReferencesSection = lazy(() => import("@/components/sections/ReferencesSection"));
 const ContactSection = lazy(() => import("@/components/sections/ContactSection"));
@@ -56,10 +59,19 @@ const Home = () => {
             <ResearchSection />
           </Suspense>
           <Suspense fallback={<SectionFallback />}>
+            <ProfessionalExperienceSection />
+          </Suspense>
+          <Suspense fallback={<SectionFallback />}>
             <ExperienceSection />
           </Suspense>
           <Suspense fallback={<SectionFallback />}>
+            <EntrepreneurshipFundingSection />
+          </Suspense>
+          <Suspense fallback={<SectionFallback />}>
             <AchievementsSection />
+          </Suspense>
+          <Suspense fallback={<SectionFallback />}>
+            <DebateLeadershipSection />
           </Suspense>
           <Suspense fallback={<SectionFallback />}>
             <PersonalInfoSection />

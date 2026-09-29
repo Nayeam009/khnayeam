@@ -25,9 +25,12 @@ interface AchievementData {
 }
 
 const DEFAULTS: AchievementData[] = [
-  { title: "Agriculture Debating Club — Champion", category: "Debating", description: "Led to back-to-back championship victories.", badge: "Champion", bgImage: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=600" },
-  { title: "Top 3 — UIHP Startup Founders", category: "Startup", description: "Ranked Top 3.", badge: "Top 3", bgImage: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600" },
-  { title: "Champion — Mushroom Production Technology", category: "Scientific", description: "Won championship at IAAS 2025.", badge: "Champion", bgImage: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600" },
+  { title: "Champion — Mushroom Production Technology", category: "Scientific", description: "Won championship poster presentation at IAAS Bangladesh Scientific Event 2025, GSTU.", badge: "Champion", bgImage: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600", icon: "FlaskConical" },
+  { title: "1st Runner-up — Poster Presentation, IAAS 2024", category: "Scientific", description: "1st Runner-up at IAAS Bangladesh Scientific Event 2024, GSTU.", badge: "1st Runner-up", bgImage: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=600", icon: "Star" },
+  { title: "Top 3 — UIHP Startup Founders Competition", category: "Startup", description: "Ranked Top 3 among UIHP startup founders; provided advisory to Coco Coffee, Vetmedix, Acqua Lence, and Z AgroTech.", badge: "Top 3", bgImage: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600", icon: "Trophy" },
+  { title: "Agriculture Debating Club — Champion", category: "Debating", description: "Led Agriculture Debating Club to back-to-back championship victories — Freshers Debate 3.0 & 4.0.", badge: "Champion", bgImage: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600", icon: "Mic" },
+  { title: "Vice President — GSTU Central Debating Society", category: "Leadership", description: "Elected Vice President of the GSTU Central Debating Society.", badge: "VP", bgImage: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600", icon: "Users" },
+  { title: "BDT 520K — UIHP Awards & Seed Funding", category: "Startup", description: "Cumulative BDT 520,000 in UIHP competition awards and national-level seed funding across four ventures.", badge: "₹520K", bgImage: "https://images.unsplash.com/photo-1553729459-uj4545fce28a?w=600", icon: "Briefcase" },
 ];
 
 const AchievementsSection = () => {

@@ -28,16 +28,16 @@ const AboutSection = () => {
   const about = aboutData ?? {
     heading: "Rooted in Agriculture, Growing in Technology",
     subheading: "A dynamic multidisciplinary professional bridging agriculture, technology, and entrepreneurship.",
-    career_objective: "B.Sc. Agriculture graduate and Dynamic Full-Stack Developer with a background in Finance and Startup leadership.",
-    career_tags: ["Agriculture", "Full-Stack Dev", "Startup Leader", "Finance"],
+    career_objective: "Agriculture graduate and current M.S. student in Agroforestry & Environmental Science at Sher-e-Bangla Agricultural University, with interdisciplinary experience in agricultural research, environmental sustainability, agri-technology, entrepreneurship, public-health field operations, and full-stack digital product development. Research interests and project work connect technology adoption, sustainable nutrient management, digital agriculture, and practical field implementation. Experienced in research framing, field coordination, data collection/reporting, UI/UX design, web application development, stakeholder engagement, and translating technical needs into usable digital systems.",
+    career_tags: ["Agriculture", "Agroforestry", "Full-Stack Dev", "Entrepreneurship", "Public Health"],
     skills: [
       { title: "Agricultural Science", desc: "Crop science, soil management & sustainable farming", icon: "Sprout" },
       { title: "Full-Stack Dev", desc: "React, TypeScript, Figma, backend integration", icon: "Code", tags: ["React", "TypeScript", "Tailwind", "Figma"] },
       { title: "Startup Leadership", desc: "Founded Stock-X BD, led ops & strategy", icon: "Briefcase" },
-      { title: "Award-Winning", desc: "VP of GSTU Central Debating Society", icon: "Trophy" },
+      { title: "Award-Winning", desc: "VP, GSTU Central Debating Society & President, Agriculture Debating Club", icon: "Trophy" },
     ],
     quick_stats: [
-      { icon: "Globe", label: "Languages", value: "3", sub: "BN · EN · HI" },
+      { icon: "Globe", label: "Languages", value: "2", sub: "BN · EN" },
       { icon: "FolderKanban", label: "Projects", value: "10+", sub: "Built & shipped" },
       { icon: "Clock", label: "Experience", value: "3+ yrs", sub: "Tech & Agri" },
     ],

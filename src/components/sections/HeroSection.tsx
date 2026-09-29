@@ -41,17 +41,18 @@ const DEFAULTS: HeroContent = {
   name_line2: "Ibna Nasir",
   typing_roles: [
     "Agriculture Graduate",
+    "M.S. Student, Agroforestry",
     "Full-Stack Developer",
     "Startup Founder",
-    "Research Enthusiast",
+    "Field Organiser, BRAC",
   ],
   subtitle:
-    "B.Sc. Agriculture graduate bridging agricultural science with full-stack development. Building scalable digital solutions that connect technical innovation with business strategy.",
+    "Agriculture graduate and M.S. student in Agroforestry & Environmental Science bridging research, public-health field operations, and full-stack development — building digital solutions with real-world impact.",
   status_badge: "Open to Opportunities",
   tags: [
     { icon: "MapPin", text: "Dhaka, Bangladesh" },
-    { icon: "GraduationCap", text: "GSTU, CGPA 3.59" },
-    { icon: "Briefcase", text: "CEO, Stock-X BD" },
+    { icon: "GraduationCap", text: "SAU · M.S. Agroforestry" },
+    { icon: "Briefcase", text: "Field Organiser, BRAC" },
   ],
   profile_image: "",
   cgpa_float: "3.59",
@@ -165,7 +166,7 @@ const HeroSection = () => {
                 />
               </Button>
             </a>
-            <a href="/Kh_Nayeam_Ibna_Nasir_CV.pdf" download>
+            <a href="/KH_Nayeam_Ibna_Nasir_Academic_CV.pdf" download>
               <Button
                 size="lg"
                 variant="outline"

@@ -17,9 +17,9 @@ interface StatItem {
 
 const DEFAULTS: StatItem[] = [
   { end: 3.59, decimals: 2, suffix: "", label: "CGPA (out of 4.00)", icon: "GraduationCap" },
-  { end: 5, suffix: "+", label: "Digital Projects", icon: "Code" },
-  { end: 7, suffix: "+", label: "Awards & Honors", icon: "Trophy" },
-  { end: 20, suffix: "+", label: "Months Leading Stock-X", icon: "Briefcase" },
+  { end: 7, suffix: "+", label: "Digital Projects", icon: "Code" },
+  { end: 10, suffix: "+", label: "Awards & Honors", icon: "Trophy" },
+  { end: 520, suffix: "K", label: "BDT Seed Funding", icon: "Briefcase" },
 ];
 
 const StatsSection = () => {

@@ -29,20 +29,23 @@ interface ExperienceContent {
 
 const DEFAULTS: ExperienceContent = {
   main: {
-    name: "Stock-X BD Ltd.", role: "Founder & CEO", duration: "1 Year 8 Months",
-    description: "Founded under UIHP at GSTU. Led product development, operations, and strategic planning for an LPG ERP platform.",
+    name: "Stock-X BD Ltd.", role: "Founder & CEO", duration: "2 Years",
+    description: "Founded under UIHP at GSTU. Led product development, UI/UX, operations, strategy, team coordination, and early business development for an LPG ERP platform covering inventory, sales, and dealer/distributor workflows.",
     tags: ["LPG ERP", "UI/UX Design", "Frontend Dev", "Team Leadership", "Strategic Planning"],
     url: "https://stockxbd.com",
   },
   projects: [
-    { name: "Vetmedix", url: "https://vetmedixbd.com", icon: "HeartPulse", role: "Full-Stack Developer & Advisor", desc: "Full-stack pet-care platform.", tags: ["React", "E-commerce", "Full-Stack"] },
-    { name: "SLI Policy Calculator", url: "https://slipolicy.vercel.app", icon: "Globe", role: "Financial Advisor", desc: "Custom Premium Calculator.", tags: ["Finance", "Automation", "Web App"] },
-    { name: "Coco Coffee", url: "https://coco-coffee.lovable.app", icon: "Coffee", role: "Advisor", desc: "E-commerce marketplace.", tags: ["E-commerce", "Health", "Marketplace"] },
+    { name: "Vetmedix", url: "https://vetmedixbd.vercel.app", icon: "HeartPulse", role: "Full-Stack Developer & Advisor", desc: "Full-stack pet-care platform with e-commerce, veterinary services, profiles, and appointments.", tags: ["React", "E-commerce", "Full-Stack"] },
+    { name: "Research Simulator", url: "https://researchsimulator.lovable.app", icon: "Zap", role: "Creator & Developer", desc: "Interactive platform for modeling, testing, and visualizing research workflows and academic data scenarios.", tags: ["Research", "Simulation", "Data Viz"] },
+    { name: "Acqua Lence", url: "https://acqualence.insforge.site", icon: "Globe", role: "Co-Founder & Developer", desc: "IoT-oriented aquaculture dashboard for real-time pond telemetry visualization and risk alerts for fish and shrimp farmers.", tags: ["IoT", "Aquaculture", "Dashboard"] },
+    { name: "Z AgroTech", url: "https://z-agro.vercel.app", icon: "Zap", role: "Developer & Advisor", desc: "Integrated agritech education + farm-product marketplace.", tags: ["AgriTech", "Education", "Marketplace"] },
+    { name: "Coco Coffee", url: "https://coco-coffee.lovable.app", icon: "Coffee", role: "Advisor", desc: "Health-product e-commerce marketplace.", tags: ["E-commerce", "Health", "Marketplace"] },
+    { name: "SLI Policy Calculator", url: "https://slipolicy.vercel.app", icon: "Globe", role: "Financial Advisor", desc: "Custom Premium Calculator for Sonali Life Insurance.", tags: ["Finance", "Automation", "Web App"] },
   ],
   skill_categories: [
-    { category: "Development", skills: ["Full-Stack Web Dev", "React / TypeScript", "UI/UX Design (Figma)", "Frontend & Backend", "ERP Development", "E-commerce"] },
-    { category: "Agriculture", skills: ["Crop Science", "Soil Management", "Plant Nutrition", "Sustainable Farming", "Agricultural Research", "Organic Solutions"] },
-    { category: "Soft Skills", skills: ["Leadership", "Public Speaking", "Strategic Planning", "Team Coordination", "MS Office (Expert)", "English & Bengali"] },
+    { category: "Development", skills: ["Full-Stack Web Dev", "React / TypeScript", "UI/UX Design (Figma)", "Frontend & Backend", "Git / GitHub", "Database-backed Apps", "Web Architecture"] },
+    { category: "Research", skills: ["Literature Review", "Research Framing", "Data Collection", "Field Coordination", "Scientific Writing / Posters", "Presentation"] },
+    { category: "Professional", skills: ["Stakeholder Coordination", "Project Planning", "Team Leadership", "Public Speaking", "MS Office", "Communication"] },
   ],
 };
 
